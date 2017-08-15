@@ -1,0 +1,32 @@
+{
+  "name": "goalie",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/briandhus/Goalie.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/briandhus/Goalie/issues"
+  },
+  "homepage": "https://github.com/briandhus/Goalie#readme",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.4",
+    "mongoose": "^4.11.7",
+    "morgan": "^1.8.2",
+    "passport": "^0.4.0",
+    "react": "^15.6.1",
+    "twilio": "^3.6.2"
+  },
+  "devDependencies": {
+    "webpack": "^3.5.4"
+  }
+}
