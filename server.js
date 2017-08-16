@@ -34,7 +34,7 @@ app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'ema
 
 //after login, redirect 
 app.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: '/index',
+  successRedirect: '/index2',
   failureRedirect: '/auth/google' 
 }));
 
