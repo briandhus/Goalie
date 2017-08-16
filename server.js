@@ -34,7 +34,7 @@ app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'ema
 
 //after login, redirect 
 app.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: '/index2',
+  successRedirect: '/index',
   failureRedirect: '/auth/google' 
 }));
 
@@ -42,7 +42,7 @@ app.get('/index', function(req, res){
   console.log('getting index page!')
   console.log('req.session is')
   console.log(req.session)
-  res.sendFile(__dirname + '/public/index.html')
+  res.sendFile(__dirname + '/public/index2.html')
 })
 
 app.listen(port, function() {
