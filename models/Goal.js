@@ -3,12 +3,20 @@ var Schema = mongoose.Schema;
 
 var GoalSchema = new Schema({
   goal: {
-    type: String,
-    required: true
+  	type: String,
+  	required: true
   },
-  subtask: {
-    type: String
-  }
+  goalDue: {
+  	type: Date
+  },
+  subtask: [{
+  	title: {
+	    type: String
+		},
+		subtaskDue: {
+			type: Date
+		}
+  }]
 });
 
 var Goal = mongoose.model("Goal", GoalSchema);
