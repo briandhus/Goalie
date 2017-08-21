@@ -1,6 +1,7 @@
 import React from "react";
+import { Switch, Route } from "react-router-dom";
 
-class About extends React.Component {
+class Form extends React.Component {
 
   constructor(props){
     super(props);
@@ -11,10 +12,10 @@ class About extends React.Component {
     var that = this;  
     return (
       <main>
-        <h3>I am the about page</h3>
+        <h3>I am the form page</h3>
       </main>
     )
   }
 }
 
-export default About;
+export default Form;
