@@ -1,5 +1,23 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
-var Parent = require('./components/Parent');
+var Header = require('./header.js');
+var Main = require('./mainR.js');
 
-ReactDOM.render(<Parent />, document.getElementById("app"));
+class App extends React.Component {
+
+  constructor(props){
+    super(props);
+  }
+
+
+  render () {  
+    return (
+      <div>
+    	<h1>This is the app component</h1>
+      	<Header />
+      	<Main />
+      </div>
+    )
+  }
+}
+
+export default App;
