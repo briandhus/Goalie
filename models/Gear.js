@@ -2,32 +2,38 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var GearSchema = new Schema({
-  rightArm: {
+  // rightArm
+  levelOne: {
     type: String,
     required: true,
     default: ''
   },
-  leftArm: {
+  // leftArm
+  levelTwo: {
     type: String,
     required: true,
     default: ''
   },
-  rightLeg: {
+  // rightLeg
+  levelThree: {
   	type: String,
   	required: true,
   	default: ''
   },
-  leftLeg: {
+  // leftLeg
+  levelFour: {
   	type: String,
   	required: true,
   	default: ''
   },
-  torso: {
+  // torso
+  levelFive: {
   	type: String,
   	required: true,
   	default: ''
   },
-  head: {
+  // head / complete
+  levelSix: {
   	type: String,
   	required: true,
   	default: ''
