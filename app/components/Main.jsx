@@ -7,7 +7,7 @@ class Main extends React.Component {
     super(props);
   }
 
-  render (){  
+  render (){
     return(
       <div>
         <Route path="/about" component={About} />
