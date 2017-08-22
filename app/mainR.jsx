@@ -1,8 +1,8 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import About from "./about.js";
-import startR from "./components/startR.js";
+import About from "./about.jsx";
+import startR from "./components/startR.jsx";
 
 class Main extends React.Component {
 
