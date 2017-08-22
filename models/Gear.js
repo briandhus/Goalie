@@ -6,7 +6,8 @@ var GearSchema = new Schema({
   levelOne: {
     type: String,
     required: true,
-    default: ''
+    // check if this path leads to the correct path (static at public?)
+    default: './public/images/test.jpg'
   },
   // leftArm
   levelTwo: {
