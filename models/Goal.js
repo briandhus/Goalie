@@ -2,7 +2,7 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var GoalSchema = new Schema({
-  goal: {
+  goalTitle: {
   	type: String,
   	required: true
   },
@@ -13,10 +13,14 @@ var GoalSchema = new Schema({
   	title: {
 	    type: String,
 	    unique: true
-		},
-		subtaskDue: {
-			type: Date
-		}
+    },
+    completed: {
+      type: Boolean,
+      default: false
+    }
+		// subtaskDue: {
+		// 	type: Date
+		// }
   }]
 });
 
