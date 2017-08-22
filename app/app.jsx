@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
-import Dashboard from './components/children/Dashboard';
+import Dashboard from './components/children/Dashboard.jsx';
 
 // render((
 //   <BrowserRouter>

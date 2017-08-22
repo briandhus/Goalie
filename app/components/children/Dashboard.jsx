@@ -6,10 +6,27 @@ class Dashboard extends React.Component {
     super(props);
   }
 
-  render () {
-    // var that = this; 
+  render() {
+    // SET VARIABLES HERE for use in render
+    // var that = this;
+
+    // ADD: variable for the goal from the database
+    // ADD: function expression to iterate through subtasks & due dates
+    
+
     return (
-        <h3>I am the Dashboard</h3>
+    	<div className="container">
+    		<div className="row">
+    			<div className="col-md-3 dashboard-outline-test">
+      			<h3>Dashboard: Avatar Section</h3>
+      		</div>
+      		<div className="col-md-9 dashboard-outline-test">
+            {/* Need to insert css somewhere*/}
+      			<h3>Dashboard: Goal Info Section</h3>
+            
+      		</div>
+      	</div>
+      </div>
     )
   }
 }

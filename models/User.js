@@ -1,7 +1,10 @@
-var mongoose = require("mongoose");
-var Schema = mongoose.Schema;
+// import mongoose from 'mongoose';
+import {Schema} from 'mongoose';
 
-var UserSchema = new Schema({
+// var mongoose = require("mongoose");
+// var Schema = mongoose.Schema;
+
+const UserSchema = new Schema({
   username: {
     type: String,
     unique: true,
