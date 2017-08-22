@@ -1,8 +1,8 @@
 import React from "react";
-// import { Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
-// import Dashboard from "./children/DashboardR";
-// import form from "./children/components/form";
+import Dashboard from "./children/DashboardR";
+import form from "./children/components/form";
 
 class Start extends React.Component {
 
