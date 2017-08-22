@@ -1,66 +1,85 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
+
+
 class Form extends React.Component {
-  constructor(props) {
+
+  constructor(props){
     super(props);
-    this.state = {
-      goal: 'Write your goal here.',
-      task: 'Create task'
-    };
-
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    
   }
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
+  render () { 
+    return (      
+      <div className="container">
+        <div className="row align-items">
+          <div className="row">
+            <div className="form-group col-md-9">
+              <label htmlFor="formGroupExampleInput">Goal:</label>    
+            </div>
+            <div className="form-group col-md-3">
+              <label htmlFor="formGroupExampleInput">Date:</label>    
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-group col-md-9">
+              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Goal input"/>
+            </div>
+            <div className="form-group col-md-3">
+              <input className="form-control" type="date" value="2011-08-19" id="example-date-input"/>
+            </div>
+          </div>
+        </div>
 
-  handleSubmit(event) {
-    alert('An essay was submitted: ' + this.state.value);
-    this.setState({
-      [name]: value
-    });
-    event.preventDefault();
-  }
+        <hr/>
+        <div className="row align-items">
+          <div className="row task">
+            <div className="form-group col-md-9">
+              <label htmlFor="formGroupExampleInput">Task:</label>    
+            </div>
+            <div className="form-group col-md-3">
+              <label htmlFor="formGroupExampleInput">Date:</label>    
+            </div>
+          </div>
+          <div className="row">
+            <div className="form-group col-md-9">
+              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Task input"/>
+            </div>
+            <div className="form-group col-md-3">
+              <input className="form-control" type="date" value="2011-08-19" id="example-date-input"/>
+            </div>
+          </div>  
+        </div>
 
-  render() {
-    return (
+        <div className="row align-items">
+          <div className="row task">
+            <div className="form-group col-md-9">
+              <label htmlFor="formGroupExampleInput">Task:</label>    
+            </div>
+            <div className="form-group col-md-3">
+              <label htmlFor="formGroupExampleInput">Date:</label>    
+            </div>
+          </div>
+        </div>
 
-      <div>
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            Goal:
-            <textarea value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Submit" />
-        </form>
+        <div className="row">
+          <div className="form-group col-md-9">
+            <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Task input"/>
+          </div>
+          <div className="form-group col-md-3">
+            <input className="form-control" type="date" value="2011-08-19" id="example-date-input"/>
+          </div>
+        </div>  
+        <br/>
+        <div className="form-group row">
+          <div className="col-md-12">
+            <button type="submit" className="btn btn-danger">Submit</button>
+          </div>
+        </div>
       </div>
-    );
+    )
   }
 }
-
-// class Form extends React.Component {
-
-  // constructor(props){
-  //   super(props);
-    
-  // }
-
-  // render () { 
-  //   return (      
-  //     <div>
-  //       <form>
-  //         <label>
-  //           Name:
-  //           <input type="text" name="name" />
-  //         </label>
-  //         <input type="submit" value="Submit" />
-  //       </form>
-  //     </div>
-  //   )
-  // }
-// }
 
 export default Form;
