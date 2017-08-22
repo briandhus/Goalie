@@ -18,9 +18,11 @@ import  Main from './components/Main.jsx';
 //   </BrowserRouter>
 // ), document.getElementById("app"));
 
+import Form from './components/children/Form.jsx';
+
 render(<Form />, document.getElementById("app"));
 
 // RM Using below lines for quick testing
-render(<BrowserRouter>
-      	<Main /> 
-	  </BrowserRouter>, document.getElementById("app"));
+// render(<BrowserRouter>
+//       	<Main /> 
+// 	  </BrowserRouter>, document.getElementById("app"));
