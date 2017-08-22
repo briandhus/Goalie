@@ -51,7 +51,7 @@ db.once('open', function() {
 });
 
 //server logic
-// TODO: below path unnecessary, comment out
+// TODO: fix HTML routes
 app.get('/', function(req, res){
     res.redirect('/auth/google');
 })
@@ -74,6 +74,61 @@ app.get('*', isLoggedIn, function (request, response){
   console.log('showing index page!');
   response.sendFile(__dirname + "/public/dashboard.html");
 })
+
+//API routes
+
+//for this user, get his/her goal
+app.get('/api/goal',(req, res) => {
+  console.log(req)
+  //TODO: fix id ... listen to Roper 
+  User.findById({_id: 1}, (err1, foundUser) => {
+    Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
+       res.json(foundGoal);
+    })
+  })
+})
+
+app.post('/api/goal', (req, res) => {
+  //TODO .. insert data via req.body
+  var goalObj = {goalTitle: '', goalDate: '', subtask:[]}
+  Goal.findOneAndUpdate(goalObj, goalObj, {upsert: true}, (err1, foundGoal) => {
+    //TODO: fix id
+      console.log('done inserting into goal collection');
+    User.findOneAndUpdate({_id: 1},{goal: foundGoal._id}, (err2, foundUser) => {
+      console.log('goal added to this user');
+      res.send('goal inserted');
+    })
+  })
+})
+
+app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
+  //query MongoDB to update that task of this goal
+  Goal.findOneAndUpdate({
+    goalTitle: body.params.goalTitle,
+    'subtask.title': body.params.taskTitle
+  }, {
+    $set:{
+      "subtask.$.completed": true
+    }
+  }, (err, foundGoal)=> {
+    //check if foundGoal's tasks are all completed
+    var allTaskCompleted = foundGoal.subtask.reduce((acc, v) => (acc && v.completed));
+    if (allTaskCompleted) {
+      Goal.findOneAndRemove({})
+    }
+      //if yes, then do Goal.delete
+  })
+  //if foundGoal's tasks are all completed
+    //delete that goal 
+      //using cascade, it would that goal_ID from the user as well 
+        //redirect to success
+
+
+})
+
+
+
+//================================
 
 app.listen(port, function() {
   console.log(`Server is running on port ${port}`);
