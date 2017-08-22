@@ -1,9 +1,8 @@
-var React = require('react');
-// var Header123 = require('./Header123.jsx');
-import Header from './Header.jsx';
-var Main = require('./mainR.jsx');
+import React from "react";
+import { Route, Link } from "react-router-dom";
+import About from "./children/About.jsx";
 
-class App extends React.Component {
+class Main extends React.Component {
   constructor(props){
     super(props);
   }
@@ -11,15 +10,11 @@ class App extends React.Component {
   render (){  
     return(
       <div>
-    	<h1>This is the app component</h1>
-    	<Header test='hey'/>
+        <Route path="/about" component={About} />
+          <Link to="/about">About component</Link>
+      	<h1>This is the Main component</h1>
       </div>
    )};
 }
 
-// const Header = (props) => {
-//   return <div>{props.test}</div>;
-// }
-// export default Header;
-
-export default App;
+export default Main;
