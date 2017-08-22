@@ -12,6 +12,13 @@ import Dashboard from './components/children/Dashboard.jsx';
 
 import  Main from './components/Main.jsx';
 
+// render((
+//   <BrowserRouter>
+//      <App /> 
+//   </BrowserRouter>
+// ), document.getElementById("app"));
+
+render(<Form />, document.getElementById("app"));
 
 // RM Using below lines for quick testing
 render(<BrowserRouter>
