@@ -1,9 +1,8 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter } from 'react-router-dom'
-import App from "./components/app.js";
+import App from "./app.jsx";
 
-// This code here allows us to render our main component (in this case Main)
 render((
   <BrowserRouter>
      <App /> 

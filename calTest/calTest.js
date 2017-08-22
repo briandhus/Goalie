@@ -14,12 +14,16 @@ var SCOPES = "https://www.googleapis.com/auth/calendar";
 function handleClientLoad() {
   gapi.load('client:auth2', initClient);
 }
-
-$("button").click(function(event) {
+var login = document.getElementById('login');
+var logout = document.getElementById('logout');
+$('#create').click(function(event) {
   event.preventDefault()
+  console.log("clicked")
   console.log($('#goal').val())
   console.log($('#dueDate').val())
+  newEvent()
 })
+
 /**
  *  Initializes the API client library and sets up sign-in state
  *  listeners.
@@ -46,11 +50,11 @@ function initClient() {
  */
 function updateSigninStatus(isSignedIn) {
   if (isSignedIn) {
-    $('#login').style.display = 'none';
-    $('#logout').style.display = 'block';
+    login.style.display = 'none';
+    logout.style.display = 'block';
   } else {
-    $('#login').style.display = 'block';
-    $('#logout').style.display = 'none';
+    login.style.display = 'block';
+    logout.style.display = 'none';
   }
 }
 
@@ -74,11 +78,11 @@ function handleSignoutClick(event) {
  *
  * @param {string} message Text to be placed in pre element.
  */
-function appendPre(message) {
-  var pre = document.getElementById('content');
-  var textContent = document.createTextNode(message + '\n');
-  pre.appendChild(textContent);
-}
+// function appendPre(message) {
+//   var pre = document.getElementById('content');
+//   var textContent = document.createTextNode(message + '\n');
+//   pre.appendChild(textContent);
+// }
 function newEvent() {
   var event = {
     'summary': $('#goal').val(),
@@ -94,14 +98,14 @@ function newEvent() {
       ]
     }
   };
-
+  console.log(event)
   var request = gapi.client.calendar.events.insert({
     'calendarId': 'primary',
     'resource': event
   });
 
   request.execute(function(event) {
-    appendPre('Event created: ' + event.htmlLink);
+    console.log('Event created: ' + event.htmlLink);
   });
 }
 /**
@@ -136,7 +140,3 @@ function listUpcomingEvents() {
   });
 }
 
-// <script async defer src="https://apis.google.com/js/api.js"
-//   onload="this.onload=function(){};handleClientLoad()"
-//   onreadystatechange="if (this.readyState === 'complete') this.onload()">
-// </script>

@@ -11,7 +11,8 @@ var GoalSchema = new Schema({
   },
   subtask: [{
   	title: {
-	    type: String
+	    type: String,
+	    unique: true
 		},
 		subtaskDue: {
 			type: Date
