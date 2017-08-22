@@ -9,18 +9,11 @@ class Form extends React.Component {
   }
 
   render () {
-    // var that = this;  
+    var that = this;  
     return (
-      <form>
-        <label>
-          Name:
-          <input type="text" name="name" />
-        </label>
-        <input type="submit" value="Submit" />
-      </form>
-      // <main>
-        // <h3>I am the form page</h3>
-      // </main>
+      <main>
+        <h3>I am the form page</h3>
+      </main>
     )
   }
 }
