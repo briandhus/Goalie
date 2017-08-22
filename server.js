@@ -1,11 +1,13 @@
-var express = require("express");
-var bodyParser = require("body-parser");
+var express = require('express');
+var bodyParser = require('body-parser');
 var passport = require('passport');
 var cookieSession = require('cookie-session');
 var cookieParser = require('cookie-parser');
 var path = require('path');
-var logger = require('morgan');
-var mongoose = require("mongoose");
+var mongoose = require('mongoose');
+var logger = require("morgan");
+mongoose.Promise = Promise;
+
 //express server
 var app = express();
 var port = process.env.PORT || 3000;
@@ -31,16 +33,26 @@ app.use(cookieSession({
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 
+// Database configuration with mongoose and model requires
+var User = require('./models/User.js');
+var Goal = require('./models/Goal.js');
+var Gear = require('./models/Gear.js');
 //database logic 
 if (process.env.MONGODB_URI || process.env.NODE_ENV === 'production') mongoose.connect(process.env.MONGODB_URI);
-else mongoose.connect("mongodb://localhost/goalieDB");
+else mongoose.connect("mongodb://localhost/goalsDB");
 var db = mongoose.connection;
 
+db.on('error', function(error) {
+  console.log('Mongoose Error: ', error);
+});
 
-//[SERVER LOGIC]
+db.once('open', function() {
+  console.log('Mongoose connection successful.');
+});
 
-//go to Google login
-app.get('/login', function(req, res){
+//server logic
+// TODO: below path unnecessary, comment out
+app.get('/', function(req, res){
     res.redirect('/auth/google');
 })
 //Google passport 

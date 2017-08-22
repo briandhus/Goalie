@@ -1,0 +1,30 @@
+/* Using the below area for border styles for testing/viewing (temporary) */
+
+.dashboard-outline-test {
+	border: 2px solid red;
+	height: 700px;
+}
+
+/* Using the above area for border styles for testing/viewing (temporary) */
+
+.navbar{
+	padding: 15px;
+	margin-bottom: 0px;
+	background-color: #cccccc;
+}
+
+.navbar_about{
+	padding: 10px;
+}
+
+.navbar_profile{
+	padding: 10px;
+}
+
+.navbar-brand{
+	padding: 10px;
+}
+
+.errthang{
+	background-image: url("../images/jump.png");
+}
