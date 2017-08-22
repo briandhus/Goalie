@@ -1,8 +1,5 @@
-// import mongoose from 'mongoose';
-import {Schema} from 'mongoose';
-
-// var mongoose = require("mongoose");
-// var Schema = mongoose.Schema;
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
 var GoalSchema = new Schema({
   goal: {

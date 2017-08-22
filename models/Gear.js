@@ -1,9 +1,5 @@
-// import mongoose from 'mongoose';
-import {Schema} from 'mongoose';
-
-
-// var mongoose = require("mongoose");
-// var Schema = mongoose.Schema;
+var mongoose = require("mongoose");
+var Schema = mongoose.Schema;
 
 var GearSchema = new Schema({
   // rightArm

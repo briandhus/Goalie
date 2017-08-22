@@ -12,18 +12,18 @@ class Dashboard extends React.Component {
 
     // ADD: variable for the goal from the database
     // ADD: function expression to iterate through subtasks & due dates
-    
 
     return (
     	<div className="container">
     		<div className="row">
     			<div className="col-md-3 dashboard-outline-test">
-      			<h3>Dashboard: Avatar Section</h3>
+      			{/* Need to insert Avatar href link */}
+            <h3>Dashboard: Avatar Section</h3>
+
       		</div>
       		<div className="col-md-9 dashboard-outline-test">
-            {/* Need to insert css somewhere*/}
-      			<h3>Dashboard: Goal Info Section</h3>
-            
+            {/* Need to insert goals */}
+      			<h3>Dashboard: Goal Info Section</h3>            
       		</div>
       	</div>
       </div>

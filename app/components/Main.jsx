@@ -8,7 +8,7 @@ class App extends React.Component {
     super(props);
   }
 
-  render (){  
+  render (){
     return(
       <div>
     	<h1>This is the app component</h1>
