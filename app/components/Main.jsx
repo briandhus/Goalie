@@ -11,30 +11,29 @@ class Main extends React.Component {
 
   render (){
     return(
-      <div className="errthang">
         <div className="container">
 
-        <div className="row">
-
-          <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
-            
-            <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-              <div className="navbar">
-                <a className="navbar-brand" href="/">GOOOOAL</a>
-                <a className="nav-item nav-link navbar_about navbar-right" href="/about">About</a>
-                <a className="nav-item nav-link navbar_profile navbar-right" href="/Dashboard">Profile</a>
+          <div className="row header">
+            <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+              <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+                <div className="navbar">
+                  <a className="yo" href="/"><h1>GOOOOAL</h1></a>
+                  <a className="navbar-right" href="/about">About</a>
+                  <a className="nav-item nav-link navbar_profile navbar-right" href="/Dashboard">Profile</a>
+                </div>
               </div>
-            </div>
-          </nav>
+            </nav>
+          </div>
+        
+          <div className="row">
+            <Route path="/about" component={About} />
+              <Link to="/about">About component</Link>
+              <h1>This is the main component</h1>
+            <Route path="/Dashboard" component={Dashboard} />
+            <Link to="/Dashboard">Dashboard component</Link>
+          </div>
 
-        <Route path="/about" component={About} />
-          <Link to="/about">About component</Link>
-          <h1>This is the main component</h1>
-      	<Route path="/Dashboard" component={Dashboard} />
-          <Link to="/Dashboard">Dashboard component</Link>
-      </div>
-    </div>
-    </div>
+        </div>
    )};
 }
 
