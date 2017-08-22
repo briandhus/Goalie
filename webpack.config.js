@@ -6,7 +6,7 @@ module.exports = {
     module: {
         loaders: [
             {
-                test: /\.jsx?$/,
+                test: /\.(js|jsx)$/,
                 include: /app/,
                 loader: "babel-loader",
                 query: {
