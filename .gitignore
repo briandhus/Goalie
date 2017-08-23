@@ -1,4 +1,5 @@
 .DS_Store
+.Keys
 # Logs
 logs
 *.log
@@ -57,4 +58,6 @@ typings/
 
 # dotenv environment variables file
 .env
+
+config/auth
 
