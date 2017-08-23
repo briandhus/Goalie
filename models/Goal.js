@@ -12,10 +12,12 @@ var GoalSchema = new Schema({
   subtask: [{
   	title: {
 	    type: String,
+      required: true,
 	    unique: true
     },
     completed: {
       type: Boolean,
+      required: true
       default: false
     }
 		// subtaskDue: {
