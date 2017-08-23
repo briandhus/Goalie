@@ -31,7 +31,7 @@ import Main from '../components/Main';
 import About from '../components/children/About';
 import Form from '../components/children/form';
 import Dashboard from '../components/children/Dashboard';
-import Goal from 
+import Success from '../components/children/Success';
 
 render((
    <Router history={hashHistory}>

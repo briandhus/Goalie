@@ -14,18 +14,8 @@ var GoalSchema = new Schema({
     default: false
   },
   subtask: [{
-  	taskTitle: {
-	    type: String,
-      required: true,
-	    unique: true
-    },
-    completed: {
-      type: Boolean,
-      default: false
-    }
-		// subtaskDue: {
-		// 	type: Date
-		// }
+    type: Schema.Types.ObjectId,
+    ref: "Task"
   }]
 });
 
