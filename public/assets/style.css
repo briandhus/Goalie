@@ -28,3 +28,7 @@
 .errthang{
 	background-image: url("../images/jump.png");
 }
+
+.formButton {
+	min-width: 100%;
+}
