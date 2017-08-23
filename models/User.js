@@ -11,10 +11,14 @@ var UserSchema = new Schema({
   //   type: Schema.Types.ObjectId,
   //   ref: "Goal"
   // },
+  refreshToken: {
+    type: String,
+    unique: true
+  },
+
   goal: {
     goalTitle: {
       type: String,
-      required: true,
     },
     goalDue: {
       type: Date
@@ -26,7 +30,6 @@ var UserSchema = new Schema({
     subtask: [{
       taskTitle: {
         type: String,
-        required: true,
         unique: true
       },
       completed: {

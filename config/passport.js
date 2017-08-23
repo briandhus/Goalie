@@ -1,17 +1,18 @@
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-
-var configAuth = require('./auth');
+var configAuth = require('./auth.js');
 var User = require('../models/User.js');
 
 var passport = function(passport) {
 	passport.serializeUser(function(user, done){
-		console.log('serializeUser is being called!')
+    console.log('serializeUser is being called!')
+    console.log('user obj is')
+    console.log(user)
     done(null, user.id);
 	});
 
   passport.deserializeUser(function(id, done){
-    console.log(colors.red('deserializeUser is being called!'))
-    User.findById(id).then(function(user){
+    console.log('deserializeUser is being called!')
+    User.findById(id, function(err, user){
 			done(null, user);
 		});
 	});
@@ -20,13 +21,29 @@ var passport = function(passport) {
 	    clientSecret: configAuth.googleAuth.clientSecret,
 	    callbackURL: configAuth.googleAuth.callbackURL
     },
-      //TODO: add Mongoose query
 	  function(accessToken, refreshToken, profile, done) {
-      console.log('atempting to be authenticated');
       process.nextTick(function(){
         console.log('trying to find user')
-        var user = {name: 'Chi Lu', id: 1}
-        return done(null, user);
+        // console.log(`profile displayname is ${profile.displayName}`)
+        console.log(`refresh token is ${refreshToken}`)
+        User.findOne({'username': profile.displayName}, function(err, user){
+          if(user){
+            console.log('user found!')
+            console.log(user);
+            return done(null, user);
+          }
+          else {
+            console.log('creating a new user');
+            User.create({
+              'username' : profile.displayName,
+              'refreshToken' : refreshToken
+            }, function(data){
+              console.log('done creating a new user')
+              console.log(data);
+              return done(null, data);
+            })  
+          }      
+        })
       })
     }
 	));

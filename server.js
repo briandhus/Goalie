@@ -52,11 +52,12 @@ db.once('open', function() {
 
 //server logic
 // TODO: fix HTML routes
-app.get('/', function(req, res){
-    res.redirect('/auth/google');
-})
+
 //Google passport 
-app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile', 'email', 'https://www.googleapis.com/auth/calendar'],
+  accessType: 'offline'
+}));
 //after login, redirect 
 app.get('/auth/google/callback', passport.authenticate('google', {
   successRedirect: '/dashboard',
@@ -67,12 +68,12 @@ app.get('/dashboard', function(req, res){
   console.log('showing dashboard page!');
   console.log('req.session is');
   console.log(req.session);
-  res.sendFile(__dirname + '/public/dashboard.html');
+  res.sendFile(__dirname + '/public/index2.html');
 })
 //every other page goes to our index page
 app.get('*', isLoggedIn, function (request, response){
   console.log('showing index page!');
-  response.sendFile(__dirname + "/public/dashboard.html");
+  response.sendFile(__dirname + "/public/index2.html");
 })
 
 //API routes
@@ -146,5 +147,5 @@ function isLoggedIn(req, res, next) {
       return next();
     }
     console.log('----user is not logged in----');
-    res.sendFile(__dirname + "/public/index.html");
+    res.redirect('/')
 }
