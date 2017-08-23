@@ -6,19 +6,33 @@
 }
 
 /* Using the above area for border styles for testing/viewing (temporary) */
+body{
+	min-height: 100%;
+	background-size: 100%;
+	background-image: url("./images/jump.jpg");
+}
+
+.header{
+	min-width: 100%;
+}
 
 .navbar{
 	padding: 15px;
 	margin-bottom: 0px;
-	background-color: #cccccc;
+	background-color: white;
+	opacity: 0.8;
 }
 
 .navbar_about{
 	padding: 10px;
+	float: right;
+	display:inline;
 }
 
 .navbar_profile{
 	padding: 10px;
+	float: right;
+	display: inline;
 }
 
 .navbar-brand{

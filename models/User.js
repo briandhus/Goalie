@@ -12,8 +12,8 @@ var UserSchema = new Schema({
     ref: "Goal"
   },
 	gear: {
-	  type: Schema.Types.ObjectId,
-	  ref: "Gear"
+	  type: String,
+    default: './assets/images/level-1.png'
   },
   experience: {
   	type: Number,
