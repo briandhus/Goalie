@@ -8,11 +8,25 @@ class Form extends React.Component {
   constructor(props){
     super(props);
     
+    this.state = {value: ''};
+
+    this.handleClick = this.handleClick.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+
   }
 
-  // handleChange(event) {
-  //   this.setState = 
-  // }
+  handleChange(event) {
+    this.setState({value: event.target.value});
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    console.log("CLICK");
+    console.log(this.state.value);
+    this.props.setTerm(this.state.value);
+    this.setState({ value: "" });
+  }
+
 
   render () { 
     return (      
@@ -27,12 +41,14 @@ class Form extends React.Component {
             </div>
           </div>
           <div className="row">
-            <div className="form-group col-md-9">
-              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Goal input"/>
-            </div>
-            <div className="form-group col-md-3">
-              <input className="form-control" type="date" value="2017-09-19" id="example-date-input"/>
-            </div>
+            <form onSubmit={this.handleSubmit}>
+              <div className="form-group col-md-9">
+                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Goal input"/>
+              </div>
+              <div className="form-group col-md-3">
+                <input className="form-control" type="date" value="2017-09-19" id="example-date-input"/>
+              </div>
+            </form>
           </div>
         </div>
 
