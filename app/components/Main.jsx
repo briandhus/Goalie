@@ -14,12 +14,12 @@ class Main extends React.Component {
         <div className="container">
 
           <div className="row header">
-            <nav className="navbar navbar-toggleable-md navbar-light bg-faded">
+            <nav className="navbar-toggleable-md navbar-light bg-faded">
               <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar">
-                  <a className="yo" href="/"><h1>GOOOOAL</h1></a>
-                  <a className="navbar-right" href="/about">About</a>
-                  <a className="nav-item nav-link navbar_profile navbar-right" href="/Dashboard">Profile</a>
+                  <a className="navbar-brand" href="/">GOOOOAL</a>
+                  <a className="navbar_about" href="/about">About</a>
+                  <a className="nav-item nav-link navbar_profile" href="/Dashboard">Profile</a>
                 </div>
               </div>
             </nav>

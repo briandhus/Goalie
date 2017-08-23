@@ -23,16 +23,16 @@ body{
 	opacity: 0.8;
 }
 
-.navbar_brand{
-	
-}
-
 .navbar_about{
 	padding: 10px;
+	float: right;
+	display:inline;
 }
 
 .navbar_profile{
 	padding: 10px;
+	float: right;
+	display: inline;
 }
 
 .navbar-brand{
