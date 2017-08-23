@@ -4,20 +4,19 @@ var Schema = mongoose.Schema;
 var GoalSchema = new Schema({
   goalTitle: {
   	type: String,
-  	required: true
+  	required: true,
   },
   goalDue: {
   	type: Date
   },
   subtask: [{
-  	title: {
+  	taskTitle: {
 	    type: String,
       required: true,
 	    unique: true
     },
     completed: {
       type: Boolean,
-      required: true
       default: false
     }
 		// subtaskDue: {
