@@ -10,9 +10,36 @@ class About extends React.Component {
   render () {
     var that = this;  
     return (
-      <main>
-        <h3>I am the about page</h3>
-      </main>
+      <div className="container">
+        <h1>About us</h1>
+        <p>We are GB, a dedicated team of 5 coming together to change the world one app at a time.</p>
+        <div className="row">
+          <div className="col-md-6">
+            <div className="col-md-4">PICTURE</div>
+            <div className="col-md-8">TEXT</div>
+          </div>
+          <div className="col-md-6">
+            <div className="col-md-4">PICTURE</div>
+            <div className="col-md-8">TEXT</div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-6">
+            <div className="col-md-4">PICTURE</div>
+            <div className="col-md-8">TEXT</div>
+          </div>
+          <div className="col-md-6">
+            <div className="col-md-4">PICTURE</div>
+            <div className="col-md-8">TEXT</div>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col-md-6">
+            <div className="col-md-4">PICTURE</div>
+            <div className="col-md-8">TEXT</div>
+          </div>
+        </div>
+      </div>
     )
   }
 }
