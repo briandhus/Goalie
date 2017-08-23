@@ -4,6 +4,10 @@ import { BrowserRouter } from 'react-router-dom';
 import  Main from './components/Main.jsx';
 import ReactRoutes from './react-controller/react-routes';
 
-render(<BrowserRouter>
-      	<Main /> 
-	  </BrowserRouter>, document.getElementById("app"));
+import Form from './components/children/Form.jsx';
+
+render(<Form />, document.getElementById('app'));
+
+// render(<BrowserRouter>
+//       	<Main /> 
+// 	  </BrowserRouter>, document.getElementById("app"));
