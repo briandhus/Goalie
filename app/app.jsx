@@ -3,11 +3,6 @@ import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import  Main from './components/Main.jsx';
 
-import Form from './components/children/Form.jsx';
-
-render(<Form />, document.getElementById("app"));
-
-
-// render(<BrowserRouter>
-//       	<Main /> 
-// 	  </BrowserRouter>, document.getElementById("app"));
+render(<BrowserRouter>
+      	<Main /> 
+	  </BrowserRouter>, document.getElementById("app"));

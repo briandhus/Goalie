@@ -10,6 +10,10 @@ class Form extends React.Component {
     
   }
 
+  // handleChange(event) {
+  //   this.setState = 
+  // }
+
   render () { 
     return (      
       <div className="container">
