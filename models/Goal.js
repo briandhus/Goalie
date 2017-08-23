@@ -9,6 +9,10 @@ var GoalSchema = new Schema({
   goalDue: {
   	type: Date
   },
+  goalComplete: {
+    type: Boolean,
+    default: false
+  },
   subtask: [{
   	taskTitle: {
 	    type: String,
