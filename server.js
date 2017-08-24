@@ -70,23 +70,17 @@ app.get('/dashboard', function(req, res){
   console.log(req.session);
   res.sendFile(__dirname + '/public/index2.html');
 })
-//every other page goes to our index page
-app.get('*', isLoggedIn, function (request, response){
-  console.log('showing index page!');
-  response.sendFile(__dirname + "/public/index2.html");
-})
 
 //API routes
 
 //for this user, get his/her goal
 app.get('/api/goal',(req, res) => {
   console.log('/api/goal here!');
-  //TODO: fix id ... listen to Roper 
-  // User.findById({_id: 1}, (err1, foundUser) => {
-  //   Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
-  //      res.json(foundGoal);
-  //   })
-  // })
+  User.findById(req.session.passport.user, (err1, foundUser) => {
+    Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
+       res.json(foundGoal);
+    })
+  })
 
   User.find({username: 'RoperTest'})
     .exec(function(err, doc) {
@@ -95,19 +89,20 @@ app.get('/api/goal',(req, res) => {
     })
 })
 
+//route for user to check off a task
 app.post('/api/goal', (req, res) => {
   //TODO .. insert data via req.body
   var goalObj = {goalTitle: '', goalDate: '', subtask:[]}
   Goal.findOneAndUpdate(goalObj, goalObj, {upsert: true}, (err1, foundGoal) => {
-    //TODO: fix id
-      console.log('done inserting into goal collection');
-    User.findOneAndUpdate({_id: 1},{goal: foundGoal._id}, (err2, foundUser) => {
+    console.log('done inserting into goal collection');
+    User.findOneAndUpdate({_id: req.session.passport.user},{goal: foundGoal._id}, (err2, foundUser) => {
       console.log('goal added to this user');
       res.send('goal inserted');
     })
   })
 })
 
+//
 app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
   //query MongoDB to update that task of this goal
   Goal.findOneAndUpdate({
@@ -119,9 +114,10 @@ app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
     }
   }, (err, foundGoal)=> {
     //check if foundGoal's tasks are all completed
-    var allTaskCompleted = foundGoal.subtask.reduce((acc, v) => (acc && v.completed));
-    if (allTaskCompleted) {
-      Goal.findOneAndRemove({})
+    var taskLeftBeforeUpdate = foundGoal.subtask.reduce((acc, v) => (v === false ? acc + 1 : acc), 0);
+    if (taskLeftBeforeUpdate === 1) {
+      Goal.findOneAndRemove({_id: foundGoal._id});
+      res.redirect('/success')
     }
       //if yes, then do Goal.delete
   })
@@ -133,6 +129,11 @@ app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
 
 })
 
+//every other page goes to our index page
+app.get('*', isLoggedIn, function (request, response){
+  console.log('showing index page!');
+  response.sendFile(__dirname + "/public/index2.html");
+})
 //================================
 
 app.listen(port, function() {
@@ -141,7 +142,6 @@ app.listen(port, function() {
 
 //helper function to check if user is logged in
 function isLoggedIn(req, res, next) {
-    console.log('getting a GET request to show profile page!');
     if (req.isAuthenticated()){
       console.log('----user is logged in----');
       return next();

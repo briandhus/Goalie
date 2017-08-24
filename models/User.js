@@ -15,7 +15,10 @@ var UserSchema = new Schema({
     type: String,
     unique: true
   },
- 
+  goal: {
+    type: Schema.Types.ObjectId,
+    ref: "Goal"
+  },
 	gear: {
 	  type: String,
     default: './assets/images/level-1.png'
