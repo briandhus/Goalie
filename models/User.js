@@ -7,6 +7,14 @@ var UserSchema = new Schema({
     unique: true,
     required: true
   },
+  refreshToken: {
+    type: String,
+    unique: true
+  },
+  accessToken: {
+    type: String,
+    unique: true
+  },
   goal: {
     type: Schema.Types.ObjectId,
     ref: "Goal"

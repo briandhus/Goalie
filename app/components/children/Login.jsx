@@ -15,7 +15,7 @@ class Login extends React.Component {
 				    <h1 className="card-title">Welcome to Goalie</h1>
 				    <h4 className="card-text">Log in with Google and start accomplishing your dreams today.</h4>
 				    <br/>
-				    <a href="#" className="btn btn-primary">Login</a>
+				    <a href="auth/google" className="btn btn-primary">Login</a>
 				</div>
 			</div>
   	)

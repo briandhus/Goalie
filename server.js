@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 var logger = require("morgan");
 mongoose.Promise = Promise;
 
+var router = express.Router();
+
 //express server
 var app = express();
 var port = process.env.PORT || 3000;
@@ -52,11 +54,12 @@ db.once('open', function() {
 
 //server logic
 // TODO: fix HTML routes
-app.get('/', function(req, res){
-    res.redirect('/auth/google');
-})
+
 //Google passport 
-app.get('/auth/google', passport.authenticate('google', {scope: ['profile', 'email']}));
+app.get('/auth/google', passport.authenticate('google', {
+  scope: ['profile', 'email', 'https://www.googleapis.com/auth/calendar'],
+  accessType: 'offline'
+}));
 //after login, redirect 
 app.get('/auth/google/callback', passport.authenticate('google', {
   successRedirect: '/dashboard',
@@ -67,27 +70,33 @@ app.get('/dashboard', function(req, res){
   console.log('showing dashboard page!');
   console.log('req.session is');
   console.log(req.session);
-  res.sendFile(__dirname + '/public/dashboard.html');
-})
-//every other page goes to our index page
-app.get('*', isLoggedIn, function (request, response){
-  console.log('showing index page!');
-  response.sendFile(__dirname + "/public/dashboard.html");
+  res.sendFile(__dirname + '/public/index2.html');
 })
 
 //API routes
 
-//for this user, get his/her goal
-app.get('/api/goal',(req, res) => {
-  console.log('/api/goal here!');
-  console.log(req);
-  res.json(res);
+//find the user
+app.get('/api/user/:username',(req, res) => {
+
+  console.log('/api/user/:username here!');
   //TODO: fix id ... listen to Roper 
   // User.findById({_id: 1}, (err1, foundUser) => {
   //   Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
   //      res.json(foundGoal);
   //   })
   // })
+
+  User.find({username: req.params.username})
+  // User.find({username: })
+    .exec(function(err, doc) {
+      if (err) {
+        console.log('error: ', err);
+      }
+      else {
+        console.log(doc);
+        res.json(doc)
+      };
+    })
 })
 
 app.post('/api/goal', (req, res) => {
@@ -127,13 +136,11 @@ app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
 
 
 })
-
-// TODO: Change above routes to have api before them???
-// Any non API GET routes will be directed to our React App and handled by React Router
-app.get("*", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
-});
-
+//every other page goes to our index page
+app.get('*', isLoggedIn, function (request, response){
+  console.log('showing index page!');
+  response.sendFile(__dirname + "/public/index2.html");
+})
 //================================
 
 app.listen(port, function() {
@@ -148,5 +155,5 @@ function isLoggedIn(req, res, next) {
       return next();
     }
     console.log('----user is not logged in----');
-    res.sendFile(__dirname + "/public/index.html");
+    res.redirect('/')
 }
