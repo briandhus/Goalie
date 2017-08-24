@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 var logger = require("morgan");
 mongoose.Promise = Promise;
 
+var router = express.Router();
+
 //express server
 var app = express();
 var port = process.env.PORT || 3000;
@@ -68,11 +70,16 @@ app.get('/dashboard', function(req, res){
   console.log('showing dashboard page!');
   console.log('req.session is');
   console.log(req.session);
+<<<<<<< HEAD
   // res.sendFile(__dirname + '/public/index2.html');
+=======
+  res.sendFile(__dirname + '/public/index2.html');
+>>>>>>> master
 })
 
 //API routes
 
+<<<<<<< HEAD
 //for this user, get his/her goal
 app.get('/api/goal',(req, res) => {
   console.log('/api/goal here!');
@@ -81,11 +88,29 @@ app.get('/api/goal',(req, res) => {
        res.json(foundGoal);
     })
   })
+=======
+//find the user
+app.get('/api/user/:username',(req, res) => {
 
-  User.find({username: 'RoperTest'})
+  console.log('/api/user/:username here!');
+  //TODO: fix id ... listen to Roper 
+  // User.findById({_id: 1}, (err1, foundUser) => {
+  //   Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
+  //      res.json(foundGoal);
+  //   })
+  // })
+>>>>>>> master
+
+  User.find({username: req.params.username})
+  // User.find({username: })
     .exec(function(err, doc) {
-      if (err) console.log('error: ', err);
-      else res.send(doc);
+      if (err) {
+        console.log('error: ', err);
+      }
+      else {
+        console.log(doc);
+        res.json(doc)
+      };
     })
 })
 
@@ -128,7 +153,10 @@ app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
 
 
 })
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 //every other page goes to our index page
 app.get('*', isLoggedIn, function (request, response){
   console.log('showing index page!');
