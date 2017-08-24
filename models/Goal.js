@@ -2,13 +2,31 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var GoalSchema = new Schema({
-  goal: {
-    type: String,
-    required: true
+  goalTitle: {
+  	type: String,
+  	required: true,
   },
-  subtask: {
-    type: String
-  }
+  goalDue: {
+  	type: Date
+  },
+  goalComplete: {
+    type: Boolean,
+    default: false
+  },
+  subtask: [{
+  	taskTitle: {
+	    type: String,
+      required: true,
+	    unique: true
+    },
+    completed: {
+      type: Boolean,
+      default: false
+    }
+		// subtaskDue: {
+		// 	type: Date
+		// }
+  }]
 });
 
 var Goal = mongoose.model("Goal", GoalSchema);

@@ -7,13 +7,46 @@ var UserSchema = new Schema({
     unique: true,
     required: true
   },
+  // goal: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Goal"
+  // },
+  refreshToken: {
+    type: String,
+    unique: true
+  },
+  accessToken: {
+    type: String,
+    unique: true
+  },
   goal: {
-    type: Schema.Types.ObjectId,
-    ref: "Goal"
+    goalTitle: {
+      type: String,
+    },
+    goalDue: {
+      type: Date
+    },
+    goalComplete: {
+      type: Boolean,
+      default: false
+    },
+    subtask: [{
+      taskTitle: {
+        type: String,
+        unique: true
+      },
+      completed: {
+        type: Boolean,
+        default: false
+      }
+      // subtaskDue: {
+      //  type: Date
+      // }
+    }]
   },
 	gear: {
-	  type: Schema.Types.ObjectId,
-	  ref: "Gear"
+	  type: String,
+    default: './assets/images/level-1.png'
   },
   experience: {
   	type: Number,

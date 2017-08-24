@@ -2,35 +2,42 @@ var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
 
 var GearSchema = new Schema({
-  rightArm: {
+  // base
+  levelOne: {
     type: String,
-    required: true,
-    default: ''
+    // check if this path leads to the correct path (static at public?)
+    // required: true,
+    default: './public/images/level-1.png'
   },
-  leftArm: {
+  // rightArm
+  levelTwo: {
     type: String,
-    required: true,
-    default: ''
+    // required: true,
+    default: './public/images/level-2.png'
   },
-  rightLeg: {
+  // leftArm
+  levelThree: {
   	type: String,
-  	required: true,
-  	default: ''
+    // required: true,
+  	default: './public/images/level-3.png'
   },
-  leftLeg: {
+  // boots
+  levelFour: {
   	type: String,
-  	required: true,
-  	default: ''
+    // required: true,
+  	default: './public/images/level-4.png'
   },
-  torso: {
+  // armor
+  levelFive: {
   	type: String,
-  	required: true,
-  	default: ''
+    // required: true,
+  	default: './public/images/level-5.png'
   },
-  head: {
+  // helmet / complete
+  levelSix: {
   	type: String,
-  	required: true,
-  	default: ''
+    // required: true,
+  	default: './public/images/level-6.png'
   }
 });
 
