@@ -22,14 +22,15 @@ class Dashboard extends React.Component {
     // CHECK: on mount, this should call to server for a response 
     helpers.getUser().then(function(response) {
       console.log('DidMount response', response);
-      console.log('DidMount response.data', response.data);
-      console.log('DidMount response.data.username', response.data.username);
+      // console.log('DidMount response.data', response.data);
+      // console.log('DidMount response.data.username', response.data.username);
       // this.setState({
       //   renderUser: response.data.username,
       //   goal: '',
 
       // });
-    }.bind(this));
+    })
+    // .bind(this));
   }
 
   componentDidUpdate() {
@@ -68,13 +69,19 @@ class Dashboard extends React.Component {
     	<div className="container">
     		<div className="row">
     			<div className="col-md-3 dashboard-outline-test">
-      			{/* Need to insert Avatar href link */}
             <img alt="avatar image" src="./assets/images/level-1.png"/>
-
       		</div>
+
       		<div className="col-md-9 dashboard-outline-test">
             {/* Need to insert goals */}
-      			<h3>Dashboard: Goal Info Section</h3>            
+            <div className="panel panel-default">
+              <div className="panel-heading">
+                <h3 className="panel-title">Insert Goal Here</h3>
+              </div>
+              <div className="panel-body">
+                Insert tasks here
+              </div>
+            </div>           
       		</div>
       	</div>
       </div>
