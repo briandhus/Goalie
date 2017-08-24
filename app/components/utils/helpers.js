@@ -1,12 +1,11 @@
 import axios from 'axios';
 
 const helper = {
-  // This function hits our own server to update the tasks under goals/user
-  // TODO: Decide if put or post (update user or post to goal or user) 
+  // This function hits our own server to update the goal and tasks initially 
   createGoal: (goal) => {
     console.log('helper creating a goal');
     console.log('goal', goal);
-    return axios.put('/api/goal')
+    return axios.post('/api/goal')
   },
 
   // This function hits our own server to update the tasks under goals/tasks
@@ -18,7 +17,7 @@ const helper = {
   },
 
   // This function hits our own server to retrieve the record of user
-  getUser: () => {
+  getUser: (username) => {
     console.log('helper makes get call for User info');
     return axios.get('/api/user');
   },

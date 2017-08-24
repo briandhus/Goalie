@@ -80,13 +80,19 @@ app.get('*', isLoggedIn, function (request, response){
 
 //for this user, get his/her goal
 app.get('/api/goal',(req, res) => {
-  console.log(req)
+  console.log('/api/goal here!');
   //TODO: fix id ... listen to Roper 
-  User.findById({_id: 1}, (err1, foundUser) => {
-    Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
-       res.json(foundGoal);
+  // User.findById({_id: 1}, (err1, foundUser) => {
+  //   Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
+  //      res.json(foundGoal);
+  //   })
+  // })
+
+  User.find({username: 'RoperTest'})
+    .exec(function(err, doc) {
+      if (err) console.log('error: ', err);
+      else res.send(doc);
     })
-  })
 })
 
 app.post('/api/goal', (req, res) => {
@@ -126,12 +132,6 @@ app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
 
 
 })
-
-// TODO: Change above routes to have api before them???
-// Any non API GET routes will be directed to our React App and handled by React Router
-app.get("*", function(req, res) {
-  res.sendFile(__dirname + "/public/index.html");
-});
 
 //================================
 
