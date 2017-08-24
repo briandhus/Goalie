@@ -9,7 +9,9 @@ import Dashboard from './components/children/Dashboard.jsx';
 
 import Form from './components/children/Form.jsx';
 
-render(<Dashboard />, document.getElementById('app'));
+// render(<Dashboard />, document.getElementById('app'));
+
+// render(<Form />, document.getElementById('app'));
 
 render(<BrowserRouter>
       	<Main /> 

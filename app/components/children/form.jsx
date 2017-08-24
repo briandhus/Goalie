@@ -13,14 +13,11 @@ class Form extends React.Component {
   }
 
   handleChange(event) {
-    // this.setState({goal: event.target.value});
+    const target = event.target;
+    const value = target.value;
+    const name = target.name
     this.setState({
-      goalName: "do it",
-      goalDate: "feb",
-      taskName: "task one",
-      taskDate: "March"
-    }).then(function() {
-      console.log(this.state);
+      [name]: value
     })
   }
 
@@ -47,17 +44,19 @@ class Form extends React.Component {
           <div className="row">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group col-md-9">
-                <input type="text" className="form-control" value={this.state.goal.goalName} onChange={this.handleChange} id="formGroupInput" placeholder="Goal input"/>
+                {/*<input type="text" className="form-control" id="formGroupInput" value={this.state.goalName} placeholder="Goal input"/>*/}
+                <input type="text" className="form-control" value={this.state.goalName} onChange={this.handleChange} id="formGroupInput" placeholder="Goal input"/>
               </div>
               <div className="form-group col-md-3">
-                <input className="form-control" type="date" value={this.state.goal.goalDate} onChange={this.handleChange} id="date-input"/>
+                <input type="date" className="form-control" id="formGroupInput" placeholder="Goal input"/>
+                {/*<input className="form-control" type="date" value={this.state.goalDate} onChange={this.handleChange} id="date-input"/>*/}
               </div>
             </form>
           </div>
         </div>
 
         <hr/>
-        <div className="row align-items">
+        {/*<div className="row align-items">
           <div className="row task">
             <div className="form-group col-md-9">
               <label htmlFor="formGroupInput">Task:</label>    
@@ -156,7 +155,7 @@ class Form extends React.Component {
               <button type="submit" className="formButton btn btn-danger">Submit</button>
             </div>
           </div>
-        </div>
+        </div>*/}
 
       </div>
     )
