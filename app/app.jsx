@@ -34,8 +34,8 @@ render(<BrowserRouter>
 // import routes from './react-controller/react-routes.jsx';
 
 // import Form from './components/children/Form.jsx';
-import Dashboard from './components/children/Dashboard.jsx';
-render(<Dashboard />, document.getElementById('app'));
+// import Dashboard from './components/children/Dashboard.jsx';
+// render(<Dashboard />, document.getElementById('app'));
 
 // render(<Form />, document.getElementById('app'));
 

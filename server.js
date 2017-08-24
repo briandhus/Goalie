@@ -39,7 +39,7 @@ app.use(passport.session()); // persistent login sessions
 var User = require('./models/User.js');
 var Goal = require('./models/Goal.js');
 var Gear = require('./models/Gear.js');
-//database logic 
+//database logic
 if (process.env.MONGODB_URI || process.env.NODE_ENV === 'production') mongoose.connect(process.env.MONGODB_URI);
 else mongoose.connect("mongodb://localhost/goalsDB");
 var db = mongoose.connection;
@@ -55,15 +55,15 @@ db.once('open', function() {
 //server logic
 // TODO: fix HTML routes
 
-//Google passport 
+//Google passport
 app.get('/auth/google', passport.authenticate('google', {
   scope: ['profile', 'email', 'https://www.googleapis.com/auth/calendar'],
   accessType: 'offline'
 }));
-//after login, redirect 
+//after login, redirect
 app.get('/auth/google/callback', passport.authenticate('google', {
   successRedirect: '/dashboard',
-  failureRedirect: '/auth/google' 
+  failureRedirect: '/auth/google'
 }));
 //redirected to dashboard page
 app.get('/dashboard', function(req, res){
@@ -75,16 +75,27 @@ app.get('/dashboard', function(req, res){
 
 //API routes
 
+
+//for this user, get his/her goal
+app.get('/api/goal',(req, res) => {
+  console.log('/api/goal here!');
+  User.findById(req.session.passport.user, (err1, foundUser) => {
+    Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
+       res.json(foundGoal);
+    })
+  })
+
 //find the user
 app.get('/api/user/:username',(req, res) => {
 
   console.log('/api/user/:username here!');
-  //TODO: fix id ... listen to Roper 
+  //TODO: fix id ... listen to Roper
   // User.findById({_id: 1}, (err1, foundUser) => {
   //   Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
   //      res.json(foundGoal);
   //   })
   // })
+
 
   User.find({username: req.params.username})
   // User.find({username: })
@@ -99,19 +110,20 @@ app.get('/api/user/:username',(req, res) => {
     })
 })
 
+//route for user to check off a task
 app.post('/api/goal', (req, res) => {
   //TODO .. insert data via req.body
   var goalObj = {goalTitle: '', goalDate: '', subtask:[]}
   Goal.findOneAndUpdate(goalObj, goalObj, {upsert: true}, (err1, foundGoal) => {
-    //TODO: fix id
-      console.log('done inserting into goal collection');
-    User.findOneAndUpdate({_id: 1},{goal: foundGoal._id}, (err2, foundUser) => {
+    console.log('done inserting into goal collection');
+    User.findOneAndUpdate({_id: req.session.passport.user},{goal: foundGoal._id}, (err2, foundUser) => {
       console.log('goal added to this user');
       res.send('goal inserted');
     })
   })
 })
 
+//
 app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
   //query MongoDB to update that task of this goal
   Goal.findOneAndUpdate({
@@ -123,19 +135,24 @@ app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
     }
   }, (err, foundGoal)=> {
     //check if foundGoal's tasks are all completed
-    var allTaskCompleted = foundGoal.subtask.reduce((acc, v) => (acc && v.completed));
-    if (allTaskCompleted) {
-      Goal.findOneAndRemove({})
+    var taskLeftBeforeUpdate = foundGoal.subtask.reduce((acc, v) => (v === false ? acc + 1 : acc), 0);
+    if (taskLeftBeforeUpdate === 1) {
+      Goal.findOneAndRemove({_id: foundGoal._id});
+      res.redirect('/success')
     }
       //if yes, then do Goal.delete
   })
   //if foundGoal's tasks are all completed
-    //delete that goal 
-      //using cascade, it would that goal_ID from the user as well 
+    //delete that goal
+      //using cascade, it would that goal_ID from the user as well
         //redirect to success
 
 
 })
+<<<<<<< HEAD
+
+=======
+>>>>>>> master
 //every other page goes to our index page
 app.get('*', isLoggedIn, function (request, response){
   console.log('showing index page!');
@@ -149,7 +166,6 @@ app.listen(port, function() {
 
 //helper function to check if user is logged in
 function isLoggedIn(req, res, next) {
-    console.log('getting a GET request to show profile page!');
     if (req.isAuthenticated()){
       console.log('----user is logged in----');
       return next();
