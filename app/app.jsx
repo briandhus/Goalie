@@ -37,6 +37,4 @@ render(<BrowserRouter>
 // import Dashboard from './components/children/Dashboard.jsx';
 // render(<Dashboard />, document.getElementById('app'));
 
-// render(<Form />, document.getElementById('app'));
-
 render(routes, document.getElementById("app"));

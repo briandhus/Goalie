@@ -149,16 +149,14 @@ app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
 
 
 })
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 //every other page goes to our index page
 app.get('*', isLoggedIn, function (request, response){
   console.log('showing index page!');
   response.sendFile(__dirname + "/public/index2.html");
 })
-//================================
+
+
 
 app.listen(port, function() {
   console.log(`Server is running on port ${port}`);
