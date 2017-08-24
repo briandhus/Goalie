@@ -16,8 +16,21 @@ var UserSchema = new Schema({
     unique: true
   },
   goal: {
-    type: Schema.Types.ObjectId,
-    ref: "Goal"
+    goalTitle: {
+      type: String,
+      required: true,
+    },
+    goalDue: {
+      type: Date
+    },
+    goalComplete: {
+      type: Boolean,
+      default: false
+    },
+    subtask: [{
+      type: String,
+      unique: true,
+    }]
   },
 	gear: {
 	  type: String,

@@ -84,7 +84,7 @@ app.get('/api/goal',(req, res) => {
        res.json(foundGoal);
     })
   })
-
+});
 //find the user
 app.get('/api/user/:username',(req, res) => {
 
@@ -123,7 +123,7 @@ app.post('/api/goal', (req, res) => {
   })
 })
 
-//
+
 app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
   //query MongoDB to update that task of this goal
   Goal.findOneAndUpdate({
@@ -146,18 +146,13 @@ app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
     //delete that goal
       //using cascade, it would that goal_ID from the user as well
         //redirect to success
-
-
 })
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 //every other page goes to our index page
 app.get('*', isLoggedIn, function (request, response){
   console.log('showing index page!');
   response.sendFile(__dirname + "/public/index2.html");
-})
+});
 //================================
 
 app.listen(port, function() {
