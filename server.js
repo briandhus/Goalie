@@ -152,8 +152,14 @@ app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
 app.get('*', isLoggedIn, function (request, response){
   console.log('showing index page!');
   response.sendFile(__dirname + "/public/index2.html");
+<<<<<<< HEAD
 });
 //================================
+=======
+})
+
+
+>>>>>>> 2f4d2deca603c1681785f12276a11e88458fedfd
 
 app.listen(port, function() {
   console.log(`Server is running on port ${port}`);

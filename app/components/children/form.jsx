@@ -5,7 +5,7 @@ class Form extends React.Component {
   constructor(props){
     super(props);
     
-    this.state = {goal: {goalName: '', goalDate: ''}}, {task: [{taskName: '', taskDate: ''}]};
+    this.state = {goal: {goalName: '', goalDate: ''}, task: [{taskName: '', taskDate: ''}]};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -45,11 +45,11 @@ class Form extends React.Component {
             <form onSubmit={this.handleSubmit}>
               <div className="form-group col-md-9">
                 {/*<input type="text" className="form-control" id="formGroupInput" value={this.state.goalName} placeholder="Goal input"/>*/}
-                <input type="text" className="form-control" value={this.state.goalName} onChange={this.handleChange} id="formGroupInput" placeholder="Goal input"/>
+                <input type="text" className="form-control" value={this.state.goal.goalName} onChange={this.handleChange} id="formGroupInput" placeholder="Goal input"/>
               </div>
               <div className="form-group col-md-3">
-                <input type="date" className="form-control" id="formGroupInput" placeholder="Goal input"/>
-                {/*<input className="form-control" type="date" value={this.state.goalDate} onChange={this.handleChange} id="date-input"/>*/}
+                {/*<input type="date" className="form-control" id="formGroupInput" placeholder="Goal input"/>*/}
+                <input className="form-control" type="date" value={this.state.goal.goalDate} onChange={this.handleChange} id="date-input"/>
               </div>
             </form>
           </div>
