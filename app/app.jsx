@@ -39,5 +39,4 @@ render(<Dashboard />, document.getElementById('app'));
 
 // render(<Form />, document.getElementById('app'));
 
-// render(routes, document.getElementById("app"));
-
+render(routes, document.getElementById("app"));

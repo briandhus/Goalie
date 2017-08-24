@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, NavLink } from "react-router-dom";
+import { Route, Link } from "react-router-dom";
 import About from "./children/About.jsx";
 import Dashboard from "./children/Dashboard.jsx";
 
@@ -17,9 +17,9 @@ class Main extends React.Component {
             <nav className="navbar-toggleable-md navbar-light bg-faded">
               <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar">
-                  <NavLink className="navbar-brand" href="/">GOOOOAL</NavLink>
-                  <NavLink className="navbar_about" href="/about">About</NavLink>
-                  <NavLink className="nav-item nav-link navbar_profile" href="/Dashboard">Profile</NavLink>
+                  <Link className="navbar-brand" href="/">GOOOOAL</Link>
+                  <Link className="navbar_about" href="/about">About</Link>
+                  <Link className="nav-item nav-link navbar_profile" href="/Dashboard">Profile</Link>
                 </div>
               </div>
             </nav>
