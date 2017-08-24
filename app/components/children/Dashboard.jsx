@@ -6,31 +6,29 @@ class Dashboard extends React.Component {
   constructor(props){
     super(props);
 
-    // this.state = {
-    //   renderUser: '',
-    //   goal: '',
-    //   due: '',
-    //   subtask1: '',
-    //   subtask2: '',
-    //   subtask3: '',
-    //   subtask4: '',
-    //   subtask5: ''
-    // }
+    this.state = {
+      renderUser: '',
+      goal: '',
+      due: '',
+      subtask1: '',
+      subtask2: '',
+      subtask3: '',
+      subtask4: '',
+      subtask5: ''
+    }
   }
 
   componentDidMount() {
     // CHECK: on mount, this should call to server for a response 
-    helpers.getUser().then(function(response) {
+    helpers.getUser('RoperTest').then(function(response) {
       console.log('DidMount response', response);
-      // console.log('DidMount response.data', response.data);
-      // console.log('DidMount response.data.username', response.data.username);
-      // this.setState({
-      //   renderUser: response.data.username,
-      //   goal: '',
-
-      // });
-    })
-    // .bind(this));
+      console.log('DidMount response.data', response.data);
+      this.setState({
+        renderUser: 'Looking for username',
+        goal: 'Find the goal',
+        due: 'today'
+      });
+    }).bind(this);
   }
 
   componentDidUpdate() {
@@ -76,7 +74,8 @@ class Dashboard extends React.Component {
             {/* Need to insert goals */}
             <div className="panel panel-default">
               <div className="panel-heading">
-                <h3 className="panel-title">Insert Goal Here</h3>
+                <h3>{this.state.renderUser}'s Goal:</h3>
+                <h4 className="panel-title">{this.state.goal} due by {this.state.due}</h4>
               </div>
               <div className="panel-body">
                 Insert tasks here
