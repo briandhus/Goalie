@@ -79,13 +79,15 @@ app.get('*', isLoggedIn, function (request, response){
 
 //for this user, get his/her goal
 app.get('/api/goal',(req, res) => {
-  console.log(req)
+  console.log('/api/goal here!');
+  console.log(req);
+  res.json(res);
   //TODO: fix id ... listen to Roper 
-  User.findById({_id: 1}, (err1, foundUser) => {
-    Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
-       res.json(foundGoal);
-    })
-  })
+  // User.findById({_id: 1}, (err1, foundUser) => {
+  //   Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
+  //      res.json(foundGoal);
+  //   })
+  // })
 })
 
 app.post('/api/goal', (req, res) => {

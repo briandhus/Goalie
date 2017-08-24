@@ -3,10 +3,11 @@ import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import  Main from './components/Main.jsx';
 // import ReactRoutes from './react-controller/react-routes';
+import Dashboard from './components/children/Dashboard.jsx';
 
 import Form from './components/children/Form.jsx';
 
-render(<Form />, document.getElementById('app'));
+render(<Dashboard />, document.getElementById('app'));
 
 // render(<BrowserRouter>
 //       	<Main /> 

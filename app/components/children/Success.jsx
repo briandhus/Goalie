@@ -1,4 +1,6 @@
 import React from 'react';
+import {Link} from 'react-router';
+// var Link = require("react-router").Link;
 
 class Success extends React.Component {
 
@@ -10,37 +12,32 @@ class Success extends React.Component {
     }
   }
 
-  componentDidMount() {
-
+  goalClick() {
+    console.log('clicked');
   }
-
-  componentDidUpdate() {
-
-  }
-
+  // TODO: add <Link to="/form"></Link> and get the router to work
   render() {
-    // SET VARIABLES HERE for use in render
-    // var that = this;
-
-    // ADD: variable for the goal from the database
-    // ADD: function expression to iterate through subtasks & due dates
 
     return (
     	<div className="container">
-    		<div className="row">
-    			<div className="col-md-3 dashboard-outline-test">
-      			{/* Need to insert Avatar href link */}
-            <img alt="avatar image" src="./assets/images/level-1.png"/>
-
+    		<div className="row text-center">
+    			<div className="col-md-12">
+      			<h2>Success!</h2>
       		</div>
-      		<div className="col-md-9 dashboard-outline-test">
-            {/* Need to insert goals */}
-      			<h3>Dashboard: Goal Info Section</h3>            
-      		</div>
-      	</div>
+          <div className="row">
+        		<div className="col-md-12">
+              <img alt="avatar complete image" src="./assets/images/level-6.png"/>            
+        		</div>
+        	</div>
+          <div className="row">
+            <div className="col-md-12">
+              <button type="button" className="btn btn-default set-goal" onClick={this.goalClick}>Set New Goal</button>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
 }
 
-export default Dashboard;
+export default Success;
