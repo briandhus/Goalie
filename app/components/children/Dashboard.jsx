@@ -6,30 +6,31 @@ class Dashboard extends React.Component {
   constructor(props){
     super(props);
 
-    // this.state = {
-    //   renderUser: '',
-    //   goal: '',
-    //   due: '',
-    //   subtask1: '',
-    //   subtask2: '',
-    //   subtask3: '',
-    //   subtask4: '',
-    //   subtask5: ''
-    // }
+    this.state = {
+      renderUser: '',
+      goal: '',
+      due: '',
+      subtask1: '',
+      subtask2: '',
+      subtask3: '',
+      subtask4: '',
+      subtask5: ''
+    }
   }
 
   componentDidMount() {
     // CHECK: on mount, this should call to server for a response 
-    helpers.getUser().then(function(response) {
-      console.log('DidMount response', response);
-      console.log('DidMount response.data', response.data);
-      console.log('DidMount response.data.username', response.data.username);
-      // this.setState({
-      //   renderUser: response.data.username,
-      //   goal: '',
+    // setState the renderUser name first
 
-      // });
-    }.bind(this));
+    helpers.getUser('RoperTest').then((res) => {
+      console.log('DidMount response', res);
+      console.log('DidMount response.data', res.data);
+      this.setState({
+        renderUser: 'Need to find username',
+        goal: 'Find the this user goal',
+        due: 'today'
+      });
+    });
   }
 
   componentDidUpdate() {
@@ -68,13 +69,20 @@ class Dashboard extends React.Component {
     	<div className="container">
     		<div className="row">
     			<div className="col-md-3 dashboard-outline-test">
-      			{/* Need to insert Avatar href link */}
             <img alt="avatar image" src="./assets/images/level-1.png"/>
-
       		</div>
+
       		<div className="col-md-9 dashboard-outline-test">
             {/* Need to insert goals */}
-      			<h3>Dashboard: Goal Info Section</h3>            
+            <div className="panel panel-default">
+              <div className="panel-heading">
+                <h3>{this.state.renderUser}'s Goal:</h3>
+                <h4 className="panel-title">{this.state.goal} due by {this.state.due}</h4>
+              </div>
+              <div className="panel-body">
+                Insert tasks here
+              </div>
+            </div>           
       		</div>
       	</div>
       </div>

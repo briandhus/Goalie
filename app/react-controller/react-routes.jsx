@@ -20,30 +20,38 @@
 
 // Inclue the React library
 import React from 'react';
+
 // Include the react-router module
 import router from 'react-router';
+
 // Include the Route component for displaying individual routes
 //Include the Link component to create links
-import { Route, Link, Router, hashHistory, IndexRoute } from "react-router-dom";
+import { Route, Router, browserHistory, IndexRoute } from "react-router-dom";
 
 // Reference the high-level components
 import Main from '../components/Main';
+import Login from '../components/children/Login';
 import About from '../components/children/About';
+import Start from '../components/children/Start';
 import Form from '../components/children/form';
 import Dashboard from '../components/children/Dashboard';
-import Goal from 
+import Success from '../components/children/Success';
 
-render((
-   <Router history={hashHistory}>
-    <Route path="/" component={App}>
 
-      {/* add it here, as a child of `/` */}
-      {/*<IndexRoute component={Home}/>*/}
+var routes=((
+   <Router history={browserHistory}>
 
-      <Route path="/about" component={About} />       
-        <h1>This is the main component</h1>
-      <Route path="/Dashboard" component={Dashboard} />
-
+    <Route path="/" component={Start}>
+      <Route path="about" component={About} />   
+      <Route path="dashboard" component={Dashboard} />
+      <Route path="form" component={Form} />      
+      <IndexRoute component={About}/>
     </Route>
+
+    <Route path="login" component={Login}></Route>
+
   </Router>
+
 ), document.getElementById('app'))
+
+export default routes;

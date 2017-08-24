@@ -1,12 +1,11 @@
 import axios from 'axios';
 
 const helper = {
-  // This function hits our own server to update the tasks under goals/user
-  // TODO: Decide if put or post (update user or post to goal or user) 
+  // This function hits our own server to update the goal and tasks initially 
   createGoal: (goal) => {
     console.log('helper creating a goal');
     console.log('goal', goal);
-    return axios.put('/api/goal')
+    return axios.post('/api/goal')
   },
 
   // This function hits our own server to update the tasks under goals/tasks
@@ -18,9 +17,37 @@ const helper = {
   },
 
   // This function hits our own server to retrieve the record of user
-  getUser: () => {
-    console.log('helper makes get call for User info');
-    return axios.get('/api/user');
+  getUser: (username) => {
+    console.log('AXIOS get')
+    // console.log(username)
+    return axios.get('/api/user/' + username);
+  },
+
+  googCalGoalPush: (goal, date) => {
+    console.log(`pushing to google calendar`)
+    // define goal deadline as a calendar event
+    var event = {
+      'summary': goal,
+      'start': {
+        'date': date
+      },
+      'endTimeUnspecified': true,
+      'reminders': {
+        'useDefault': false, 
+        'overrides': [
+          {'method': 'email', 'minutes': 24 * 60},
+          {'method': 'popup', 'minutes': 12 * 60}
+        ]
+      }
+    };
+    // insert event to primary calendar
+    const request = gapi.client.calendar.events.insert({
+      'calendarId': 'primary',
+      'resource': event
+    });
+    request.execute((event) => {
+      console.log('Event created')
+    })
   }
 };
 
