@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 var logger = require("morgan");
 mongoose.Promise = Promise;
 
+var router = express.Router();
+
 //express server
 var app = express();
 var port = process.env.PORT || 3000;
@@ -37,7 +39,7 @@ app.use(passport.session()); // persistent login sessions
 var User = require('./models/User.js');
 var Goal = require('./models/Goal.js');
 var Gear = require('./models/Gear.js');
-//database logic 
+//database logic
 if (process.env.MONGODB_URI || process.env.NODE_ENV === 'production') mongoose.connect(process.env.MONGODB_URI);
 else mongoose.connect("mongodb://localhost/goalsDB");
 var db = mongoose.connection;
@@ -53,15 +55,15 @@ db.once('open', function() {
 //server logic
 // TODO: fix HTML routes
 
-//Google passport 
+//Google passport
 app.get('/auth/google', passport.authenticate('google', {
   scope: ['profile', 'email', 'https://www.googleapis.com/auth/calendar'],
   accessType: 'offline'
 }));
-//after login, redirect 
+//after login, redirect
 app.get('/auth/google/callback', passport.authenticate('google', {
   successRedirect: '/dashboard',
-  failureRedirect: '/auth/google' 
+  failureRedirect: '/auth/google'
 }));
 //redirected to dashboard page
 app.get('/dashboard', function(req, res){
@@ -73,6 +75,7 @@ app.get('/dashboard', function(req, res){
 
 //API routes
 
+
 //for this user, get his/her goal
 app.get('/api/goal',(req, res) => {
   console.log('/api/goal here!');
@@ -82,10 +85,28 @@ app.get('/api/goal',(req, res) => {
     })
   })
 
-  User.find({username: 'RoperTest'})
+//find the user
+app.get('/api/user/:username',(req, res) => {
+
+  console.log('/api/user/:username here!');
+  //TODO: fix id ... listen to Roper
+  // User.findById({_id: 1}, (err1, foundUser) => {
+  //   Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
+  //      res.json(foundGoal);
+  //   })
+  // })
+
+
+  User.find({username: req.params.username})
+  // User.find({username: })
     .exec(function(err, doc) {
-      if (err) console.log('error: ', err);
-      else res.send(doc);
+      if (err) {
+        console.log('error: ', err);
+      }
+      else {
+        console.log(doc);
+        res.json(doc)
+      };
     })
 })
 
@@ -122,13 +143,16 @@ app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
       //if yes, then do Goal.delete
   })
   //if foundGoal's tasks are all completed
-    //delete that goal 
-      //using cascade, it would that goal_ID from the user as well 
+    //delete that goal
+      //using cascade, it would that goal_ID from the user as well
         //redirect to success
 
 
 })
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 //every other page goes to our index page
 app.get('*', isLoggedIn, function (request, response){
   console.log('showing index page!');
