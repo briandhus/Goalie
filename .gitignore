@@ -1,6 +1,7 @@
 .DS_Store
 .Keys
 config/auth.js
+public/bundle.js
 
 # Logs
 logs
@@ -61,6 +62,5 @@ typings/
 # dotenv environment variables file
 .env
 
-config/auth.js
-public/bundle.js
+
 
