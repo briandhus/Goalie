@@ -22,35 +22,43 @@
 import React from 'react';
 
 // Include the react-router module
-import router from 'react-router';
+// import router from 'react-router';
 
 // Include the Route component for displaying individual routes
 //Include the Link component to create links
-import { Route, Router, browserHistory, IndexRoute } from "react-router-dom";
+import { Route, BrowserRouter, Switch } from "react-router-dom";
 
 // Reference the high-level components
-import Main from '../components/Main';
-import Login from '../components/children/Login';
-import About from '../components/children/About';
-import Start from '../components/children/Start';
-import Form from '../components/children/form';
-import Dashboard from '../components/children/Dashboard';
-import Success from '../components/children/Success';
+// var Main = require("../components/Main");
+import Main from '../components/Main.jsx';
+// var Login = require("../components/children/Login");
+import Login from '../components/children/Login.jsx';
+// var About = require("../components/children/About");
+import About from '../components/children/About.jsx';
+// var Start = require("../components/children/Start");
+import Start from '../components/children/Start.jsx';
+// var Form = require("../components/children/form");
+import Form from '../components/children/form.jsx';
+// var Dashboard = require("../components/children/Dashboard");
+import Dashboard from '../components/children/Dashboard.jsx';
+// var Success = require("../components/children/Success");
+import Success from '../components/children/Success.jsx';
 
 
 var routes=((
-   <Router history={browserHistory}>
+   <BrowserRouter>
 
-    <Route path="/" component={Start}>
-      <Route path="about" component={About} />   
-      <Route path="dashboard" component={Dashboard} />
-      <Route path="form" component={Form} />      
-      <IndexRoute component={About}/>
-    </Route>
+    <Switch>
+      <Route exact path="/" component={Start}>
+        <Route path="about" component={About} />   
+        <Route path="dashboard" component={Dashboard} />
+        <Route path="form" component={Form} />      
+      </Route>
 
-    <Route path="login" component={Login}></Route>
+      <Route path="login" component={Login}></Route>
+    </Switch>
 
-  </Router>
+  </BrowserRouter>
 
 ), document.getElementById('app'))
 
