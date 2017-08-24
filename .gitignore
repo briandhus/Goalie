@@ -62,4 +62,5 @@ typings/
 .env
 
 config/auth.js
+public/bundle.js
 
