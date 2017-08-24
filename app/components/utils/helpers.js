@@ -1,7 +1,4 @@
 import axios from 'axios';
-// var fs = require('fs');
-// var google = require('googleapis');
-// var auth = require('../../../config/auth.js');
 
 const helper = {
   // This function hits our own server to update the tasks under goals/user
@@ -47,8 +44,10 @@ const helper = {
     const request = gapi.client.calendar.events.insert({
       'calendarId': 'primary',
       'resource': event
+    });
+    request.execute((event) => {
+      console.log('Event created')
     })
-    // 
   }
 };
 

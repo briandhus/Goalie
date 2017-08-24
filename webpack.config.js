@@ -15,5 +15,8 @@ module.exports = {
             }
         ]
     },
+    externals: [
+        {googleapis: 'commonjs googleapis'}
+    ],
     devtool: "eval-source-map"
 }

@@ -33,6 +33,7 @@ var passport = function(passport) {
             console.log(user);
             user.accessToken = accessToken;
             user.save()
+
             return done(null, user);
           }
           else {
