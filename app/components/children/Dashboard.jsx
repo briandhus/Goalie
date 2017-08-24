@@ -20,15 +20,17 @@ class Dashboard extends React.Component {
 
   componentDidMount() {
     // CHECK: on mount, this should call to server for a response 
-    helpers.getUser('RoperTest').then(function(response) {
-      console.log('DidMount response', response);
-      console.log('DidMount response.data', response.data);
+    // setState the renderUser name first
+
+    helpers.getUser('RoperTest').then((res) => {
+      console.log('DidMount response', res);
+      console.log('DidMount response.data', res.data);
       this.setState({
-        renderUser: 'Looking for username',
-        goal: 'Find the goal',
+        renderUser: 'Need to find username',
+        goal: 'Find the this user goal',
         due: 'today'
       });
-    }).bind(this);
+    });
   }
 
   componentDidUpdate() {

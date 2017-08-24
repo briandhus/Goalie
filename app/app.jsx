@@ -9,9 +9,9 @@ import  Main from './components/Main.jsx';
 // import ReactRoutes from './react-controller/react-routes.jsx';
 
 // import Form from './components/children/Form.jsx';
-import Login from './components/children/Login.jsx'
+// import Login from './components/children/Login.jsx'
 
-render(<Login />, document.getElementById('app'));
+// render(<Login />, document.getElementById('app'));
 
 // import routes from './react-controller/react-routes.jsx';
 

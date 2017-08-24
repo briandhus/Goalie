@@ -18,8 +18,9 @@ const helper = {
 
   // This function hits our own server to retrieve the record of user
   getUser: (username) => {
-    console.log('helper makes get call for User info');
-    return axios.get('/api/user');
+    console.log('AXIOS get')
+    // console.log(username)
+    return axios.get('/api/user/' + username);
   },
 
   googCalGoalPush: (goal, date) => {
