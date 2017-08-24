@@ -26,17 +26,22 @@ var passport = function(passport) {
         console.log('trying to find user')
         // console.log(`profile displayname is ${profile.displayName}`)
         console.log(`refresh token is ${refreshToken}`)
+        console.log(`access token is ${accessToken}`)
         User.findOne({'username': profile.displayName}, function(err, user){
           if(user){
             console.log('user found!')
             console.log(user);
+            user.accessToken = accessToken;
+            user.save()
+
             return done(null, user);
           }
           else {
             console.log('creating a new user');
             User.create({
               'username' : profile.displayName,
-              'refreshToken' : refreshToken
+              'refreshToken' : refreshToken,
+              'accessToken' : accessToken
             }, function(data){
               console.log('done creating a new user')
               console.log(data);

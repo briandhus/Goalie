@@ -17,9 +17,36 @@ const helper = {
   },
 
   // This function hits our own server to retrieve the record of user
-  getUser: () => {
+  getUser: (username) => {
     console.log('helper makes get call for User info');
-    return axios.get('/api/goal');
+    return axios.get('/api/user');
+  },
+
+  googCalGoalPush: (goal, date) => {
+    console.log(`pushing to google calendar`)
+    // define goal deadline as a calendar event
+    var event = {
+      'summary': goal,
+      'start': {
+        'date': date
+      },
+      'endTimeUnspecified': true,
+      'reminders': {
+        'useDefault': false, 
+        'overrides': [
+          {'method': 'email', 'minutes': 24 * 60},
+          {'method': 'popup', 'minutes': 12 * 60}
+        ]
+      }
+    };
+    // insert event to primary calendar
+    const request = gapi.client.calendar.events.insert({
+      'calendarId': 'primary',
+      'resource': event
+    });
+    request.execute((event) => {
+      console.log('Event created')
+    })
   }
 };
 
