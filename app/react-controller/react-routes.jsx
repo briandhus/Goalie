@@ -26,7 +26,7 @@ import router from 'react-router';
 
 // Include the Route component for displaying individual routes
 //Include the Link component to create links
-import { Route, Link, Router, browserHistory, IndexRoute } from "react-router-dom";
+import { Route, Router, browserHistory, IndexRoute } from "react-router-dom";
 
 // Reference the high-level components
 import Main from '../components/Main';
@@ -37,18 +37,20 @@ import Form from '../components/children/form';
 import Dashboard from '../components/children/Dashboard';
 
 
-render((
+var routes=((
    <Router history={browserHistory}>
-    <Route path="/" component={App}>
 
-
-      <Route path="/about" component={About} />       
-      <Route path="/Dashboard" component={Dashboard} />
-
-      {/* add it here, as a child of `/` */}
-      <IndexRoute component={Start}/>
+    <Route path="/" component={Start}>
+      <Route path="about" component={About} />   
+      <Route path="dashboard" component={Dashboard} />
+      <Route path="form" component={Form} />      
+      <IndexRoute component={About}/>
     </Route>
+
+    <Route path="login" component={Login}></Route>
+
   </Router>
+
 ), document.getElementById('app'))
 
-export default 
+export default routes;
