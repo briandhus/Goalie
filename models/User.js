@@ -15,7 +15,10 @@ var UserSchema = new Schema({
     type: String,
     unique: true
   },
-
+  accessToken: {
+    type: String,
+    unique: true
+  },
   goal: {
     goalTitle: {
       type: String,
