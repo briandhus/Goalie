@@ -5,7 +5,7 @@ class Form extends React.Component {
   constructor(props){
     super(props);
     
-    this.state = {goal: {goalName: '', goalDate: ''}, {task: [{taskName: '', taskDate: ''}]};
+    this.state = {goal: {goalName: '', goalDate: ''}}, {task: [{taskName: '', taskDate: ''}]};
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -13,7 +13,15 @@ class Form extends React.Component {
   }
 
   handleChange(event) {
-    this.setState({value: event.target.value});
+    // this.setState({goal: event.target.value});
+    this.setState({
+      goalName: "do it",
+      goalDate: "feb",
+      taskName: "task one",
+      taskDate: "March"
+    }).then(function() {
+      console.log(this.state);
+    })
   }
 
   handleSubmit(event) {
@@ -30,19 +38,19 @@ class Form extends React.Component {
         <div className="row align-items">
           <div className="row">
             <div className="form-group col-md-9">
-              <label htmlFor="formGroupExampleInput">Goal:</label>    
+              <label htmlFor="formGroupInput">Goal:</label>    
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="formGroupExampleInput">Date:</label>    
+              <label htmlFor="formGroupInput">Date:</label>    
             </div>
           </div>
           <div className="row">
             <form onSubmit={this.handleSubmit}>
               <div className="form-group col-md-9">
-                <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Goal input"/>
+                <input type="text" className="form-control" value={this.state.goal.goalName} onChange={this.handleChange} id="formGroupInput" placeholder="Goal input"/>
               </div>
               <div className="form-group col-md-3">
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} id="example-date-input"/>
+                <input className="form-control" type="date" value={this.state.goal.goalDate} onChange={this.handleChange} id="date-input"/>
               </div>
             </form>
           </div>
@@ -52,18 +60,18 @@ class Form extends React.Component {
         <div className="row align-items">
           <div className="row task">
             <div className="form-group col-md-9">
-              <label htmlFor="formGroupExampleInput">Task:</label>    
+              <label htmlFor="formGroupInput">Task:</label>    
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="formGroupExampleInput">Date:</label>    
+              <label htmlFor="formGroupInput">Date:</label>    
             </div>
           </div>
           <div className="row">
             <div className="form-group col-md-9">
-              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Task input"/>
+              <input type="text" className="form-control" id="formGroupInput" placeholder="Task input"/>
             </div>
             <div className="form-group col-md-3">
-              <input className="form-control" type="date" value="2017-09-19" id="example-date-input"/>
+              <input className="form-control" type="date" value="2017-09-19" id="date-input"/>
             </div>
           </div>  
         </div>
@@ -71,18 +79,18 @@ class Form extends React.Component {
         <div className="row align-items">
           <div className="row task">
             <div className="form-group col-md-9">
-              <label htmlFor="formGroupExampleInput">Task:</label>    
+              <label htmlFor="formGroupInput">Task:</label>    
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="formGroupExampleInput">Date:</label>    
+              <label htmlFor="formGroupInput">Date:</label>    
             </div>
           </div>
           <div className="row">
             <div className="form-group col-md-9">
-              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Task input"/>
+              <input type="text" className="form-control" id="formGroupInput" placeholder="Task input"/>
             </div>
             <div className="form-group col-md-3">
-              <input className="form-control" type="date" value="2017-09-19" id="example-date-input"/>
+              <input className="form-control" type="date" value="2017-09-19" id="date-input"/>
             </div>
           </div>  
         </div>
@@ -90,18 +98,18 @@ class Form extends React.Component {
         <div className="row align-items">
           <div className="row task">
             <div className="form-group col-md-9">
-              <label htmlFor="formGroupExampleInput">Task:</label>    
+              <label htmlFor="formGroupInput">Task:</label>    
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="formGroupExampleInput">Date:</label>    
+              <label htmlFor="formGroupInput">Date:</label>    
             </div>
           </div>
           <div className="row">
             <div className="form-group col-md-9">
-              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Task input"/>
+              <input type="text" className="form-control" id="formGroupInput" placeholder="Task input"/>
             </div>
             <div className="form-group col-md-3">
-              <input className="form-control" type="date" value="2017-09-19" id="example-date-input"/>
+              <input className="form-control" type="date" value="2017-09-19" id="date-input"/>
             </div>
           </div>  
         </div>
@@ -109,18 +117,18 @@ class Form extends React.Component {
         <div className="row align-items">
           <div className="row task">
             <div className="form-group col-md-9">
-              <label htmlFor="formGroupExampleInput">Task:</label>    
+              <label htmlFor="formGroupInput">Task:</label>    
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="formGroupExampleInput">Date:</label>    
+              <label htmlFor="formGroupInput">Date:</label>    
             </div>
           </div>
           <div className="row">
             <div className="form-group col-md-9">
-              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Task input"/>
+              <input type="text" className="form-control" id="formGroupInput" placeholder="Task input"/>
             </div>
             <div className="form-group col-md-3">
-              <input className="form-control" type="date" value="2017-09-19" id="example-date-input"/>
+              <input className="form-control" type="date" value="2017-09-19" id="date-input"/>
             </div>
           </div>  
         </div>
@@ -128,18 +136,18 @@ class Form extends React.Component {
         <div className="row align-items">
           <div className="row task">
             <div className="form-group col-md-9">
-              <label htmlFor="formGroupExampleInput">Task:</label>    
+              <label htmlFor="formGroupInput">Task:</label>    
             </div>
             <div className="form-group col-md-3">
-              <label htmlFor="formGroupExampleInput">Date:</label>    
+              <label htmlFor="formGroupInput">Date:</label>    
             </div>
           </div>
           <div className="row">
             <div className="form-group col-md-9">
-              <input type="text" className="form-control" id="formGroupExampleInput" placeholder="Task input"/>
+              <input type="text" className="form-control" id="formGroupInput" placeholder="Task input"/>
             </div>
             <div className="form-group col-md-3">
-              <input className="form-control" type="date" value="2017-09-19" id="example-date-input"/>
+              <input className="form-control" type="date" value="2017-09-19" id="date-input"/>
             </div>
           </div>  
           <br/>
