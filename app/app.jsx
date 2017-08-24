@@ -8,10 +8,18 @@ import { BrowserRouter } from 'react-router-dom';
 
 import routes from './react-controller/react-routes.jsx';
 
-// import Form from './components/children/Form.jsx';
 
-// render(<Dashboard />, document.getElementById('app'));
+// import Form from './components/children/Form.jsx';
+import Login from './components/children/Login.jsx'
+
+render(<Login />, document.getElementById('app'));
+
+// import routes from './react-controller/react-routes.jsx';
+
+// import Form from './components/children/Form.jsx';
+import Dashboard from './components/children/Dashboard.jsx';
+render(<Dashboard />, document.getElementById('app'));
 
 // render(<Form />, document.getElementById('app'));
 
-render(routes, document.getElementById("app"));
+// render(routes, document.getElementById("app"));
