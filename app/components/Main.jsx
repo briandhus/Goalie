@@ -25,13 +25,13 @@ class Main extends React.Component {
             </nav>
           </div>
         
-          <div className="row">
+          {/*<div className="row">
             <Route path="/about" component={About} />
               <Link to="/about">About component</Link>
               <h1>This is the main component</h1>
             <Route path="/Dashboard" component={Dashboard} />
             <Link to="/Dashboard">Dashboard component</Link>
-          </div>
+          </div>*/}
 
         </div>
    )};

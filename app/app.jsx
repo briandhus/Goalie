@@ -1,14 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
+
+// import { BrowserRouter } from 'react-router-dom';
+
 import { BrowserRouter } from 'react-router-dom';
 import  Main from './components/Main.jsx';
-// import ReactRoutes from './react-controller/react-routes';
-import Dashboard from './components/children/Dashboard.jsx';
 
-import Form from './components/children/Form.jsx';
+// import routes from './react-controller/react-routes.jsx';
 
-render(<Dashboard />, document.getElementById('app'));
+// import Form from './components/children/Form.jsx';
 
-// render(<BrowserRouter>
-//       	<Main /> 
-// 	  </BrowserRouter>, document.getElementById("app"));
+// render(<Dashboard />, document.getElementById('app'));
+
+// render(<Form />, document.getElementById('app'));
+
+render(routes, document.getElementById("app"));
