@@ -35,6 +35,7 @@ import About from '../components/children/About';
 import Start from '../components/children/Start';
 import Form from '../components/children/form';
 import Dashboard from '../components/children/Dashboard';
+import Success from '../components/children/Success';
 
 
 var routes=((
