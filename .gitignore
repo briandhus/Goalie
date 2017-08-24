@@ -1,5 +1,7 @@
 .DS_Store
 .Keys
+config/auth.js
+
 # Logs
 logs
 *.log

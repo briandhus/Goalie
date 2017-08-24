@@ -17,7 +17,7 @@ const helper = {
   },
 
   // This function hits our own server to retrieve the record of user
-  getUser: () => {
+  getUser: (username) => {
     console.log('helper makes get call for User info');
     return axios.get('/api/goal');
   }
