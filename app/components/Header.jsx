@@ -13,11 +13,14 @@ class Header extends React.Component {
             <div className="navbar">
               <Link className="navbar-brand" to="/">GOOOOAL</Link>
               <Link className="navbar_about" to="/about">About</Link>
+
               <Link className="nav-item nav-link navbar_profile" to="/dashboard">Profile</Link>
+
             </div>
           </div>
         </nav>
       </div>
     )};
 }
+
 export default Header;
