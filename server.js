@@ -66,16 +66,14 @@ app.get('/auth/google/callback', passport.authenticate('google', {
   failureRedirect: '/auth/google'
 }));
 //redirected to dashboard page
-app.get('/dashboard', function(req, res){
-  console.log('showing dashboard page!');
-  console.log('req.session is');
-  console.log(req.session);
+// app.get('/dashboard', function(req, res){
+//   console.log('showing dashboard page!');
+//   console.log('req.session is');
+//   console.log(req.session);
 
-  // res.sendFile(__dirname + '/public/index2.html');
+//   res.sendFile(__dirname + '/public/index2.html');
 
-  res.sendFile(__dirname + '/public/index2.html');
-
-})
+// })
 
 //API routes
 

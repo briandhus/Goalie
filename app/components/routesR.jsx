@@ -29,6 +29,7 @@ class Routes extends React.Component {
         <Route path="/dashboard" render={(props) => (
             <Dashboard />
           )}/>
+
       </Switch>
     )
   }
