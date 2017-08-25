@@ -35,7 +35,7 @@ const helper = {
       gapi.client.init({
         // 'apiKey': 'YOUR_API_KEY',
         'discoveryDocs': [discoveryUrl],
-        'clientId': auth.googleAuth.clientID || process.env.GOOGLE_CLIENT_ID,
+        // 'clientId': auth.googleAuth.clientID,
         'scope': 'https://www.googleapis.com/auth/calendar'
       }).then(function () {
         GoogleAuth = gapi.auth2.getAuthInstance()
@@ -63,7 +63,7 @@ const helper = {
           'resource': event
         });
         goalRequest.execute((event) => {
-          console.log('Event created')
+          // console.log('Event created')
         });
         // create calendar events for tasks
         // const tasks = goal.task
