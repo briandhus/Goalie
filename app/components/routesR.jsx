@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+
 import { Route, BrowserRouter, Switch } from "react-router-dom";
 
 import LoginOrStart from './children/LoginOrStart.jsx';
@@ -17,38 +17,32 @@ class Routes extends React.Component {
       username: '', 
       goal: {}
     }
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.componentDidUpdate = this.componentDidUpdate.bind(this);
+    this.updateLogin = this.updateLogin.bind(this);
+    this.updateUser = this.updateUser.bind(this);
     this.updateTask = this.updateTask.bind(this);
     this.createGoal = this.createGoal.bind(this);
   }
 
-  componentDidMount(){
-    var that = this;  
-    axios.get('/api/loggedin').then((logincheck) =>{
-      console.log('/api/loggedin returns')
-      console.log(logincheck)
-      that.setState({
-        serverResponded: true,
-        userLogged: logincheck.data.logged
-      })
-      console.log('server responded with userLogged')
-      axios.get('/api/user').then((foundUser) =>{
-        that.setState({
-          username: foundUser.username,
-          goal: foundUser.goal
-        })
-        console.log('server returned user Obj')
-        that.render()
-      });
-
-
-    });
-    
-  }
-
   componentDidUpdate(){
     //TODO:
+  }
+
+  updateLogin(logincheck){
+    var that = this;
+    that.setState({
+      serverResponded: true,
+      userLogged: logincheck.data.logged,
+    })
+    console.log('updated routesR\'s login states')
+  }
+
+  updateUser(foundUser){
+    var that = this;
+    that.setState({
+      username: foundUser.username,
+      goal: foundUser.goal
+    })
+    console.log('updated routesR\'s user & goal states')
   }
 
   createGoal(newGoal){
@@ -56,6 +50,8 @@ class Routes extends React.Component {
       goal: newGoal
     })
   }
+
+
 
   updateTask(){
     //TODO
@@ -66,7 +62,12 @@ class Routes extends React.Component {
       <div>
         <Switch>
           <Route exact path="/"  render={(props) => (
-            <LoginOrStart userLogged={this.state.userLogged} serverResponded={this.state.serverResponded}/>
+            <LoginOrStart 
+            updateLogin={this.updateLogin}
+            updateUser={this.updateUser}
+            userLogged = {this.state.userLogged}
+            serverResponded = {this.state.serverResponded}
+            />
           )}/>
           <Route path="/about" component={About}/>   
 
