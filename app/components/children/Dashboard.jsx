@@ -23,16 +23,17 @@ class Dashboard extends React.Component {
     helpers.getUser('RoperTest').then((res) => {
       console.log('DidMount response', res);
       console.log('DidMount response.data', res.data);
+      debugger
       this.setState({
-        renderUser: res.data.username,
-        goal: res.data.goal.goalTitle,
-        due: res.data.goal.goalDue,
-        goalComplete: res.data.goal.goalComplete,
-        subtask1: res.data.goal.subtask[0],
-        subtask2: res.data.goal.subtask[1],
-        subtask3: res.data.goal.subtask[2],
-        subtask4: res.data.goal.subtask[3],
-        subtask5: res.data.goal.subtask[4]
+        renderUser: res.data[0].username,
+        goal: res.data[0].goal.goalTitle,
+        due: res.data[0].goal.goalDue,
+        goalComplete: res.data[0].goal.goalComplete,
+        subtask1: res.data[0].goal.subtask[0],
+        subtask2: res.data[0].goal.subtask[1],
+        subtask3: res.data[0].goal.subtask[2],
+        subtask4: res.data[0].goal.subtask[3],
+        subtask5: res.data[0].goal.subtask[4]
       });
     });
   }
