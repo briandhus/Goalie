@@ -39,10 +39,15 @@ body{
 	padding: 10px;
 }
 
-.errthang{
-	background-image: url("../images/jump.png");
-}
-
 .formButton {
 	min-width: 100%;
+}
+
+.about{
+	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+	text-align: center;
+	padding: 20px;
+	margin-top: 50px;
 }
