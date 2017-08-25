@@ -7,6 +7,13 @@ class LoginOrStart extends React.Component {
     
   }
 
+  componentDidUpdate(prevProps, prevState){
+    console.log('prevProps are')
+    console.log(prevProps)
+    console.log('LoginOrStart re-rendering!')
+    this.render();
+  }
+
   render() {
     if (this.props.userLogged === false && this.props.serverResponded === true) {
       var content = (
@@ -35,7 +42,9 @@ class LoginOrStart extends React.Component {
       var content = (<h3>Waiting for server ...</h3>)
     }
   	return (
-      {content}
+      <div>
+        {content}
+      </div>
   	)
   }
 }
