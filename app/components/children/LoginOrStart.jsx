@@ -8,8 +8,8 @@ class LoginOrStart extends React.Component {
   }
 
   componentDidUpdate(prevProps, prevState){
-    console.log('prevProps are')
-    console.log(prevProps)
+    // console.log('prevProps are')
+    // console.log(prevProps)
     console.log('LoginOrStart re-rendering!')
     this.render();
   }
