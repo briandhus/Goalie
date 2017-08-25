@@ -17,7 +17,7 @@ class Main extends React.Component {
             <routesR/>
 
           </div>
-        </div>
+        
     )};
 }
 
