@@ -6,8 +6,8 @@ class Form extends React.Component {
     super(props);
     
     this.state = {
-      goal: {goalName: '', goalDate: ''}, 
-      task: [{taskName: '', taskDate: ''}]
+      goal: [{goalName: ''}, {goalDate: ''}], 
+      task: [{taskName: ''}, {taskDate: ''}]
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -16,19 +16,13 @@ class Form extends React.Component {
   }
 
   handleChange(event) {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name
-    this.setState({
-      [name]: value
-    })
+    this.setState({goal: [{goalName: document.getElementById('goalGroupInput').value}, {goalDate: document.getElementById('goaldate-input').value}], 
+      task: [{taskName: document.getElementById('taskGroupInput').value}, {taskDate: document.getElementById('taskdate-input').value}]})
+    console.log(this.state) 
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log("CLICK");
-    console.log(this.state.value);
-    this.setState({ value: '' });
   }
 
 
@@ -45,16 +39,18 @@ class Form extends React.Component {
             </div>
           </div>
           <div className="row">
-            <form onSubmit={this.handleSubmit}>
+            
               <div className="form-group col-md-9">
-                {/*<input type="text" className="form-control" id="formGroupInput" value={this.state.goalName} placeholder="Goal input"/>*/}
-                <input type="text" className="form-control" value={this.state.goal.goalName} onChange={this.handleChange} id="formGroupInput" placeholder="Goal input"/>
+              <form onSubmit={this.handleSubmit}>
+                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} id="goalGroupInput" placeholder="Goal input"/>
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} id="goaldate-input"/>
+                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} id="taskGroupInput" placeholder="Task input"/>
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} id="taskdate-input"/>
+                 <button type="submit" className="formButton btn btn-danger">Submit</button>
+              </form>  
               </div>
-              <div className="form-group col-md-3">
-                {/*<input type="date" className="form-control" id="formGroupInput" placeholder="Goal input"/>*/}
-                <input className="form-control" type="date" value={this.state.goal.goalDate} onChange={this.handleChange} id="date-input"/>
-              </div>
-            </form>
+              
+            
           </div>
         </div>
 
@@ -68,14 +64,15 @@ class Form extends React.Component {
               <label htmlFor="formGroupInput">Date:</label>    
             </div>
           </div>
-          <div className="row">
-            <div className="form-group col-md-9">
-              <input type="text" className="form-control" value={this.state.task.taskName} onChange={this.handleChange} id="formGroupInput" placeholder="Task input"/>
-            </div>
-            <div className="form-group col-md-3">
-              <input className="form-control" type="date" value={this.state.task.taskDate} onChange={this.handleChange} id="date-input"/>
-            </div>
-          </div>  
+          
+        </div>
+
+        <br/>
+        <div className="form-group row">
+          <div className="col-md-10 col-md-offset-1">
+           
+
+          </div>
         </div>
 
         {/*<div className="row align-items">

@@ -1,10 +1,7 @@
 import React from "react";
 
-import { Route, NavLink } from "react-router-dom";
 import Header from "./Header.jsx";
-import StartR from "./StartR.jsx";
-
-import { Route, Link } from "react-router-dom";
+import routesR from "./routesR.jsx";
 
 class Main extends React.Component {
   constructor(props){
@@ -16,7 +13,7 @@ class Main extends React.Component {
         <div className="container">
 
           <Header/>
-          <StartR/>
+          <routesR/>
 
         </div>
    )};
