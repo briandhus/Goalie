@@ -1,4 +1,5 @@
 import React from "react";
+import helpers from "../utils/helpers"
 
 class Form extends React.Component {
 
@@ -23,6 +24,7 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    helpers.googCalPush(this.state.goal, this.state.task)
   }
 
 
