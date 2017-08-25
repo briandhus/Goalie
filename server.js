@@ -84,6 +84,7 @@ app.get('/api/goal',(req, res) => {
        res.json(foundGoal);
     })
   })
+})
 
 //find the user
 app.get('/api/user/:username',(req, res) => {
@@ -149,10 +150,7 @@ app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
 
 
 })
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 //every other page goes to our index page
 app.get('*', isLoggedIn, function (request, response){
   console.log('showing index page!');
