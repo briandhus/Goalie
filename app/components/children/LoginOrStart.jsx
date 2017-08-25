@@ -1,17 +1,23 @@
 import React from "react";
+import axios from 'axios';
 
 class LoginOrStart extends React.Component {
 
   constructor(props){
     super(props);
-    
   }
 
-  componentDidUpdate(prevProps, prevState){
-    // console.log('prevProps are')
-    // console.log(prevProps)
-    console.log('LoginOrStart re-rendering!')
-    this.render();
+  componentDidMount(){
+    var that = this; 
+    axios.get('/api/loggedin').then((logincheck) =>{
+      console.log('/api/loggedin returns')
+      that.props.updateLogin(logincheck)
+      axios.get('/api/user').then((foundUser) => {
+        console.log('/api/user returns')
+        that.props.updateUser(foundUser)
+        that.render();
+      })
+    })
   }
 
   render() {
