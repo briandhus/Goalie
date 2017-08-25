@@ -23,13 +23,14 @@ class Routes extends React.Component {
         <Route exact path="/" component={LoginOrStart}/>
         <Route path="/about" component={About}/>
 
-        <Route path="/form" render={(props) => (
-            <Form />
+        <Route exact path="/form" render={(props) => (
+            <Form {...props}/>
           )}/>      
 
         <Route path="/dashboard" render={(props) => (
-            <Dashboard />
+            <Dashboard {...props}/>
           )}/>
+
       </Switch>
       </div>
     )

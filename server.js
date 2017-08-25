@@ -71,10 +71,6 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 //   console.log('req.session is');
 //   console.log(req.session);
 
-//   // res.sendFile(__dirname + '/public/index2.html');
-
-//   res.sendFile(__dirname + '/public/index2.html');
-
 // })
 
 //API routes
