@@ -3,9 +3,6 @@ import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import  Main from './components/Main.jsx';
 
-render(
-<BrowserRouter>
+render((<BrowserRouter>
     <Main />
-  </BrowserRouter>, 
-  document.getElementById('app'));
-
+</BrowserRouter>), document.getElementById('app'));

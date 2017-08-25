@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-Header = () => (
+var Header = () => (
   <div className="row header">
     <nav className="navbar-toggleable-md navbar-light bg-faded">
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">

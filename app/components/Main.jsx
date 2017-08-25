@@ -1,7 +1,6 @@
 import React from "react";
-import { Route, NavLink } from "react-router-dom";
 import Header from "./Header.jsx";
-import StartR from "./StartR.jsx";
+import RoutesR from "./RoutesR.jsx";
 
 
 class Main extends React.Component {
@@ -14,7 +13,7 @@ class Main extends React.Component {
         <div className="container">
 
           <Header/>
-          <StartR/>
+          <RoutesR/>
 
         </div>
    )};
