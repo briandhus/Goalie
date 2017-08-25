@@ -25,17 +25,24 @@ class Routes extends React.Component {
 
   componentDidMount(){
     var that = this;  
-    axios.get('/api/loggedin').then((data) =>{
+    axios.get('/api/loggedin').then((logincheck) =>{
+      console.log('/api/loggedin returns')
+      console.log(logincheck)
       that.setState({
         serverResponded: true,
-        userLogged: data
+        userLogged: logincheck.data.logged
       })
-    });
-    axios.get('/api/user').then((foundUser) =>{
-      that.setState({
-        username: foundUser.username,
-        goal: foundUser.goal
-      })
+      console.log('server responded with userLogged')
+      axios.get('/api/user').then((foundUser) =>{
+        that.setState({
+          username: foundUser.username,
+          goal: foundUser.goal
+        })
+        console.log('server returned user Obj')
+        that.render()
+      });
+
+
     });
     
   }
@@ -58,8 +65,10 @@ class Routes extends React.Component {
     return (
       <div>
       <Switch>
-        <Route exact path="/" component={LoginOrStart}/>
-        <Route path="/about" component={About}/>
+        <Route exact path="/"  render={(props) => (
+          <LoginOrStart userLogged={this.state.userLogged} serverResponded={this.state.serverResponded}/>
+        )}/>
+        <Route path="/about" component={About}/>   
 
         <Route exact path="/form" render={(props) => (
             <Form {...props}/>

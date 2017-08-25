@@ -59,29 +59,22 @@ app.get('/auth/google', passport.authenticate('google', {
   scope: ['profile', 'email', 'https://www.googleapis.com/auth/calendar'],
   accessType: 'offline'
 }));
-//after login, redirect
 app.get('/auth/google/callback', passport.authenticate('google', {
 
   successRedirect: '/',
   failureRedirect: '/auth/google' 
 }));
-// //redirected to dashboard page
-
-// app.get('/dashboard', function(req, res){
-//   console.log('showing dashboard page!');
-//   console.log('req.session is');
-//   console.log(req.session);
-
-//   // res.sendFile(__dirname + '/public/index2.html');
-// })
 
 //API ROUTES
 
 //for this user, get whole user obj
 app.get('/api/user',(req, res) => {
-  console.log('/api/user here!');
-  User.findById(req.session.passport.user, (err, foundUser) => {
-    if (err) throw err;
+  var userToFind = 0;  
+  console.log('req session is')
+  console.log(req.session)
+  if (req.session.passport) userToFind =  req.session.passport.user
+  User.findById(userToFind, (err, foundUser) => {
+    if (!foundUser) foundUser = {};
     res.json(foundUser)
   })
 
@@ -108,10 +101,10 @@ app.put('/api/:taskTitle', (req, res) => {
   //query MongoDB to update that task of goal of user
   User.findOneAndUpdate({
     _id: req.session.passport.user,
-    'goal.subtask.title': body.params.taskTitle
+    'goal.tasks.title': body.params.taskTitle
   },{
     $set: {
-      "goal.substask.$.taskComplete": true
+      "goal.tasks.$.taskComplete": true
     }
   }, (err, foundUser) => {
     if (err) throw err;
@@ -138,9 +131,11 @@ app.put('/api/:taskTitle', (req, res) => {
 })
 
 //route for server to respond if user is logged in
-app.get("/loggedin", (req, res) => {
+app.get("/api/loggedin", (req, res) => {
+  console.log('is user logged in?')
+  console.log(`answer is ${isLoggedIn(req, res)}`)
   res.json({
-    logged: isLoggedIn()
+    logged: isLoggedIn(req,res)
   })
 })
 
@@ -158,7 +153,7 @@ app.listen(port, function() {
 });
 
 //helper function to check if user is logged in
-function isLoggedIn(req, res, next) {
+function isLoggedIn(req, res) {
     if (req.isAuthenticated()){
       console.log('----user is logged in----');
       return true;
