@@ -13,10 +13,10 @@ var GoalSchema = new Schema({
     type: Boolean,
     default: false
   },
-  subtask: [{
-    type: Schema.Types.ObjectId,
-    ref: "Task"
-  }]
+  // subtask: [{
+  //   type: Schema.Types.ObjectId,
+  //   ref: "Task"
+  // }]
 });
 
 var Goal = mongoose.model("Goal", GoalSchema);

@@ -70,10 +70,30 @@ app.get('/dashboard', function(req, res){
   console.log('showing dashboard page!');
   console.log('req.session is');
   console.log(req.session);
+
+  // res.sendFile(__dirname + '/public/index2.html');
+
   res.sendFile(__dirname + '/public/index2.html');
+
 })
 
 //API routes
+
+//for this user, get his/her goal
+app.get('/api/goal',(req, res) => {
+  console.log('/api/goal here!');
+  User.findById(req.session.passport.user, (err1, foundUser) => {
+    Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
+       res.json(foundGoal);
+    })
+  })
+})
+
+//find the user
+app.get('/api/user/:username',(req, res) => {
+
+  console.log('/api/user/:username here!');
+  //TODO: fix id ... listen to Roper 
 
 
 //for this user, get his/her goal
@@ -84,12 +104,13 @@ app.get('/api/goal',(req, res) => {
        res.json(foundGoal);
     })
   })
-
+});
 //find the user
 app.get('/api/user/:username',(req, res) => {
 
   console.log('/api/user/:username here!');
   //TODO: fix id ... listen to Roper
+
   // User.findById({_id: 1}, (err1, foundUser) => {
   //   Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
   //      res.json(foundGoal);
@@ -123,7 +144,7 @@ app.post('/api/goal', (req, res) => {
   })
 })
 
-//
+
 app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
   //query MongoDB to update that task of this goal
   Goal.findOneAndUpdate({
@@ -146,19 +167,18 @@ app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
     //delete that goal
       //using cascade, it would that goal_ID from the user as well
         //redirect to success
-
-
 })
-<<<<<<< HEAD
 
-=======
->>>>>>> master
 //every other page goes to our index page
 app.get('*', isLoggedIn, function (request, response){
   console.log('showing index page!');
   response.sendFile(__dirname + "/public/index2.html");
-})
+
+});
 //================================
+
+})
+
 
 app.listen(port, function() {
   console.log(`Server is running on port ${port}`);

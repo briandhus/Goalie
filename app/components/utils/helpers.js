@@ -23,13 +23,13 @@ const helper = {
     return axios.get('/api/user/' + username);
   },
 
-  googCalGoalPush: (goal, date) => {
+  googCalPush: (goal, date) => {
     console.log(`pushing to google calendar`)
     // define goal deadline as a calendar event
-    var event = {
-      'summary': goal,
+    const event = {
+      'summary': goal.goalName,
       'start': {
-        'date': date
+        'date': goal.goalDate
       },
       'endTimeUnspecified': true,
       'reminders': {
@@ -41,13 +41,38 @@ const helper = {
       }
     };
     // insert event to primary calendar
-    const request = gapi.client.calendar.events.insert({
+    const goalRequest = gapi.client.calendar.events.insert({
       'calendarId': 'primary',
       'resource': event
     });
-    request.execute((event) => {
+    goalRequest.execute((event) => {
       console.log('Event created')
     })
+    // create calendar events for tasks
+    const tasks = goal.task
+    for (var i = 0; i < tasks.length; i++) {
+      const task = {
+        'summary': tasks[i].taskName,
+        'start': {
+          'date': tasks[i].taskDate
+        },
+        'endTimeUnspecified': true,
+        'reminders': {
+          'useDefault': false,
+          'overrides': [
+            {'method': 'email', 'minutes': 24 * 60},
+            {'method': 'popup', 'minutes': 12 * 60}
+          ]
+        }
+      }
+      const taskRequest = gapi.client.calendar.events.insert({
+        'calendarId': 'primary',
+        'resource': event
+      });
+      taskRequest.execute((task) => {
+        console.log('Task created')
+      })
+    }
   }
 };
 
