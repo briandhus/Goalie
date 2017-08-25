@@ -1,7 +1,8 @@
 module.exports = {
     entry: "./app/app.jsx",
     output: {
-        filename: "public/bundle.js"
+        filename: "public/bundle.js",
+        publicPath: "/"
     },
     module: {
         loaders: [
@@ -14,6 +15,9 @@ module.exports = {
                 }
             }
         ]
+    },
+    devServer: {
+        historyApiFallback: true
     },
     externals: [
         {googleapis: 'commonjs googleapis'}

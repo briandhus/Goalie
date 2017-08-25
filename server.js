@@ -52,8 +52,7 @@ db.once('open', function() {
   console.log('Mongoose connection successful.');
 });
 
-//server logic
-// TODO: fix HTML routes
+//SERVER LOGIC
 
 //Google passport
 app.get('/auth/google', passport.authenticate('google', {
@@ -62,122 +61,96 @@ app.get('/auth/google', passport.authenticate('google', {
 }));
 //after login, redirect
 app.get('/auth/google/callback', passport.authenticate('google', {
-  successRedirect: '/dashboard',
-  failureRedirect: '/auth/google'
+
+  successRedirect: '/',
+  failureRedirect: '/auth/google' 
 }));
-//redirected to dashboard page
-app.get('/dashboard', function(req, res){
-  console.log('showing dashboard page!');
-  console.log('req.session is');
-  console.log(req.session);
+// //redirected to dashboard page
 
-  // res.sendFile(__dirname + '/public/index2.html');
+// app.get('/dashboard', function(req, res){
+//   console.log('showing dashboard page!');
+//   console.log('req.session is');
+//   console.log(req.session);
 
-  res.sendFile(__dirname + '/public/index2.html');
+//   // res.sendFile(__dirname + '/public/index2.html');
+// })
+
+//API ROUTES
+
+//for this user, get whole user obj
+app.get('/api/user',(req, res) => {
+  console.log('/api/user here!');
+  User.findById(req.session.passport.user, (err, foundUser) => {
+    if (err) throw err;
+    res.json(foundUser)
+  })
 
 })
 
-//API routes
-
-//for this user, get his/her goal
-app.get('/api/goal',(req, res) => {
-  console.log('/api/goal here!');
-  User.findById(req.session.passport.user, (err1, foundUser) => {
-    Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
-       res.json(foundGoal);
-    })
+//route for user to create a goal
+app.post('/api/goal', (req, res) => {
+  //TODO: check with front end to make sure req.body data format is correct
+  var goalObj = {
+    goalTitle: req.body.goalTitle, 
+    goalDue: req.body.goalDue, 
+    tasks:req.body.tasks
+  };
+  User.findOneAndUpdate({_id: req.session.passport.user},{goal: goalObj}, (err, foundUser) => {
+    if (err) throw err;
+    console.log('goal added to this user');
+    res.send('goal inserted');
   })
 })
 
-//find the user
-app.get('/api/user/:username',(req, res) => {
-
-  console.log('/api/user/:username here!');
-  //TODO: fix id ... listen to Roper 
-
-
-//for this user, get his/her goal
-app.get('/api/goal',(req, res) => {
-  console.log('/api/goal here!');
-  User.findById(req.session.passport.user, (err1, foundUser) => {
-    Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
-       res.json(foundGoal);
-    })
-  })
-});
-//find the user
-app.get('/api/user/:username',(req, res) => {
-
-  console.log('/api/user/:username here!');
-  //TODO: fix id ... listen to Roper
-
-  // User.findById({_id: 1}, (err1, foundUser) => {
-  //   Goal.find({_id: foundUser.goal}, (err2, foundGoal) => {
-  //      res.json(foundGoal);
-  //   })
-  // })
-
-
-  User.find({username: req.params.username})
-  // User.find({username: })
-    .exec(function(err, doc) {
-      if (err) {
-        console.log('error: ', err);
-      }
-      else {
-        console.log(doc);
-        res.json(doc)
-      };
-    })
-})
 
 //route for user to check off a task
-app.post('/api/goal', (req, res) => {
-  //TODO .. insert data via req.body
-  var goalObj = {goalTitle: '', goalDate: '', subtask:[]}
-  Goal.findOneAndUpdate(goalObj, goalObj, {upsert: true}, (err1, foundGoal) => {
-    console.log('done inserting into goal collection');
-    User.findOneAndUpdate({_id: req.session.passport.user},{goal: foundGoal._id}, (err2, foundUser) => {
-      console.log('goal added to this user');
-      res.send('goal inserted');
-    })
+app.put('/api/:taskTitle', (req, res) => {
+  //query MongoDB to update that task of goal of user
+  User.findOneAndUpdate({
+    _id: req.session.passport.user,
+    'goal.subtask.title': body.params.taskTitle
+  },{
+    $set: {
+      "goal.substask.$.taskComplete": true
+    }
+  }, (err, foundUser) => {
+    if (err) throw err;
+
+    var newGoalObj = {
+      goalTitle: '', 
+      goalDue: '', 
+      tasks:req.body.tasks
+    };
+    var taskLeftBeforeUpdate = foundUser.goal.tasks.reduce((acc, v) => (v === false ? acc + 1 : acc), 0);
+    //if there is only one task left before update
+    if (taskLeftBeforeUpdate === 1) {
+      //set user goal to blank obj / delete the goal
+      User.findOneAndUpdate({_id: req.session.passport.user}, {goal: newGoalObj}, (err, doc) => {
+        console.log('whole goal completed')
+        res.redirect('/success')
+      })
+    } else {
+      console.log('task checked off')
+      res.send('task checked off ')
+    }
   })
+
 })
 
-
-app.put('/api/goal/:goalTitle/:taskTitle', (req, res) => {
-  //query MongoDB to update that task of this goal
-  Goal.findOneAndUpdate({
-    goalTitle: body.params.goalTitle,
-    'subtask.title': body.params.taskTitle
-  }, {
-    $set:{
-      "subtask.$.completed": true
-    }
-  }, (err, foundGoal)=> {
-    //check if foundGoal's tasks are all completed
-    var taskLeftBeforeUpdate = foundGoal.subtask.reduce((acc, v) => (v === false ? acc + 1 : acc), 0);
-    if (taskLeftBeforeUpdate === 1) {
-      Goal.findOneAndRemove({_id: foundGoal._id});
-      res.redirect('/success')
-    }
-      //if yes, then do Goal.delete
+//route for server to respond if user is logged in
+app.get("/loggedin", (req, res) => {
+  res.json({
+    logged: isLoggedIn()
   })
-  //if foundGoal's tasks are all completed
-    //delete that goal
-      //using cascade, it would that goal_ID from the user as well
-        //redirect to success
 })
 
 //every other page goes to our index page
-app.get('*', isLoggedIn, function (request, response){
+app.get('*', function (request, response){
   console.log('showing index page!');
-  response.sendFile(__dirname + "/public/index2.html");
-
-});
-//================================
-
+  response.sendFile(__dirname + "/public/index.html");
 })
+
+//================================
 
 
 app.listen(port, function() {
@@ -188,8 +161,9 @@ app.listen(port, function() {
 function isLoggedIn(req, res, next) {
     if (req.isAuthenticated()){
       console.log('----user is logged in----');
-      return next();
+      return true;
+    } else {
+      console.log('----user is not logged in----');
+      return false
     }
-    console.log('----user is not logged in----');
-    res.redirect('/')
 }

@@ -27,9 +27,14 @@ var UserSchema = new Schema({
       type: Boolean,
       default: false
     },
-    subtask: [{
-      type: String,
-      unique: true,
+    tasks: [{
+      taskTitle: {
+        type: String
+      },
+      taskComplete: {
+        type: Boolean,
+        default: false
+      }
     }]
   },
 	gear: {
