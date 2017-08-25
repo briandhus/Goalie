@@ -17,8 +17,8 @@ var passport = function(passport) {
 		});
 	});
 	passport.use(new GoogleStrategy({
-	    clientID: configAuth.googleAuth.clientID,
-	    clientSecret: configAuth.googleAuth.clientSecret,
+	    clientID: configAuth.googleAuth.clientID || process.env.GOOGLE_CLIENT_ID,
+	    clientSecret: configAuth.googleAuth.clientSecret || process.env.GOOGLE_CLIENT_SECRET,
 	    callbackURL: configAuth.googleAuth.callbackURL
     },
 	  function(accessToken, refreshToken, profile, done) {
