@@ -10,17 +10,18 @@ import Dashboard from './children/Dashboard.jsx';
 
 class Routes extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state= {
-      userLogged: false
+      userLogged: true
     }
   }
 
   render(){
     return (
+      <div>
       <Switch>
         <Route exact path="/" component={LoginOrStart}/>
-        <Route path="/about" component={About}/>   
+        <Route path="/about" component={About}/>
 
         <Route path="/form" render={(props) => (
             <Form />
@@ -31,10 +32,10 @@ class Routes extends React.Component {
           )}/>
 
       </Switch>
+      </div>
     )
   }
 
 }
-
 
 export default Routes;
