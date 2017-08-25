@@ -30,6 +30,7 @@ class Main extends React.Component {
                 )}/>
             </Switch>
           </div>
+        </div>
         
     )};
 }
