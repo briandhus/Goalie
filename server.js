@@ -87,6 +87,7 @@ app.get('/api/goal',(req, res) => {
        res.json(foundGoal);
     })
   })
+})
 
 //find the user
 app.get('/api/user/:username',(req, res) => {
