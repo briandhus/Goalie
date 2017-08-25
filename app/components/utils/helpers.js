@@ -43,7 +43,7 @@ const helper = {
     if (params && params['access_token']) {
       var xhr = new XMLHttpRequest();
       xhr.open('POST',
-          'https://www.googleapis.com/drive/v3/about?fields=user&' +
+          'https://www.googleapis.com/calendar/v3/about?fields=user&' +
           'access_token=' + params['access_token']);
       xhr.onreadystatechange = function (e) {
         console.log(xhr.response);
