@@ -64,21 +64,21 @@ class Routes extends React.Component {
   render(){
     return (
       <div>
-      <Switch>
-        <Route exact path="/"  render={(props) => (
-          <LoginOrStart userLogged={this.state.userLogged} serverResponded={this.state.serverResponded}/>
-        )}/>
-        <Route path="/about" component={About}/>   
-
-        <Route exact path="/form" render={(props) => (
-            <Form {...props}/>
-          )}/>      
-
-        <Route path="/dashboard" render={(props) => (
-            <Dashboard {...props}/>
+        <Switch>
+          <Route exact path="/"  render={(props) => (
+            <LoginOrStart userLogged={this.state.userLogged} serverResponded={this.state.serverResponded}/>
           )}/>
+          <Route path="/about" component={About}/>   
 
-      </Switch>
+          <Route exact path="/form" render={(props) => (
+              <Form {...props}/>
+            )}/>      
+
+          <Route path="/dashboard" render={(props) => (
+              <Dashboard {...props}/>
+            )}/>
+
+        </Switch>
       </div>
     )
   }
