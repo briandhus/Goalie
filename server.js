@@ -8,6 +8,8 @@ var mongoose = require('mongoose');
 var logger = require("morgan");
 mongoose.Promise = Promise;
 
+var router = express.Router();
+
 //express server
 var app = express();
 var port = process.env.PORT || 3000;
@@ -37,7 +39,7 @@ app.use(passport.session()); // persistent login sessions
 var User = require('./models/User.js');
 var Goal = require('./models/Goal.js');
 var Gear = require('./models/Gear.js');
-//database logic 
+//database logic
 if (process.env.MONGODB_URI || process.env.NODE_ENV === 'production') mongoose.connect(process.env.MONGODB_URI);
 else mongoose.connect("mongodb://localhost/goalsDB");
 var db = mongoose.connection;
@@ -52,21 +54,24 @@ db.once('open', function() {
 
 //SERVER LOGIC
 
-//Google passport 
+//Google passport
 app.get('/auth/google', passport.authenticate('google', {
   scope: ['profile', 'email', 'https://www.googleapis.com/auth/calendar'],
   accessType: 'offline'
 }));
-//after login, redirect 
+//after login, redirect
 app.get('/auth/google/callback', passport.authenticate('google', {
+
   successRedirect: '/',
   failureRedirect: '/auth/google' 
 }));
 // //redirected to dashboard page
+
 // app.get('/dashboard', function(req, res){
 //   console.log('showing dashboard page!');
 //   console.log('req.session is');
 //   console.log(req.session);
+
 //   // res.sendFile(__dirname + '/public/index2.html');
 // })
 
@@ -79,6 +84,7 @@ app.get('/api/user',(req, res) => {
     if (err) throw err;
     res.json(foundUser)
   })
+
 })
 
 //route for user to create a goal
@@ -95,6 +101,7 @@ app.post('/api/goal', (req, res) => {
     res.send('goal inserted');
   })
 })
+
 
 //route for user to check off a task
 app.put('/api/:taskTitle', (req, res) => {
@@ -127,6 +134,7 @@ app.put('/api/:taskTitle', (req, res) => {
       res.send('task checked off ')
     }
   })
+
 })
 
 //route for server to respond if user is logged in
@@ -141,7 +149,9 @@ app.get('*', function (request, response){
   console.log('showing index page!');
   response.sendFile(__dirname + "/public/index.html");
 })
+
 //================================
+
 
 app.listen(port, function() {
   console.log(`Server is running on port ${port}`);

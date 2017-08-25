@@ -18,10 +18,10 @@ var UserSchema = new Schema({
   goal: {
     goalTitle: {
       type: String,
-      default: ''
+      required: true,
     },
     goalDue: {
-  	type: Date
+      type: Date
     },
     goalComplete: {
       type: Boolean,
