@@ -66,16 +66,16 @@ app.get('/auth/google/callback', passport.authenticate('google', {
   failureRedirect: '/auth/google'
 }));
 //redirected to dashboard page
-app.get('/dashboard', function(req, res){
-  console.log('showing dashboard page!');
-  console.log('req.session is');
-  console.log(req.session);
+// app.get('/dashboard', function(req, res){
+//   console.log('showing dashboard page!');
+//   console.log('req.session is');
+//   console.log(req.session);
 
-  // res.sendFile(__dirname + '/public/index2.html');
+//   // res.sendFile(__dirname + '/public/index2.html');
 
-  res.sendFile(__dirname + '/public/index2.html');
+//   res.sendFile(__dirname + '/public/index2.html');
 
-})
+// })
 
 //API routes
 
@@ -88,13 +88,6 @@ app.get('/api/goal',(req, res) => {
     })
   })
 })
-
-//find the user
-app.get('/api/user/:username',(req, res) => {
-
-  console.log('/api/user/:username here!');
-  //TODO: fix id ... listen to Roper 
-
 
 //for this user, get his/her goal
 app.get('/api/goal',(req, res) => {
@@ -176,8 +169,6 @@ app.get('*', isLoggedIn, function (request, response){
 
 });
 //================================
-
-})
 
 
 app.listen(port, function() {
