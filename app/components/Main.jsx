@@ -17,18 +17,7 @@ class Main extends React.Component {
     return(
         <div>
           <Header/>
-          <div className="container">
-            <Switch>
-              <Route exact path="/" component={LoginOrStart}/>
-              <Route path="/about" component={About}/>
-              <Route path="/form" render={(props) => (
-                  <Form />
-                )}/>
-              <Route path="/dashboard" render={(props) => (
-                  <Dashboard />
-                )}/>
-            </Switch>
-          </div>
+          <RoutesR />
         </div>
         
     )};
