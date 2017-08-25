@@ -10,6 +10,7 @@ class Dashboard extends React.Component {
       renderUser: '',
       goal: '',
       due: '',
+      goalComplete: '',
       subtask1: '',
       subtask2: '',
       subtask3: '',
@@ -19,16 +20,19 @@ class Dashboard extends React.Component {
   }
 
   componentDidMount() {
-    // CHECK: on mount, this should call to server for a response 
-    // setState the renderUser name first
-
     helpers.getUser('RoperTest').then((res) => {
       console.log('DidMount response', res);
       console.log('DidMount response.data', res.data);
       this.setState({
-        renderUser: 'Need to find username',
-        goal: 'Find the this user goal',
-        due: 'today'
+        renderUser: res.data.username,
+        goal: res.data.goal.goalTitle,
+        due: res.data.goal.goalDue,
+        goalComplete: res.data.goal.goalComplete,
+        subtask1: res.data.goal.subtask[0],
+        subtask2: res.data.goal.subtask[1],
+        subtask3: res.data.goal.subtask[2],
+        subtask4: res.data.goal.subtask[3],
+        subtask5: res.data.goal.subtask[4]
       });
     });
   }
@@ -59,12 +63,6 @@ class Dashboard extends React.Component {
   }
 
   render() {
-    // SET VARIABLES HERE for use in render
-    // var that = this;
-
-    // ADD: variable for the goal from the database
-    // ADD: function expression to iterate through subtasks & due dates
-
     return (
     	<div className="container">
     		<div className="row">
