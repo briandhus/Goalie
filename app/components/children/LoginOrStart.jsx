@@ -1,5 +1,6 @@
 import React from "react";
 import axios from 'axios';
+import {Link} from 'react-router-dom';
 
 class LoginOrStart extends React.Component {
 
@@ -14,7 +15,8 @@ class LoginOrStart extends React.Component {
       that.props.updateLogin(logincheck)
       axios.get('/api/user').then((foundUser) => {
         console.log('/api/user returns')
-        that.props.updateUser(foundUser)
+        console.log('foundUser received', foundUser)
+        that.props.updateUser(foundUser.data)
         that.render();
       })
     })
@@ -41,8 +43,10 @@ class LoginOrStart extends React.Component {
               <br />
               <h4 className="card-text">Create or see your current goal</h4>
               <br/>
-              <a href="/form" className="btn btn-success create_btn">Create Goal</a>
-              <a href="/dashboard" className="btn btn-info">See Goal</a>
+
+              <Link to="/form" className="btn btn-success create_btn">Create Goal</Link>
+              <Link to="/dashboard" className="btn btn-info">See Goal</Link>
+
           </div>
         </div>
       )

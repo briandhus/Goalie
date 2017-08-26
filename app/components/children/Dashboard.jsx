@@ -1,5 +1,6 @@
 import React from 'react';
 import helpers from '../utils/helpers';
+import {Link} from 'react-router-dom';
 
 class Dashboard extends React.Component {
 
@@ -19,26 +20,9 @@ class Dashboard extends React.Component {
     // }
   }
 
-  // componentDidMount() {
-  //   helpers.getUser('RoperTest').then((res) => {
-  //     console.log('DidMount response', res);
-  //     console.log('DidMount response.data', res.data);
-  //     debugger
-  //     this.setState({
-  //       renderUser: res.data[0].username,
-  //       goal: res.data[0].goal.goalTitle,
-  //       due: res.data[0].goal.goalDue,
-  //       goalComplete: res.data[0].goal.goalComplete,
-  //       subtask1: res.data[0].goal.subtask[0],
-  //       subtask2: res.data[0].goal.subtask[1],
-  //       subtask3: res.data[0].goal.subtask[2],
-  //       subtask4: res.data[0].goal.subtask[3],
-  //       subtask5: res.data[0].goal.subtask[4]
-  //     });
-  //   });
-  // }
-
   render() {
+    var that = this;
+
     return (
     	<div className="container">
     		<div className="row">
@@ -50,14 +34,30 @@ class Dashboard extends React.Component {
             {/* Need to insert goals */}
             <div className="panel panel-default">
               <div className="panel-heading">
-                <h3>{this.props.username}</h3>
-                <h4 className="panel-title">Goal: {this.props.goal.goalTitle}</h4>
-                <h5 className="panel-title">{this.props.goal.goalDue}</h5>
+                <h3>{this.props.username}'s Goal</h3>
+                
+                <h4 className="panel-title">Goal: {
+                  (function() {
+                    if (that.props.goal.goalTitle) {
+                      return (that.props.goal.goalTitle);
+                    }
+                    else {
+                      return ('No goal set yet')
+                    }
+                  }) ()
+                }
+                </h4>
+                <br/>
+                <h5 className="panel-title">Due: {/*this.props.goal.goalDue*/}</h5>
+
+                <Link to="/success">
+                  <button className="btn btn-success">Press to complete goal</button>
+                </Link>
               </div>
               <div className="panel-body">
                 
               
-                {/*{this.props.goal.tasks.map(function(task, i) {
+                {/*this.props.goal.tasks.map(function(task, i) {
                   return (
                     <div>
                       <p key={i}>{task.taskTitle}</p>
@@ -66,7 +66,9 @@ class Dashboard extends React.Component {
                   );
                 })}*/}
 
-                <a href="/form" className="btn btn-success">Create New Goal</a>
+                <Link to="/form">
+                  <button className="btn btn-success">Create New Goal</button>
+                </Link>
 
               </div>
             </div>           
