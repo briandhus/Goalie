@@ -1,5 +1,4 @@
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-var configAuth = require('./auth.js');
 var User = require('../models/User.js');
 
 var passport = function(passport) {
@@ -15,11 +14,24 @@ var passport = function(passport) {
     User.findById(id, function(err, user){
 			done(null, user);
 		});
-	});
+  });
+  
+  if (process.env.MONGODB_URI || process.env.PORT){
+    var clientID = process.env.GOOGLE_CLIENT_ID;
+    var clientSecret = process.env.GOOGLE_CLIENT_SECRET;
+    var callbackURL = process.env.GOOGLE_CALLBACK_URL;
+  } else {
+    var configAuth = require('./auth.js');
+    var clientID = configAuth.googleAuth.clientID;
+	  var clientSecret = configAuth.googleAuth.clientSecret;
+	  var callbackURL = configAuth.googleAuth.callbackURL;
+
+  }
+
 	passport.use(new GoogleStrategy({
-	    clientID: configAuth.googleAuth.clientID || process.env.GOOGLE_CLIENT_ID,
-	    clientSecret: configAuth.googleAuth.clientSecret || process.env.GOOGLE_CLIENT_SECRET,
-	    callbackURL: configAuth.googleAuth.callbackURL
+	    clientID: clientID,
+	    clientSecret: clientSecret,
+	    callbackURL: callbackURL
     },
 	  function(accessToken, refreshToken, profile, done) {
       process.nextTick(function(){
