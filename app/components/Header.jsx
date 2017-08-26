@@ -19,8 +19,6 @@ class Header extends React.Component {
 
               </div>
             </div>
-
-          </div>
         </nav>
       </div>
     )}
