@@ -93,6 +93,7 @@ app.get('/api/user',(req, res) => {
 //route for user to create a goal
 app.post('/api/goal', (req, res) => {
   //TODO: check with front end to make sure req.body data format is correct
+  console.log('REQ.BODY', req.body);
   var goalObj = {
     goalTitle: req.body.goalTitle, 
     goalDue: req.body.goalDue, 

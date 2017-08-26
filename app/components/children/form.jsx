@@ -10,12 +10,12 @@ class Form extends React.Component {
       goalName: '',
       goalDate: '',
       task: [{
-        taskName: '', taskDate: ''},{
-        taskName: '', taskDate: ''},{
-        taskName: '', taskDate: ''},{
-        taskName: '', taskDate: ''},{
-        taskName: '', taskDate: ''},{
-        taskName: '', taskDate: ''
+        taskName: '', taskDate: '', taskComplete: false},{
+        taskName: '', taskDate: '', taskComplete: false},{
+        taskName: '', taskDate: '', taskComplete: false},{
+        taskName: '', taskDate: '', taskComplete: false},{
+        taskName: '', taskDate: '', taskComplete: false},{
+        taskName: '', taskDate: '', taskComplete: false
       }]
     };
 
@@ -54,9 +54,22 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    var goalObject = {
+      goalTitle: this.state.goalName,
+      goalDue: this.state.goalDate,
+      tasks: []
+    };
+    for (var i = 0; i < this.state.task.length; i++) {
+      goalObject.tasks.push({
+        taskTitle: this.state.task[i].taskName,
+        taskDue: this.state.task[i].taskDate
+      })
+    }
+    console.log('GOALOBJECT', goalObject);
     // var GoogleAuth = gapi.auth2.getAuthInstance();
     // var user = GoogleAuth.currentUser.get()
     helpers.googCalPush(this.state.goal, this.state.task)
+    helpers.createGoal(goalObject)
   }
 
 

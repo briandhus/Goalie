@@ -6,7 +6,7 @@ const helper = {
   createGoal: (goal) => {
     console.log('helper creating a goal');
     console.log('goal', goal);
-    return axios.post('/api/goal')
+    return axios.post('/api/goal', goal)
   },
 
   // This function hits our own server to update the tasks under goals/tasks
