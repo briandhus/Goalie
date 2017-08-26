@@ -31,7 +31,7 @@ class LoginOrStart extends React.Component {
               <br />
               <h4 className="card-text">Log in with Google and start accomplishing your dreams today.</h4>
               <br/>
-              <a href="auth/google" className="btn btn-primary">Login</a>
+              <Link to="auth/google" className="btn btn-primary">Login</Link>
           </div>
         </div>
       )
