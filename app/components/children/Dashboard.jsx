@@ -24,7 +24,7 @@ class Dashboard extends React.Component {
     var that = this;
 
     return (
-    	<div className="container">
+    	<div className="container dashboard">
     		<div className="row">
     			<div className="col-md-3 dashboard-outline-test">
             <img alt="avatar image" src="./assets/images/level-1.png"/>
@@ -33,8 +33,9 @@ class Dashboard extends React.Component {
       		<div className="col-md-9 dashboard-outline-test">
             {/* Need to insert goals */}
             <div className="panel panel-default">
-              <div className="panel-heading">
+              <div className="panel">
                 <h3>{this.props.username}'s Goal</h3>
+                <hr />
                 
                 <h4 className="panel-title">Goal: {
                   (function() {
@@ -51,7 +52,8 @@ class Dashboard extends React.Component {
                 <h5 className="panel-title">Due: {/*this.props.goal.goalDue*/}</h5>
 
                 <Link to="/success">
-                  <button className="btn btn-success">Press to complete goal</button>
+                  <button className="btn btn-success complete_btn">Click to complete goal</button>
+                <br />
                 </Link>
               </div>
               <div className="panel-body">

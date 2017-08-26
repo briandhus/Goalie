@@ -43,8 +43,10 @@ class LoginOrStart extends React.Component {
               <br />
               <h4 className="card-text">Create or see your current goal</h4>
               <br/>
-              <Link to="/form" className="btn btn-success">Create Goal</Link>
-              <Link to="/dashboard" className="btn btn-info">Dashboard</Link>
+
+              <Link to="/form" className="btn btn-success create_btn">Create Goal</Link>
+              <Link to="/dashboard" className="btn btn-info">See Goal</Link>
+
           </div>
         </div>
       )
