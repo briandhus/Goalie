@@ -62,7 +62,7 @@ class Form extends React.Component {
 
   render () { 
     return (      
-      <div className="container">
+      <div className="container form">
         <form onSubmit={this.handleSubmit}>
           <div className="row align-items">
             <div className="row task">
