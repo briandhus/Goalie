@@ -23,9 +23,10 @@ class LoginOrStart extends React.Component {
   render() {
     if (this.props.userLogged === false && this.props.serverResponded === true) {
       var content = (
-        <div className="card text-center">
+        <div className="container card text-center login">
           <div className="card-block">
-              <h1 className="card-title">Welcome to Goalie</h1>
+              <h1 className="card-title">Welcome to Motivate</h1>
+              <br />
               <h4 className="card-text">Log in with Google and start accomplishing your dreams today.</h4>
               <br/>
               <a href="auth/google" className="btn btn-primary">Login</a>
@@ -34,9 +35,10 @@ class LoginOrStart extends React.Component {
       )
     } else if (this.props.userLogged === true && this.props.serverResponded === true){
       var content = (
-        <div className="card text-center">
+        <div className="container card text-center login">
           <div className="card-block">
-              <h1 className="card-title">Welcome to Goalie</h1>
+              <h1 className="card-title">Welcome to Motivate</h1>
+              <br />
               <h4 className="card-text">Create or see your current goal</h4>
               <br/>
               <a href="/form" className="btn btn-success">Create Goal</a>
