@@ -121,7 +121,7 @@ app.put('/api/:taskTitle', (req, res) => {
     var newGoalObj = {
       goalTitle: '', 
       goalDue: '', 
-      tasks:req.body.tasks
+      tasks:[]
     };
     var taskLeftBeforeUpdate = foundUser.goal.tasks.reduce((acc, v) => (v === false ? acc + 1 : acc), 0);
     //if there is only one task left before update

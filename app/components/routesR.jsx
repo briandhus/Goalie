@@ -60,25 +60,28 @@ class Routes extends React.Component {
         <Switch>
           <Route exact path="/"  render={(props) => (
             <LoginOrStart 
-            updateLogin={this.updateLogin}
-            updateUser={this.updateUser}
-            userLogged = {this.state.userLogged}
-            serverResponded = {this.state.serverResponded}
+              updateLogin={this.updateLogin}
+              updateUser={this.updateUser}
+              userLogged = {this.state.userLogged}
+              serverResponded = {this.state.serverResponded}
             />
           )}/>
           <Route path="/about" component={About}/>   
 
           <Route exact path="/form" render={(props) => (
-              <Form {...props}/>
-            )}/>      
+            <Form {...props}/>
+          )}/>      
 
           <Route path="/dashboard" render={(props) => (
-              <Dashboard
-                username={this.state.username}
-                goal={this.state.goal}
-                updateTask={this.updateTask}
-              />
-            )}/>
+
+            <Dashboard
+              username={this.state.username}
+              goal={this.state.goal}
+              updateTask={this.updateTask}
+            />
+
+          )}/>
+
 
         </Switch>
       </div>
