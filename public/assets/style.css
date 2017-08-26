@@ -13,7 +13,7 @@ html *{
 
 body{
 	min-height: 100%;
-	background-size: 100%;
+	background-size: cover;
 	background-image: url("./images/jump.jpg");
 }
 
@@ -32,16 +32,32 @@ body{
 	padding: 10px;
 	float: right;
 	display:inline;
+	color: black;
 }
 
 .navbar_profile{
 	padding: 10px;
 	float: right;
 	display: inline;
+	color: black;
 }
 
 .navbar-brand{
 	padding: 10px;
+	color: black;
+}
+
+.login{
+	max-width: 80%;
+	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+	text-align: center;
+	padding: 20px;
+	margin-bottom: 30px;
+	margin-top: 50px;
+	background-color: white;
+	opacity: 0.8;
 }
 
 .formButton {
@@ -54,6 +70,16 @@ body{
 	border-style: solid;
 	text-align: center;
 	padding: 20px;
+	margin-bottom: 30px;
 	margin-top: 50px;
 	background-color: white;
+}
+
+.about_img{
+	height: 150px;
+	width: 150px;
+}
+
+.bio{
+	word-wrap: break-word;
 }
