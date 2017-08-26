@@ -66,6 +66,15 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 }));
 
 //API ROUTES
+// testing route for the axios get user
+app.get('/api/user/:username',(req, res) => {
+  console.log(req)
+  User.find({username: req.params.username}, (err, foundUser) => {
+      if (err) throw err;
+      res.json(foundUser);
+  })
+})
+
 
 //for this user, get whole user obj
 app.get('/api/user',(req, res) => {
