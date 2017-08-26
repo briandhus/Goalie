@@ -73,7 +73,11 @@ class Routes extends React.Component {
             )}/>      
 
           <Route path="/dashboard" render={(props) => (
-              <Dashboard {...props}/>
+              <Dashboard
+                username={this.state.username}
+                goal={this.state.goal}
+                updateTask={this.updateTask}
+              />
             )}/>
 
         </Switch>
