@@ -33,6 +33,9 @@ var UserSchema = new Schema({
       taskComplete: {
         type: Boolean,
         default: false
+      },
+      taskDue: {
+        type: Date
       }
     }]
   },
