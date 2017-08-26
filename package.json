@@ -7,8 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
     "seeds": "node ./models/seeds/testseeds.js",
-    "build": "npm i --dev",
-    "postinstall": "npm run build"
+    "build": "npm i --dev"
   },
   "repository": {
     "type": "git",
