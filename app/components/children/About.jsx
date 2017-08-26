@@ -1,5 +1,5 @@
 import React from "react";
-// import image from "../../public/assets/images/eri.JPG";
+// import image from "../../../public/assets/images/eri.JPG";
 
 class About extends React.Component {
 
@@ -20,6 +20,7 @@ class About extends React.Component {
           <div className="col-md-6">
             <div className="col-md-4">
               {/*<img src={image} className="img-responsive" />*/}
+              <img alt= "image" src="./assets/images/eri.JPG" />
             </div>
             <div className="col-md-8">TEXT</div>
           </div>
