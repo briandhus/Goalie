@@ -17,8 +17,7 @@ var UserSchema = new Schema({
   },
   goal: {
     goalTitle: {
-      type: String,
-      required: true,
+      type: String
     },
     goalDue: {
       type: Date

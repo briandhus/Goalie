@@ -50,17 +50,23 @@ class Dashboard extends React.Component {
             {/* Need to insert goals */}
             <div className="panel panel-default">
               <div className="panel-heading">
-                <h3>{this.props.username}'s Goal:</h3>
-                <h4 className="panel-title">{this.props.goal.goalTitle} due by {this.props.goal.goalDue}</h4>
+                <h3>{this.props.username}</h3>
+                <h4 className="panel-title">Goal: {this.props.goal.goalTitle}</h4>
+                <h5 className="panel-title">{this.props.goal.goalDue}</h5>
               </div>
               <div className="panel-body">
-                  
-                {this.props.goal.tasks.map(function(task, i) {
+                
+              
+                {/*{this.props.goal.tasks.map(function(task, i) {
                   return (
-                    <p key={i}>{task.taskTitle}</p>
-                    <button className="complete-task" id={i}> Complete </button>
+                    <div>
+                      <p key={i}>{task.taskTitle}</p>
+                      <button className="complete-task" id={i}> Complete </button>
+                    </div>
                   );
-                })}
+                })}*/}
+
+                <a href="/form" className="btn btn-success">Create New Goal</a>
 
               </div>
             </div>           

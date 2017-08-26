@@ -41,7 +41,7 @@ const helper = {
       xhr.onreadystatechange = function (e) {
         console.log(xhr.response);
       };
-      xhr.send(null
+      xhr.send(null)
     console.log(`Goal: ${goal}`)
     console.log(`Tasks: ${tasks}`)
     console.log(`pushing to google calendar`)
