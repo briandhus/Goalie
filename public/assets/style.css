@@ -68,7 +68,7 @@ body{
 	border-width: 1px;
 	border-color: black;
 	border-style: solid;
-	text-align: center;
+	/*text-align: center;*/
 	padding: 60px;
 	margin-bottom: 30px;
 	margin-top: 50px;
@@ -97,4 +97,12 @@ body{
 
 .bio{
 	word-wrap: break-word;
+}
+
+.goalInput {
+	font-size: 25px;
+}
+
+.taskInput {
+	font-size: 20px;
 }
