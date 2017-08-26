@@ -14,7 +14,7 @@ class LoginOrStart extends React.Component {
       that.props.updateLogin(logincheck)
       axios.get('/api/user').then((foundUser) => {
         console.log('/api/user returns')
-        that.props.updateUser(foundUser)
+        that.props.updateUser(foundUser.data)
         that.render();
       })
     })

@@ -6,6 +6,11 @@
 }
 
 /* Using the above area for border styles for testing/viewing (temporary) */
+
+html *{
+	font-family: 'Mukta Mahee', sans-serif;
+}
+
 body{
 	min-height: 100%;
 	background-size: 100%;
@@ -39,10 +44,16 @@ body{
 	padding: 10px;
 }
 
-.errthang{
-	background-image: url("../images/jump.png");
-}
-
 .formButton {
 	min-width: 100%;
+}
+
+.about{
+	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+	text-align: center;
+	padding: 20px;
+	margin-top: 50px;
+	background-color: white;
 }

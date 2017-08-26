@@ -10,11 +10,11 @@ import Dashboard from './children/Dashboard.jsx';
 
 class Routes extends React.Component {
   constructor(props){
-    super(props);
+    super(props)
     this.state= {
       userLogged: false,
       serverResponded: false,
-      username: '', 
+      username: '',
       goal: {}
     }
     this.updateLogin = this.updateLogin.bind(this);
@@ -76,11 +76,11 @@ class Routes extends React.Component {
           )}/>      
 
           <Route path="/dashboard" render={(props) => (
-              <Dashboard 
-                username={this.state.username}
-                goal={this.state.goal}
-                updateTask={this.updateTask}
-              />
+            <Dashboard
+              username={this.state.username}
+              goal={this.state.goal}
+              updateTask={this.updateTask}
+            />
           )}/>
 
         </Switch>
@@ -89,5 +89,6 @@ class Routes extends React.Component {
   }
 
 }
+
 
 export default Routes;
