@@ -1,7 +1,7 @@
 /* Using the below area for border styles for testing/viewing (temporary) */
 
 .dashboard-outline-test {
-	border: 2px solid red;
+	/*border: 1px solid black;*/
 	height: 700px;
 }
 
@@ -97,4 +97,20 @@ body{
 
 .bio{
 	word-wrap: break-word;
+}
+
+.dashboard{
+	border-width: 1px;
+	border-color: black;
+	border-style: solid;
+	text-align: center;
+	padding: 20px;
+	margin-bottom: 30px;
+	margin-top: 50px;
+	background-color: white;
+}
+
+.complete_btn{
+	margin-top: 20px;
+	margin-bottom: 10px;
 }
