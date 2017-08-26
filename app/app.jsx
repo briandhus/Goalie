@@ -3,8 +3,8 @@ import { render } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import  Main from './components/Main.jsx';
 
-render(
+render((
   <BrowserRouter>
     <Main />
-  </BrowserRouter>, 
+</BrowserRouter>), 
   document.getElementById('app'));
