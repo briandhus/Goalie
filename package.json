@@ -5,9 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack -p && node server.js",
-    "seeds": "node ./models/seeds/testseeds.js",
-    "build": "NODE_ENV=production webpack --config ./webpack.prod.config.js --progress"
+    "start": "npm i --dev && ./node_modules/webpack/bin/webpack.js -p && node server.js",
+    "seeds": "node ./models/seeds/testseeds.js"
   },
   "repository": {
     "type": "git",
