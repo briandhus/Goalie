@@ -24,7 +24,7 @@ const helper = {
     return axios.get('/api/user/' + username);
   },
 
-  googCalPush: (goal, tasks) => {
+  googCalPush: (name, dueDate, tasks) => {
     // console.log(auth.googleAuth.clientID)
     var GoogleAuth
 
@@ -32,22 +32,25 @@ const helper = {
 
     function initClient() {
       var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
+      var SCOPE = 'https://www.googleapis.com/auth/calendar'
       gapi.client.init({
-        // 'apiKey': 'YOUR_API_KEY',
         'discoveryDocs': [discoveryUrl],
-        // 'clientId': auth.googleAuth.clientID,
-        'scope': 'https://www.googleapis.com/auth/calendar'
+        'clientId': auth.googleAuth.clientID || process.env.GOOGLE_CLIENT_ID,
+        'scope': SCOPE
       }).then(function () {
-        GoogleAuth = gapi.auth2.getAuthInstance()
-        var user = GoogleAuth.currentUser.get()
-        console.log(`Goal: ${goal}`)
+        GoogleAuth = gapi.auth2.getAuthInstance();
+        GoogleAuth.isSignedIn
+        var user = GoogleAuth.currentUser.get();
+        con
+        // var isAuthorized = user.hasGrantedScopes(SCOPsole.log(username)E);
+        console.log(`Goal: ${name}`)
         console.log(`Tasks: ${tasks}`)
         console.log(`pushing to google calendar`)
         // define goal deadline as a calendar event
         const event = {
-          'summary': goal.goalName,
+          'summary': name,
           'start': {
-            'date': goal.goalDate
+            'date': dueDate
           },
           'endTimeUnspecified': true,
           'reminders': {
@@ -66,7 +69,6 @@ const helper = {
           // console.log('Event created')
         });
         // create calendar events for tasks
-        // const tasks = goal.task
         for (var i = 0; i < tasks.length; i++) {
           const task = {
             'summary': tasks[i].taskName,
@@ -87,7 +89,7 @@ const helper = {
             'resource': event
           });
           taskRequest.execute((task) => {
-            console.log('Task created')
+            // console.log('Task created')
           })
         };
       })

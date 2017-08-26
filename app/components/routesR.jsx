@@ -69,7 +69,8 @@ class Routes extends React.Component {
           <Route path="/about" component={About}/>   
 
           <Route exact path="/form" render={(props) => (
-              <Form {...props}/>
+              <Form {...props}
+              />
             )}/>      
 
           <Route path="/dashboard" render={(props) => (

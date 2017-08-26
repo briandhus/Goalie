@@ -53,9 +53,8 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    // var GoogleAuth = gapi.auth2.getAuthInstance();
-    // var user = GoogleAuth.currentUser.get()
-    helpers.googCalPush(this.state.goal, this.state.task)
+    console.log(this.props.username)
+    helpers.googCalPush(this.state.goalName, this.state.goalDate, this.state.task)
   }
 
 
