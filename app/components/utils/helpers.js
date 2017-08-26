@@ -18,11 +18,11 @@ const helper = {
   },
 
   // This function hits our own server to retrieve the record of user
-  getUser: (username) => {
-    console.log('AXIOS get')
-    // console.log(username)
-    return axios.get('/api/user/' + username);
-  },
+  // getUser: (username) => {
+  //   console.log('AXIOS get')
+  //   // console.log(username)
+  //   return axios.get('/api/user/' + username);
+  // },
 
   googCalPush: (goal, tasks) => {
     // console.log(auth.googleAuth.clientID)
