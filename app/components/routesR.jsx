@@ -6,13 +6,17 @@ import LoginOrStart from './children/LoginOrStart.jsx';
 import About from './children/About.jsx';
 import Form from './children/form.jsx';
 import Dashboard from './children/Dashboard.jsx';
+import Success from './children/Success.jsx';
 
 
 class Routes extends React.Component {
   constructor(props){
     super(props)
     this.state= {
-      userLogged: false
+      userLogged: false,
+      serverResponded: false,
+      username: 'George',
+      goal: {}
     }
     this.updateLogin = this.updateLogin.bind(this);
     this.updateUser = this.updateUser.bind(this);
@@ -39,7 +43,8 @@ class Routes extends React.Component {
       username: foundUser.username,
       goal: foundUser.goal
     })
-    console.log('updated routesR\'s user & goal states')
+    console.log('updated routesR\'s user & goal states');
+    console.log('foundUser', foundUser.username)
   }
 
   createGoal(newGoal){
@@ -79,6 +84,8 @@ class Routes extends React.Component {
                 updateTask={this.updateTask}
               />
             )}/>
+
+          <Route path="/success" component={Success} />
 
         </Switch>
       </div>
