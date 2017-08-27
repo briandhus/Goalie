@@ -17,7 +17,7 @@ var UserSchema = new Schema({
   },
   goal: {
     goalTitle: {
-      type: String,
+      type: String
     },
     goalDue: {
       type: Date
@@ -33,6 +33,9 @@ var UserSchema = new Schema({
       taskComplete: {
         type: Boolean,
         default: false
+      },
+      taskDue: {
+        type: Date
       }
     }]
   },

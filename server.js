@@ -67,23 +67,24 @@ app.get('/auth/google/callback', passport.authenticate('google', {
 
 //API ROUTES
 // testing route for the axios get user
-app.get('/api/user/:username',(req, res) => {
-  console.log(req)
-  User.find({username: req.params.username}, (err, foundUser) => {
-      if (err) throw err;
-      res.json(foundUser);
-  })
-})
+// app.get('/api/user/:username',(req, res) => {
+//   console.log(req)
+//   User.find({username: req.params.username}, (err, foundUser) => {
+//       if (err) throw err;
+//       res.json(foundUser);
+//   })
+// })
 
 
 //for this user, get whole user obj
 app.get('/api/user',(req, res) => {
-  var userToFind = 0;  
+  var userToFind = '';  
   console.log('req session is')
   console.log(req.session)
   if (req.session.passport) userToFind =  req.session.passport.user
   User.findById(userToFind, (err, foundUser) => {
-    if (!foundUser) foundUser = {};
+    console.log('foundUser', foundUser);
+    // if (!foundUser) foundUser = {};
     res.json(foundUser)
   })
 
@@ -92,6 +93,7 @@ app.get('/api/user',(req, res) => {
 //route for user to create a goal
 app.post('/api/goal', (req, res) => {
   //TODO: check with front end to make sure req.body data format is correct
+  console.log('REQ.BODY', req.body);
   var goalObj = {
     goalTitle: req.body.goalTitle, 
     goalDue: req.body.goalDue, 
@@ -121,7 +123,7 @@ app.put('/api/:taskTitle', (req, res) => {
     var newGoalObj = {
       goalTitle: '', 
       goalDue: '', 
-      tasks:req.body.tasks
+      tasks:[]
     };
     var taskLeftBeforeUpdate = foundUser.goal.tasks.reduce((acc, v) => (v === false ? acc + 1 : acc), 0);
     //if there is only one task left before update
@@ -136,7 +138,6 @@ app.put('/api/:taskTitle', (req, res) => {
       res.send('task checked off ')
     }
   })
-
 })
 
 //route for server to respond if user is logged in

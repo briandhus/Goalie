@@ -6,13 +6,17 @@ import LoginOrStart from './children/LoginOrStart.jsx';
 import About from './children/About.jsx';
 import Form from './children/form.jsx';
 import Dashboard from './children/Dashboard.jsx';
+import Success from './children/Success.jsx';
 
 
 class Routes extends React.Component {
   constructor(props){
     super(props)
     this.state= {
-      userLogged: false
+      userLogged: false,
+      serverResponded: false,
+      username: 'George',
+      goal: {}
     }
     this.updateLogin = this.updateLogin.bind(this);
     this.updateUser = this.updateUser.bind(this);
@@ -39,7 +43,8 @@ class Routes extends React.Component {
       username: foundUser.username,
       goal: foundUser.goal
     })
-    console.log('updated routesR\'s user & goal states')
+    console.log('updated routesR\'s user & goal states');
+    console.log('foundUser', foundUser.username)
   }
 
   createGoal(newGoal){
@@ -60,22 +65,30 @@ class Routes extends React.Component {
         <Switch>
           <Route exact path="/"  render={(props) => (
             <LoginOrStart 
-            updateLogin={this.updateLogin}
-            updateUser={this.updateUser}
-            userLogged = {this.state.userLogged}
-            serverResponded = {this.state.serverResponded}
+              updateLogin={this.updateLogin}
+              updateUser={this.updateUser}
+              userLogged = {this.state.userLogged}
+              serverResponded = {this.state.serverResponded}
             />
           )}/>
           <Route path="/about" component={About}/>   
 
           <Route exact path="/form" render={(props) => (
-              <Form {...props}
-              />
-            )}/>      
+            <Form {...props}/>
+          )}/>      
 
           <Route path="/dashboard" render={(props) => (
-              <Dashboard {...props}/>
-            )}/>
+
+            <Dashboard
+              username={this.state.username}
+              goal={this.state.goal}
+              updateTask={this.updateTask}
+            />
+
+          )}/>
+
+
+          <Route path="/success" component={Success} />
 
         </Switch>
       </div>
