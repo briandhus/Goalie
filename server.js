@@ -124,7 +124,9 @@ app.put('/api/:taskTitle', (req, res) => {
       goalDue: '', 
       tasks:[]
     };
-    var taskLeftBeforeUpdate = foundUser.goal.tasks.reduce((acc, v) => (v === false ? acc + 1 : acc), 0);
+    var taskLeftBeforeUpdate = foundUser.goal.tasks.reduce((acc, v) => {
+      if (v.taskTitle) return v === false ? acc + 1 : acc
+    }, 0);
     //if there is only one task left before update
     if (taskLeftBeforeUpdate === 1) {
       //set user goal to blank obj / delete the goal
