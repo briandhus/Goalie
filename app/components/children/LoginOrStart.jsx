@@ -31,7 +31,7 @@ class LoginOrStart extends React.Component {
               <br />
               <h4 className="card-text">Log in with Google and start accomplishing your dreams today.</h4>
               <br/>
-              <a href="auth/google" className="btn btn-primary">Login</a>
+              <Link to="auth/google" className="btn btn-primary">Login</Link>
           </div>
         </div>
       )
@@ -43,8 +43,10 @@ class LoginOrStart extends React.Component {
               <br />
               <h4 className="card-text">Create or see your current goal</h4>
               <br/>
-              <Link to="/form" className="btn btn-success">Create Goal</Link>
-              <Link to="/dashboard" className="btn btn-info">Dashboard</Link>
+
+              <Link to="/form" className="btn btn-success create_btn">Create Goal</Link>
+              <Link to="/dashboard" className="btn btn-info">See Goal</Link>
+
           </div>
         </div>
       )
