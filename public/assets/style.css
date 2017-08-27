@@ -137,3 +137,11 @@ body{
 .success_btn{
 	margin-top: 10px;
 }
+
+.task-text {
+	text-align: left;
+}
+/* TODO: change below to whatever we want for completed tasks. Just need to test*/
+.task-complete {
+	color: gray;
+}

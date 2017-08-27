@@ -27,7 +27,9 @@ class Dashboard extends React.Component {
     	<div className="container dashboard">
     		<div className="row">
     			<div className="col-md-3 dashboard-outline-test">
-            <img alt="avatar image" src="./assets/images/level-1.png"/>
+            {/* TODO: need to pass the data from the  */}
+            <img alt="avatar image" src={this.props.gear}/>
+            }
       		</div>
 
       		<div className="col-md-9 dashboard-outline-test">
@@ -35,7 +37,6 @@ class Dashboard extends React.Component {
             <div className="panel panel-default">
               <div className="panel">
                 <h3>{this.props.username}'s Goal</h3>
-                <hr />
                 
                 <h4 className="panel-title">Goal: {
                   (function() {
@@ -57,16 +58,62 @@ class Dashboard extends React.Component {
                 </Link>
               </div>
               <div className="panel-body">
-                
-              
-                {/*this.props.goal.tasks.map(function(task, i) {
-                  return (
-                    <div>
-                      <p key={i}>{task.taskTitle}</p>
-                      <button className="complete-task" id={i}> Complete </button>
-                    </div>
-                  );
-                })}*/}
+                  {this.props.goal.tasks.map(function(task, i) {
+                    return (
+                      <div className="row">
+                        {function () {
+                            if (task.taskComplete) {
+                              return (
+                                <div>
+                                  <div className="col-md-9">
+                                    <p key={i} className="task-text task-complete">{task.taskTitle}</p>
+                                  </div>
+                                {/* TODO (maybe): NEED TO ADD A DIV HERE IF WE WANT TO SHOW THE TASK DUE DATE ALSO */}
+                                  <div className="col-md-3">
+                                    {/* TODO: add an onClick that checks sets task to uncomplete and deducts the xp */}
+                                    <button key={i} className="btn btn-info complete-task" id={i}>Unmark Complete</button>
+                                  </div>
+                                </div>
+                              )
+                            }
+                            else {
+                              return (
+                                <div>
+                                  <div className="col-md-9">
+                                    <p key={i} className="task-text">{task.taskTitle}</p>
+                                  </div>
+                                  <div className="col-md-3">
+                                    {/* TODO: add an onClick that checks sets task to complete and adds the xp */}
+                                    <button key={i} className="btn btn-success complete-task" id={i}>Mark as Complete</button>
+                                  </div>
+                                </div>
+                              )
+                            }
+                        } () }                      
+                      </div>
+                    );
+                  })}
+
+                {/*{function() {
+                  if (this.props.goal.tasks) {
+                    this.props.goal.tasks.map(function(task, i) {
+                      return (
+                        <div className="row">
+                          <div className="col-md-9">
+                            <p key={i} className="task-text">{task.taskTitle}</p>
+                          </div>
+                          <div className="col-md-3">
+                            <button className="complete-task" id={i}>Mark Complete</button>
+                          </div>                      
+                        </div>
+                      );
+                    })
+                  }
+                  else {
+                    return <p>Please create a goal.</p>
+                  }
+                }()}
+                */}
 
                 <Link to="/form">
                   <button className="btn btn-success">Create New Goal</button>
