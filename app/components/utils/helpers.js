@@ -143,7 +143,6 @@ const helper = {
     // Create task reminders
     function createTasks(token) {
       tasks.forEach((task)=> {
-        console.log(task)
         const taskReminder = {
           'summary': task.taskName,
           'start': {
