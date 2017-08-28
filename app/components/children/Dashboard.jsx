@@ -20,12 +20,12 @@ class Dashboard extends React.Component {
     return (
     	<div className="container dashboard">
     		<div className="row">
-    			<div className="col-md-3 dashboard-outline-test">
+    			<div className="col-sm-3 dashboard-outline-test">
             {/* TODO: need to pass the data from the  */} {/*this.props.gear*/}
             <img alt="avatar image" src="./assets/images/level1.png"/>
       		</div>
 
-      		<div className="col-md-9 dashboard-outline-test">
+      		<div className="col-sm-9 dashboard-outline-test">
             {/* Need to insert goals */}
             <div className="panel panel-default">
               <div className="panel">
@@ -68,11 +68,11 @@ class Dashboard extends React.Component {
                           if (!task.taskComplete) {
                             return (
                               <div className='row' key={i}>
-                                <div className="col-md-9">
+                                <div className="col-sm-9">
                                   <p className="task-text task-complete">{task.taskTitle}</p>
                                 </div>
                                 {/* TODO (maybe): NEED TO ADD A DIV HERE IF WE WANT TO SHOW THE TASK DUE DATE ALSO */}
-                                <div className="col-md-3">
+                                <div className="col-sm-3">
                                   {/* TODO: add an onClick that checks sets task to uncomplete and deducts the xp */}
                                   <button className="btn btn-info complete-task" id={i} onClick={that.props.updateTask.bind(that,task.taskTitle)}>
                                     Mark Complete
@@ -83,7 +83,7 @@ class Dashboard extends React.Component {
                           } else {
                             return (
                               <div>
-                                <div className="col-md-9">
+                                <div className="col-sm-9">
                                   <p key={i} className="task-text gray-out">{task.taskTitle}</p>
                                 </div>
                               </div>
@@ -99,10 +99,10 @@ class Dashboard extends React.Component {
                     this.props.goal.tasks.map(function(task, i) {
                       return (
                         <div className="row">
-                          <div className="col-md-9">
+                          <div className="col-sm-9">
                             <p key={i} className="task-text">{task.taskTitle}</p>
                           </div>
-                          <div className="col-md-3">
+                          <div className="col-sm-3">
                             <button className="complete-task" id={i}>Mark Complete</button>
                           </div>                      
                         </div>

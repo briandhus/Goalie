@@ -9,7 +9,7 @@ class Header extends React.Component {
     return (
 
         <div className="row header">
-          <nav className="navbar-toggleable-md navbar-light bg-faded">
+          <nav className="navbar-toggleable-sm navbar-light bg-faded">
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar">
                 
