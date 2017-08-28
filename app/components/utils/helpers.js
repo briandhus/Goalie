@@ -43,17 +43,17 @@ const helper = {
       console.log('SCOPE', scope)
       console.log('INIT STARTING')
       // var clientInit = 
-      gapi.client.init({
-        'discoveryDocs': [discoveryUrl],
-        'client_id': [process.env.GOOGLE_CLIENT_ID],
-        'scope': 'https://www.googleapis.com/auth/calendar'
-      }).then(()=> {
+      // gapi.client.init({
+      //   'discoveryDocs': [discoveryUrl],
+      //   'client_id': [process.env.GOOGLE_CLIENT_ID],
+      //   'scope': 'https://www.googleapis.com/auth/calendar'
+      // }).then(()=> {
         console.log('WE GOT HERE')
         GoogleAuth = gapi.auth2.getAuthInstance();
         GoogleAuth.isSignedIn.listen(updateSigninStatus);
         var user = GoogleAuth.currentUser.get();
         setSigninStatus()
-      })
+      // })
     };
     // checks that user is signed in and has authorized use of their calendar, otherwise redirects to an authorization
     function setSigninStatus(isSignedIn) {
