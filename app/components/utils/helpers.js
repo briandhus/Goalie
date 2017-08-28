@@ -50,7 +50,8 @@ const helper = {
       // }).then(()=> {
         console.log('WE GOT HERE')
         GoogleAuth = gapi.auth2.getAuthInstance();
-        GoogleAuth.isSignedIn.listen(updateSigninStatus);
+        console.log(GoogleAuth)
+        // GoogleAuth.isSignedIn.listen(updateSigninStatus);
         var user = GoogleAuth.currentUser.get();
         setSigninStatus()
       // })
@@ -127,9 +128,9 @@ const helper = {
         GoogleAuth.signIn()
       }
     }
-    function updateSigninStatus(isSignedIn) {
-      setSigninStatus()
-    }
+    // function updateSigninStatus(isSignedIn) {
+    //   setSigninStatus()
+    // }
 /* oauth authorization version takes token directly from user instance
   not currently in use*/
     // Create overall goal reminder
