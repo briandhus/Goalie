@@ -4,7 +4,7 @@ import { Route, BrowserRouter, Switch } from "react-router-dom";
 import helpers from './utils/helpers';
 import LoginOrStart from './children/LoginOrStart.jsx';
 import About from './children/About.jsx';
-import Form from './children/form.jsx';
+import Form from './children/Form.jsx';
 import Dashboard from './children/Dashboard.jsx';
 import Success from './children/Success.jsx';
 
