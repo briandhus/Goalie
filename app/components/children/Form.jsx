@@ -33,7 +33,7 @@ class Form extends React.Component {
 
     
     if (event.target.id === "goalName" || event.target.id === "goalDate"){
-      console.log(obj)
+      // console.log(obj)
       this.setState(
       obj);
     } else {
