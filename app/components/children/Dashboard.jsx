@@ -22,7 +22,7 @@ class Dashboard extends React.Component {
     		<div className="row">
     			<div className="col-md-3 dashboard-outline-test">
             {/* TODO: need to pass the data from the  */} {/*this.props.gear*/}
-            <img alt="avatar image" src="./assets/images/level1.png"/>
+            <img alt="avatar image" src="./assets/images/level1.png" className="avatar"/>
       		</div>
 
       		<div className="col-md-9 dashboard-outline-test">
