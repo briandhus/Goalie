@@ -1,9 +1,17 @@
+var webpack = require('webpack')
 module.exports = {
     entry: "./app/app.jsx",
     output: {
         filename: "public/bundle.js",
         publicPath: "/"
     },
+    plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify(nodeEnv),
+      },
+      TRACE_TURBOLINKS: devBuild,
+    }),
     module: {
         loaders: [
             {
