@@ -1,11 +1,11 @@
 import axios from 'axios';
 // var auth = require('../../../config/auth.js')
-// if (process.env.GOOGLE_CLIENT_ID){
+if (process.env.PORT){
 var clientID = process.env.GOOGLE_CLIENT_ID;
-  // } else {
-    // var configAuth = require('../../../config/auth.js');
-    // var clientID = configAuth.googleAuth.clientID;
-  // }
+  } else {
+    var configAuth = require('../../../config/auth.js');
+    var clientID = configAuth.googleAuth.clientID;
+  }
 
 const helper = {
   // This function hits our own server to update the goal and tasks initially 
@@ -35,21 +35,23 @@ const helper = {
     var GoogleAuth;
     // load google authentication and api
     gapi.load('client:auth2', initClient);
-
+    var scope = 'https://www.googleapis.com/auth/calendar'
+    
     function initClient() {
-      var scope = 'https://www.googleapis.com/auth/calendar'
+      
       var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
       // sets client scope and checks for user status
       gapi.client.init({
         'discoveryDocs': [discoveryUrl],
-        'client_id': [process.env.GOOGLE_CLIENT_ID],
+        // 'clientId': [process.env.GOOGLE_CLIENT_ID],
+        clientId: [clientID],
         'scope': 'https://www.googleapis.com/auth/calendar'
       }).then(()=> {
         console.log('WE GOT HERE')
-        // GoogleAuth = gapi.auth2.getAuthInstance();
-        // console.log(GoogleAuth)
-        // GoogleAuth.isSignedIn.listen(updateSigninStatus);
-        var user = GoogleAuth.currentUser.get(process.env.GOOGLE_CLIENT_ID);
+        GoogleAuth = gapi.auth2.getAuthInstance();
+        console.log(GoogleAuth)
+        GoogleAuth.isSignedIn.listen(updateSigninStatus);
+        var user = GoogleAuth.currentUser.get();
         console.log(user)
         setSigninStatus()
       })
@@ -57,7 +59,7 @@ const helper = {
     // checks that user is signed in and has authorized use of their calendar, otherwise redirects to an authorization
     function setSigninStatus(isSignedIn) {
       var user = GoogleAuth.currentUser.get()
-      var isAuthorized = user.hasGrantedScopes(SCOPE)
+      var isAuthorized = user.hasGrantedScopes(scope)
       // takes token from authorized user
       // var access_token = user.Zi.access_token
       if (isAuthorized) {
@@ -126,9 +128,9 @@ const helper = {
         GoogleAuth.signIn()
       }
     }
-    // function updateSigninStatus(isSignedIn) {
-    //   setSigninStatus()
-    // }
+    function updateSigninStatus(isSignedIn) {
+      setSigninStatus()
+    }
 /* oauth authorization version takes token directly from user instance
   not currently in use*/
     // Create overall goal reminder
