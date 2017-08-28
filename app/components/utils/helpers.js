@@ -1,11 +1,11 @@
 import axios from 'axios';
 // var auth = require('../../../config/auth.js')
-if (process.env.GOOGLE_CLIENT_ID){
+// if (process.env.GOOGLE_CLIENT_ID){
     var clientID = process.env.GOOGLE_CLIENT_ID;
-  } else {
-    var configAuth = require('../../../config/auth.js');
-    var clientID = configAuth.googleAuth.clientID;
-  }
+  // } else {
+    // var configAuth = require('../../../config/auth.js');
+    // var clientID = configAuth.googleAuth.clientID;
+  // }
 
 const helper = {
   // This function hits our own server to update the goal and tasks initially 
@@ -43,7 +43,7 @@ const helper = {
         'discoveryDocs': [discoveryUrl],
         'clientId': clientID,
         'scope': SCOPE
-      }).then(function () {
+      }).then(()=> {
         GoogleAuth = gapi.auth2.getAuthInstance();
         GoogleAuth.isSignedIn.listen(updateSigninStatus);
         var user = GoogleAuth.currentUser.get();
@@ -88,7 +88,8 @@ const helper = {
         });
 
         // create task events from array
-        tasks.forEach((task)=> {
+        for (var i = 0; i < tasks.length; i++) {
+          var task = tasks[i]
           console.log(task)
           if (task.taskName !== "" || task.taskDate !== ""){
             const taskReminder = {
@@ -103,7 +104,7 @@ const helper = {
                 'useDefault': false,
                 'overrides': [
                   {'method': 'email', 'minutes': 24 * 60},
-                  {'method': 'popup', 'minutes': 12 * 60}
+                  {'method': 'popup', 'minutes': 15 * 60}
                 ]
               }
             };
@@ -115,7 +116,7 @@ const helper = {
               console.log(event)
             });
           }
-        })
+        }
         // if user is not signed in or has not authorized the use of their calendar, redirect to sign in
       } else {
         GoogleAuth.signIn()
