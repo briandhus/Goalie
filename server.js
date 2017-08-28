@@ -57,7 +57,7 @@ db.once('open', function() {
 //Google passport
 app.get('/auth/google', passport.authenticate('google', {
   scope: ['profile', 'email', 'https://www.googleapis.com/auth/calendar'],
-  accessType: 'offline'
+  // accessType: 'offline'
 }));
 app.get('/auth/google/callback', passport.authenticate('google', {
 
