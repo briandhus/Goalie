@@ -92,9 +92,11 @@ body{
 .about_img{
 	height: 150px;
 	width: 150px;
+	border-radius: 15px;
 }
 
 .bio{
+	padding-top: 7px;
 	word-wrap: break-word;
 }
 
