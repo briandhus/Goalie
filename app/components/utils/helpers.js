@@ -41,10 +41,66 @@ const helper = {
       var user = GoogleAuth.currentUser.get()
       var isAuthorized = user.hasGrantedScopes(SCOPE)
       // takes token from authorized user
-      var access_token = user.Zi.access_token
+      // var access_token = user.Zi.access_token
       if (isAuthorized) {
-        createGoal(access_token)
-        createTasks(access_token)
+        // createGoal(access_token)
+        // createTasks(access_token)
+        // Create goal event using google api library
+        const goal = {
+          'summary': name,
+          'start': {
+            'date': dueDate
+          },
+          // endTimeUnspecified throws 403
+          'end': {
+            'date': dueDate
+          },
+          // override default reminder notifications
+          'reminders': {
+            'useDefault': false,
+            'overrides': [
+              {'method': 'email', 'minutes': 24 * 60},
+              {'method': 'popup', 'minutes': 12 * 60}
+            ]
+          }
+        }
+        // Define parameters and send request to Google Calendar
+        const goalRequest = gapi.client.calendar.events.insert({
+          'calendarId': 'primary',
+          'resource': goal
+        })
+        goalRequest.execute((event)=> {
+          console.log(event)
+        })
+
+        // create task events from array
+        tasks.forEach((task)=> {
+          console.log(task)
+          const taskReminder = {
+            'summary': task.taskName,
+            'start': {
+              'date': task.taskDate
+            },
+            'end': {
+              'date': task.taskDate
+            },
+            'reminders': {
+              'useDefault': false,
+              'overrides': [
+                {'method': 'email', 'minutes': 24 * 60},
+                {'method': 'popup', 'minutes': 12 * 60}
+              ]
+            }
+          }
+          const taskRequest = gapi.client.calendar.events.insert({
+            'calendarId': 'primary',
+            'resource' : taskReminder
+          })
+          taskRequest.execute((event)=>{
+            console.log(event)
+          })
+        })
+        // if user is not signed in or has not authorized the use of their calendar, redirect to sign in
       } else {
         GoogleAuth.signIn()
       }
@@ -52,9 +108,10 @@ const helper = {
     function updateSigninStatus(isSignedIn) {
       setSigninStatus()
     }
-// oauth authorization version takes token directly from user instance
+/* oauth authorization version takes token directly from user instance
+  not currently in use*/
     // Create overall goal reminder
-    function createGoal(token) {
+    /*function createGoal(token) {
       // define new goal date from form
       var goal = {
         'summary': name,
@@ -87,7 +144,6 @@ const helper = {
     // Create task reminders
     function createTasks(token) {
       tasks.forEach((task)=> {
-        console.log(task)
         const taskReminder = {
           'summary': task.taskName,
           'start': {
@@ -114,7 +170,7 @@ const helper = {
         }
         xhr.send(JSON.stringify(taskReminder))
       })
-    }
+    }*/
   }
 }
 
