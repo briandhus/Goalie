@@ -1,4 +1,3 @@
-
 import React from "react";
 import helpers from "../utils/helpers"
 
@@ -49,7 +48,7 @@ class Form extends React.Component {
         tasks, 
       );
     }
-    console.log(this.state)
+    // console.log(this.state)
     // console.log({changeTarget:  event.target.value})
   }
 
@@ -69,8 +68,9 @@ class Form extends React.Component {
     console.log('GOALOBJECT', goalObject);
     // var GoogleAuth = gapi.auth2.getAuthInstance();
     // var user = GoogleAuth.currentUser.get()
-    helpers.googCalPush(this.state.goal, this.state.task)
-    helpers.createGoal(goalObject)
+    helpers.googCalPush(this.state.goal, this.state.task);
+    helpers.createGoal(goalObject);
+    helpers.goToStart();
   }
 
 

@@ -83,7 +83,7 @@ app.get('/api/user',(req, res) => {
   console.log(req.session)
   if (req.session.passport) userToFind =  req.session.passport.user;
   User.findById(userToFind, (err, foundUser) => {
-    console.log('foundUser', foundUser);
+    // console.log('foundUser', foundUser);
     // if (!foundUser) foundUser = {};
     res.json(foundUser)
   })
@@ -110,16 +110,18 @@ app.post('/api/goal', (req, res) => {
 //route for user to check off a task
 app.put('/api/:taskTitle', (req, res) => {
   //query MongoDB to update that task of goal of user
-  User.findOneAndUpdate({
+  console.log(`trying to update ${req.params.taskTitle}`)
+  User.update({
     _id: req.session.passport.user,
-    'goal.tasks.title': body.params.taskTitle
+    'goal.tasks.title': req.params.taskTitle
   },{
     $set: {
       "goal.tasks.$.taskComplete": true
     }
   }, (err, foundUser) => {
     if (err) throw err;
-
+    console.log('foundUser for task update is')
+    console.log(foundUser)
     var newGoalObj = {
       goalTitle: '', 
       goalDue: '', 

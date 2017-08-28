@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Route, BrowserRouter, Switch } from "react-router-dom";
-
+import helpers from './utils/helpers';
 import LoginOrStart from './children/LoginOrStart.jsx';
 import About from './children/About.jsx';
 import Form from './children/form.jsx';
@@ -15,11 +15,7 @@ class Routes extends React.Component {
     this.state= {
       userLogged: false,
       serverResponded: false,
-<<<<<<< HEAD
-      username: '',
-=======
       username: 'George',
->>>>>>> 44e8b48f0f43d5e3acb7916bc46f4aecfa02637e
       goal: {}
     }
     this.updateLogin = this.updateLogin.bind(this);
@@ -59,8 +55,10 @@ class Routes extends React.Component {
 
 
 
-  updateTask(){
-    //TODO
+  updateTask(taskTitle){
+    helpers.taskPut(taskTitle).then((data)=>{
+      console.log(`${taskTitle} status updated`)
+    })
   }
 
   render(){

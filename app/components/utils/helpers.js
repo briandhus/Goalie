@@ -17,6 +17,14 @@ const helper = {
     return axios.put('/api/task')
   },
 
+  goToStart: () => {
+    return axios.get('/');
+  },
+
+  taskPut: (taskTitle) => {
+    return axios.put(`/api/${taskTitle}`);
+  },
+
   // This function hits our own server to retrieve the record of user
   // getUser: (username) => {
   //   console.log('AXIOS get')
@@ -26,7 +34,7 @@ const helper = {
 
   googCalPush: (goal, tasks) => {
     // console.log(auth.googleAuth.clientID)
-    var GoogleAuth
+    var GoogleAuth;
 
     gapi.load('client:auth2', initClient)
 
