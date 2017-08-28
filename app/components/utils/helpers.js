@@ -41,7 +41,7 @@ const helper = {
       // sets client scope and checks for user status
       gapi.client.init({
         'discoveryDocs': [discoveryUrl],
-        'client_id': clientID,
+        'client_id': process.env.GOOGLE_CLIENT_ID,
         'scope': SCOPE
       }).then(()=> {
         GoogleAuth = gapi.auth2.getAuthInstance();
