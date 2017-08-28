@@ -8,9 +8,9 @@ In an age where immediate gratification is expected in every aspect of our lives
 
 
 Motivate uses npm pacakges:
-express 
-colors
-google-auth-library
+*express 
+*colors
+*google-auth-library
 googleapis
 passport
 passport-google-oauth
