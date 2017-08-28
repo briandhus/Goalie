@@ -1,9 +1,9 @@
 import axios from 'axios';
 // var auth = require('../../../config/auth.js')
-var clientID;
-if (process.env.PORT){
-    clientID = process.env.GOOGLE_CLIENT_ID;
-  } else {
+// var clientID;
+// if (process.env.PORT){
+    // clientID = process.env.GOOGLE_CLIENT_ID;
+  // } else {
     // var configAuth = require('../../../config/auth.js');
     // var clientID = configAuth.googleAuth.clientID;
   }
@@ -45,7 +45,7 @@ const helper = {
       console.log('CLIENT ID', clientID);
       gapi.client.init({
         'discoveryDocs': [discoveryUrl],
-        clientId: [clientID],
+        clientId: [process.env.GOOGLE_CLIENT_ID],
         'scope': 'https://www.googleapis.com/auth/calendar'
       }).then(()=> {
         console.log('WE GOT HERE')
