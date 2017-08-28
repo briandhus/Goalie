@@ -43,10 +43,11 @@ const helper = {
       
       var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
       // sets client scope and checks for user status
+      var s = process.env.GOOGLE_CLIENT_ID
       var initConfig = {
-                        'discoveryDocs': [discoveryUrl],
-                        'clientId': [process.env.GOOGLE_CLIENT_ID],
-                        'scope': 'https://www.googleapis.com/auth/calendar'
+                        discoveryDocs: [discoveryUrl],
+                        clientId: [s],
+                        scope: 'https://www.googleapis.com/auth/calendar'
                       };
       console.log('initConfig', initConfig);
       gapi.client.init(initConfig).then(()=> {
