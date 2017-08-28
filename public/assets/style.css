@@ -130,6 +130,10 @@ body{
 	background-color: #fcfcfc;
 }
 
+.avatar{
+	width: 100%;
+}
+
 .complete_btn{
 	margin-top: 20px;
 	margin-bottom: 10px;
