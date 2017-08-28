@@ -64,7 +64,7 @@ const helper = {
             ]
           }
         }
-        // Define paramaters and send request to Google Calendar
+        // Define parameters and send request to Google Calendar
         const goalRequest = gapi.client.calendar.events.insert({
           'calendarId': 'primary',
           'resource': goal
@@ -108,9 +108,10 @@ const helper = {
     function updateSigninStatus(isSignedIn) {
       setSigninStatus()
     }
-// oauth authorization version takes token directly from user instance
+/* oauth authorization version takes token directly from user instance
+  not currently in use*/
     // Create overall goal reminder
-    function createGoal(token) {
+    /*function createGoal(token) {
       // define new goal date from form
       var goal = {
         'summary': name,
@@ -169,7 +170,7 @@ const helper = {
         }
         xhr.send(JSON.stringify(taskReminder))
       })
-    }
+    }*/
   }
 }
 
