@@ -45,10 +45,10 @@ const helper = {
       // sets client scope and checks for user status
       var initConfig = {
                         'discoveryDocs': [discoveryUrl],
-                        clientId: [process.env.GOOGLE_CLIENT_ID],
+                        'clientId': [process.env.GOOGLE_CLIENT_ID],
                         'scope': 'https://www.googleapis.com/auth/calendar'
                       };
-      console.log('CLIENT ID', initConfig.clientID);
+      console.log('CLIENT ID', initConfig.clientId);
       gapi.client.init(initConfig).then(()=> {
         console.log('WE GOT HERE');
         GoogleAuth = gapi.auth2.getAuthInstance();
