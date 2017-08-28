@@ -6,12 +6,11 @@ module.exports = {
         publicPath: "/"
     },
     plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify(nodeEnv),
-      },
-      TRACE_TURBOLINKS: devBuild,
-    }),
+        new webpack.DefinePlugin({
+          'process.env': {
+            NODE_ENV: JSON.stringify(nodeEnv),
+          }
+        })],
     module: {
         loaders: [
             {
