@@ -27,14 +27,14 @@ body{
 	width: 75px;
 	border-style: solid;
 	border-width: 1px;
-	border-color: black;
+	border-color: #827f7f;
 	margin: -5px;
 }
 
 .navbar{
 	padding: 15px;
 	margin-bottom: 0px;
-	background-color: white;
+	background-color: #fcfcfc;
 	opacity: 0.8;
 }
 
@@ -60,13 +60,13 @@ body{
 .login{
 	max-width: 80%;
 	border-width: 1px;
-	border-color: black;
+	border-color: #827f7f;
 	border-style: solid;
 	text-align: center;
 	padding: 20px;
 	margin-bottom: 30px;
 	margin-top: 50px;
-	background-color: white;
+	background-color: #fcfcfc;
 	opacity: 0.9;
 }
 
@@ -76,12 +76,12 @@ body{
 
 .form {
 	border-width: 1px;
-	border-color: black;
+	border-color: #827f7f;
 	border-style: solid;
 	padding: 60px;
 	margin-bottom: 30px;
 	margin-top: 50px;
-	background-color: white;
+	background-color: #fcfcfc;
 }
 
 .formButton {
@@ -90,13 +90,13 @@ body{
 
 .about{
 	border-width: 1px;
-	border-color: black;
+	border-color: #827f7f;
 	border-style: solid;
 	text-align: center;
 	padding: 20px;
 	margin-bottom: 30px;
 	margin-top: 50px;
-	background-color: white;
+	background-color: #fcfcfc;
 }
 
 .about_img{
@@ -121,13 +121,13 @@ body{
   
 .dashboard{
 	border-width: 1px;
-	border-color: black;
+	border-color: #827f7f;
 	border-style: solid;
 	text-align: center;
 	padding: 20px;
 	margin-bottom: 30px;
 	margin-top: 50px;
-	background-color: white;
+	background-color: #fcfcfc;
 }
 
 .complete_btn{
@@ -135,15 +135,20 @@ body{
 	margin-bottom: 10px;
 }
 
+.complete-task {
+	margin: 5px;
+	padding: 5px;
+}
+
 .success{
 	border-width: 1px;
-	border-color: black;
+	border-color: #827f7f;
 	border-style: solid;
 	text-align: center;
 	padding: 20px;
 	margin-bottom: 30px;
 	margin-top: 50px;
-	background-color: white;
+	background-color: #fcfcfc;
 }
 
 .success_btn{
