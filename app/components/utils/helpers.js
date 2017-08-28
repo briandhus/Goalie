@@ -48,7 +48,7 @@ const helper = {
                         'clientId': [process.env.GOOGLE_CLIENT_ID],
                         'scope': 'https://www.googleapis.com/auth/calendar'
                       };
-      console.log('CLIENT ID', initConfig.clientId);
+      console.log('initConfig', initConfig);
       gapi.client.init(initConfig).then(()=> {
         console.log('WE GOT HERE');
         GoogleAuth = gapi.auth2.getAuthInstance();
