@@ -40,11 +40,11 @@ const helper = {
       var scope = 'https://www.googleapis.com/auth/calendar'
       var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
       // sets client scope and checks for user status
-      console.log('SCOPE', scope)
       console.log('INIT STARTING')
+
       var clientInit = {
         'discoveryDocs': [discoveryUrl],
-        'client_id': process.env.GOOGLE_CLIENT_ID,
+        'client_id': [process.env.GOOGLE_CLIENT_ID],
         'scope': 'https://www.googleapis.com/auth/calendar'
       };
       console.log('clientInit', clientInit);
