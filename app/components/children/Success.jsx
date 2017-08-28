@@ -20,7 +20,7 @@ class Success extends React.Component {
       		</div>
           <div className="row">
         		<div className="col-md-12">
-              <img alt="avatar complete image" src="./assets/images/level-6.png" className="sucess_img"/>            
+              <img alt="avatar complete image" src="./assets/images/level6.png" className="sucess_img"/>            
         		</div>
         	</div>
           <div className="row">
