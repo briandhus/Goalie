@@ -42,7 +42,7 @@ const helper = {
       // sets client scope and checks for user status
       console.log('SCOPE', scope)
       console.log('INIT STARTING')
-      var clientInit = 
+      // var clientInit = 
       gapi.client.init({
         'discoveryDocs': [discoveryUrl],
         'client_id': [process.env.GOOGLE_CLIENT_ID],
