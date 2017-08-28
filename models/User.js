@@ -41,7 +41,7 @@ var UserSchema = new Schema({
   },
 	gear: {
 	  type: String,
-    default: './assets/images/level-1.png'
+    default: './assets/images/level1.png'
   },
   experience: {
   	type: Number,
