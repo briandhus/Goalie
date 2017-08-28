@@ -1,11 +1,11 @@
 import axios from 'axios';
 // var auth = require('../../../config/auth.js')
-if (process.env.GOOGLE_CLIENT_ID){
+// if (process.env.GOOGLE_CLIENT_ID){
 var clientID = process.env.GOOGLE_CLIENT_ID;
-  } else {
-    var configAuth = require('../../../config/auth.js');
-    var clientID = configAuth.googleAuth.clientID;
-  }
+  // } else {
+    // var configAuth = require('../../../config/auth.js');
+    // var clientID = configAuth.googleAuth.clientID;
+  // }
 
 const helper = {
   // This function hits our own server to update the goal and tasks initially 
