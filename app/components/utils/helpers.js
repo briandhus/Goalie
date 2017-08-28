@@ -27,7 +27,6 @@ const helper = {
   googCalPush: (name, dueDate, tasks) => {
     var GoogleAuth
     var SCOPE = 'https://www.googleapis.com/auth/calendar'
-    createGoal()
     gapi.load('client:auth2', initClient)
     function initClient() {
       var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
@@ -46,16 +45,19 @@ const helper = {
 
     function setSigninStatus(isSignedIn) {
       var user = GoogleAuth.currentUser.get()
-      console.log(user)
+      console.log(user.Zi)
       var isAuthorized = user.hasGrantedScopes(SCOPE)
       console.log(isAuthorized)
+      var access_token = user.Zi.access_token
+
       // setSigninStatus()
       if (isAuthorized) {
-        axios.get('/api/user').then((res)=>{
-          console.log(res)
-          var access_token = res.data.accessToken
-          createGoal(access_token)
-        })
+        createGoal(access_token)
+        // axios.get('/api/user').then((res)=>{
+        //   console.log(res)
+        //   var access_token = res.data.accessToken
+        //   createGoal(access_token)
+        // })
     //     console.log(`Goal: ${name}`)
     //     console.log(`Tasks: ${tasks}`)
     //     console.log(`pushing to google calendar`)
@@ -122,22 +124,38 @@ const helper = {
 
     function createGoal(token) {
       // console.log(token)
-      var events = {
-        'summary': 'test',
+      var goal = {
+        'summary': name,
         'start': {
-          'date': '2017-08-29'
+          'date': dueDate
         },
         'end': {
-          'date': '2017-08-29'
+          'date': dueDate
+        },
+        'reminders': {
+          'useDefault': false,
+          'overrides': [
+            {'method': 'email', 'minutes': 24 * 60},
+            {'method': 'popup', 'minutes': 12 * 60}
+          ]
         }
       }
       var xhr = new XMLHttpRequest();
       xhr.open('POST', `https://www.googleapis.com/calendar/v3/calendars/primary/events`);
+      xhr.setRequestHeader('Content-Type', 'application/json')
       xhr.setRequestHeader('Authorization', `Bearer ${token}`)
       xhr.onreadystatechange = function(e) {
         console.log(xhr.response)
       };
-      xhr.send(null);
+      xhr.send(JSON.stringify(goal));
+      tasks.forEach((task)=> {
+        const taskReminder = {
+          'summary': task.name,
+          'start': {
+            'date'
+          }
+        }
+      })
     //   xhr.open('GET', 'https://www.googleapis.com/calendar/v3/calendars/primary/events');
     //   xhr.setRequestHeader('Authorization', `Bearer ${token}`);
     //   xhr.onreadystatechange = function (e) {
