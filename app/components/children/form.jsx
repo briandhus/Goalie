@@ -46,7 +46,7 @@ class Form extends React.Component {
         tasks, 
       );
     }
-    console.log(this.state)
+    // console.log(this.state)
     // console.log({changeTarget:  event.target.value})
   }
 
