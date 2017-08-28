@@ -1,6 +1,6 @@
 import axios from 'axios';
 // var auth = require('../../../config/auth.js')
-if (process.env.MONGODB_URI || process.env.PORT){
+if (process.env.GOOGLE_CLIENT_ID){
     var clientID = process.env.GOOGLE_CLIENT_ID;
   } else {
     var configAuth = require('../../../config/auth.js');
