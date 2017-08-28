@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { Route, BrowserRouter, Switch } from "react-router-dom";
-
+import helpers from './utils/helpers';
 import LoginOrStart from './children/LoginOrStart.jsx';
 import About from './children/About.jsx';
 import Form from './children/form.jsx';
@@ -55,8 +55,10 @@ class Routes extends React.Component {
 
 
 
-  updateTask(){
-    //TODO
+  updateTask(taskTitle){
+    helpers.taskPut(taskTitle).then((data)=>{
+      console.log(`${taskTitle} status updated`)
+    })
   }
 
   render(){
@@ -78,13 +80,11 @@ class Routes extends React.Component {
           )}/>      
 
           <Route path="/dashboard" render={(props) => (
-
             <Dashboard
               username={this.state.username}
               goal={this.state.goal}
               updateTask={this.updateTask}
             />
-
           )}/>
 
 

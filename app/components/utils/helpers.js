@@ -17,6 +17,14 @@ const helper = {
     return axios.put('/api/task')
   },
 
+  goToStart: () => {
+    return axios.get('/');
+  },
+
+  taskPut: (taskTitle) => {
+    return axios.put(`/api/${taskTitle}`);
+  },
+
   googCalPush: (name, dueDate, tasks) => {
     var GoogleAuth
     var SCOPE = 'https://www.googleapis.com/auth/calendar'

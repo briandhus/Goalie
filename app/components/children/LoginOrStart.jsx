@@ -16,7 +16,9 @@ class LoginOrStart extends React.Component {
       axios.get('/api/user').then((foundUser) => {
         console.log('/api/user returns')
         console.log('foundUser received', foundUser)
-        that.props.updateUser(foundUser.data)
+        if(foundUser.data !== null) {
+          that.props.updateUser(foundUser.data)
+        }
         that.render();
       })
     })
@@ -31,7 +33,7 @@ class LoginOrStart extends React.Component {
               <br />
               <h4 className="card-text">Log in with Google and start accomplishing your dreams today.</h4>
               <br/>
-              <Link to="auth/google" className="btn btn-primary">Login</Link>
+              <a href="auth/google" className="btn btn-primary">Login</a>
           </div>
         </div>
       )
