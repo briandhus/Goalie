@@ -45,7 +45,7 @@ const helper = {
       gapi.client.init({
         'discoveryDocs': [discoveryUrl],
         'client_id': process.env.GOOGLE_CLIENT_ID,
-        'scope': scope
+        'scope': 'https://www.googleapis.com/auth/calendar'
       }).then(()=> {
         console.log('WE GOT HERE')
         GoogleAuth = gapi.auth2.getAuthInstance();
