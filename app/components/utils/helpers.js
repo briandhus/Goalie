@@ -1,10 +1,10 @@
 import axios from 'axios';
 // var auth = require('../../../config/auth.js')
 if (process.env.PORT){
-var clientID = process.env.GOOGLE_CLIENT_ID;
+    var clientID = process.env.GOOGLE_CLIENT_ID;
   } else {
-    var configAuth = require('../../../config/auth.js');
-    var clientID = configAuth.googleAuth.clientID;
+    // var configAuth = require('../../../config/auth.js');
+    // var clientID = configAuth.googleAuth.clientID;
   }
 
 const helper = {
