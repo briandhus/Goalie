@@ -26,8 +26,6 @@ class Form extends React.Component {
 
   handleChange(event) {
 
-   
-    
     var changeTarget = event.target.id
     var obj = {}
     obj[changeTarget] = event.target.value
@@ -54,7 +52,6 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    console.log(this.props.username)
     helpers.googCalPush(this.state.goalName, this.state.goalDate, this.state.task)
 
     var goalObject = {
@@ -69,8 +66,6 @@ class Form extends React.Component {
       })
     }
     console.log('GOALOBJECT', goalObject);
-    // var GoogleAuth = gapi.auth2.getAuthInstance();
-    // var user = GoogleAuth.currentUser.get()
     helpers.createGoal(goalObject)
   }
 
