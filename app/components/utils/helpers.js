@@ -25,105 +25,45 @@ const helper = {
     return axios.put(`/api/${taskTitle}`);
   },
 
-  // This function hits our own server to retrieve the record of user
-  // getUser: (username) => {
-  //   console.log('AXIOS get')
-  //   // console.log(username)
-  //   return axios.get('/api/user/' + username);
-  // },
-
-  googCalPush: (goal, tasks) => {
-    // console.log(auth.googleAuth.clientID)
-    var GoogleAuth;
-
+  googCalPush: (name, dueDate, tasks) => {
+    var GoogleAuth
+    var SCOPE = 'https://www.googleapis.com/auth/calendar'
+    // load google authentication and api
     gapi.load('client:auth2', initClient)
-
-
-  function calAPI() {
-    var params = JSON.parse(localStorage.getItem('oauth2-test-params'));
-    if (params && params['access_token']) {
-      var xhr = new XMLHttpRequest();
-      xhr.open('POST',
-          'https://www.googleapis.com/drive/v3/about?fields=user&' +
-          'access_token=' + params['access_token']);
-      xhr.onreadystatechange = function (e) {
-        console.log(xhr.response);
-      };
-      xhr.send(null)
-    console.log(`Goal: ${goal}`)
-    console.log(`Tasks: ${tasks}`)
-    console.log(`pushing to google calendar`)
-    // define goal deadline as a calendar event
-    const event = {
-      'summary': goal.goalName,
-      'start': {
-        'date': goal.goalDate
-      },
-      'endTimeUnspecified': true,
-      'reminders': {
-        'useDefault': false, 
-        'overrides': [
-          {'method': 'email', 'minutes': 24 * 60},
-          {'method': 'popup', 'minutes': 12 * 60}
-        ]
-      }
-    };
-    // insert event to primary calendar
-    const goalRequest = gapi.client.calendar.events.insert({
-      'calendarId': 'primary',
-      'resource': event
-    });
-    goalRequest.execute((event) => {
-      console.log('Event created')
-    })
-    // create calendar events for tasks
-    // const tasks = goal.task
-    for (var i = 0; i < tasks.length; i++) {
-      const task = {
-        'summary': tasks[i].taskName,
-        'start': {
-          'date': tasks[i].taskDate
-        },
-        'endTimeUnspecified': true,
-        'reminders': {
-          'useDefault': false,
-          'overrides': [
-            {'method': 'email', 'minutes': 24 * 60},
-            {'method': 'popup', 'minutes': 12 * 60}
-          ]
-        }
-      }
-      const taskRequest = gapi.client.calendar.events.insert({
-        'calendarId': 'primary',
-        'resource': event
-      });
-      taskRequest.execute((task) => {
-        console.log('Task created')
-      })
-    }
-  }
-};
-
     function initClient() {
       var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
+      // sets client scope and checks for user status
       gapi.client.init({
-        // 'apiKey': 'YOUR_API_KEY',
         'discoveryDocs': [discoveryUrl],
-        // 'clientId': auth.googleAuth.clientID,
-        'scope': 'https://www.googleapis.com/auth/calendar'
+        'clientId': auth.googleAuth.clientID || process.env.GOOGLE_CLIENT_ID,
+        'scope': SCOPE
       }).then(function () {
-        GoogleAuth = gapi.auth2.getAuthInstance()
-        var user = GoogleAuth.currentUser.get()
-        console.log(`Goal: ${goal}`)
-        console.log(`Tasks: ${tasks}`)
-        console.log(`pushing to google calendar`)
-        // define goal deadline as a calendar event
-        const event = {
-          'summary': goal.goalName,
+        GoogleAuth = gapi.auth2.getAuthInstance();
+        GoogleAuth.isSignedIn.listen(updateSigninStatus);
+        var user = GoogleAuth.currentUser.get();
+        setSigninStatus()
+      })
+    };
+    // checks that user is signed in and has authorized use of their calendar, otherwise redirects to an authorization
+    function setSigninStatus(isSignedIn) {
+      var user = GoogleAuth.currentUser.get()
+      var isAuthorized = user.hasGrantedScopes(SCOPE)
+      // takes token from authorized user
+      // var access_token = user.Zi.access_token
+      if (isAuthorized) {
+        // createGoal(access_token)
+        // createTasks(access_token)
+        // Create goal event using google api library
+        const goal = {
+          'summary': name,
           'start': {
-            'date': goal.goalDate
+            'date': dueDate
           },
-          'endTimeUnspecified': true,
+          // endTimeUnspecified throws 403
+          'end': {
+            'date': dueDate
+          },
+          // override default reminder notifications
           'reminders': {
             'useDefault': false,
             'overrides': [
@@ -132,22 +72,26 @@ const helper = {
             ]
           }
         };
+        // Define parameters and send request to Google Calendar
         const goalRequest = gapi.client.calendar.events.insert({
           'calendarId': 'primary',
-          'resource': event
+          'resource': goal
         });
-        goalRequest.execute((event) => {
-          // console.log('Event created')
+        goalRequest.execute((event)=> {
+          console.log(event)
         });
-        // create calendar events for tasks
-        // const tasks = goal.task
-        for (var i = 0; i < tasks.length; i++) {
-          const task = {
-            'summary': tasks[i].taskName,
+
+        // create task events from array
+        tasks.forEach((task)=> {
+          console.log(task)
+          const taskReminder = {
+            'summary': task.taskName,
             'start': {
-              'date': tasks[i].taskDate
+              'date': task.taskDate
             },
-            'endTimeUnspecified': true,
+            'end': {
+              'date': task.taskDate
+            },
             'reminders': {
               'useDefault': false,
               'overrides': [
@@ -155,17 +99,86 @@ const helper = {
                 {'method': 'popup', 'minutes': 12 * 60}
               ]
             }
-          }
+          };
           const taskRequest = gapi.client.calendar.events.insert({
             'calendarId': 'primary',
-            'resource': event
+            'resource' : taskReminder
           });
-          taskRequest.execute((task) => {
-            console.log('Task created')
-          })
-        };
+          taskRequest.execute((event)=>{
+            console.log(event)
+          });
+        })
+        // if user is not signed in or has not authorized the use of their calendar, redirect to sign in
+      } else {
+        GoogleAuth.signIn()
+      }
+    }
+    function updateSigninStatus(isSignedIn) {
+      setSigninStatus()
+    }
+/* oauth authorization version takes token directly from user instance
+  not currently in use*/
+    // Create overall goal reminder
+    /*function createGoal(token) {
+      // define new goal date from form
+      var goal = {
+        'summary': name,
+        'start': {
+          'date': dueDate
+        },
+        // endTimeUnspecified throws 403
+        'end': {
+          'date': dueDate
+        },
+        // override default reminder notifications
+        'reminders': {
+          'useDefault': false,
+          'overrides': [
+            {'method': 'email', 'minutes': 24 * 60},
+            {'method': 'popup', 'minutes': 12 * 60}
+          ]
+        }
+      }
+      // open new request to Google Calendar API and pass user goal
+      var xhr = new XMLHttpRequest();
+      xhr.open('POST', `https://www.googleapis.com/calendar/v3/calendars/primary/events`);
+      xhr.setRequestHeader('Content-Type', 'application/json')
+      xhr.setRequestHeader('Authorization', `Bearer ${token}`)
+      xhr.onreadystatechange = function(e) {
+        console.log(xhr.response)
+      };
+      xhr.send(JSON.stringify(goal));
+    }
+    // Create task reminders
+    function createTasks(token) {
+      tasks.forEach((task)=> {
+        const taskReminder = {
+          'summary': task.taskName,
+          'start': {
+            'date': task.taskDate
+          },
+          'end': {
+            'date': task.taskDate
+          },
+          'reminders': {
+            'useDefault': false,
+            'overrides': [
+              {'method': 'email', 'minutes': 24 * 60},
+              {'method': 'popup', 'minutes': 12 * 60}
+            ]
+          }
+        }
+        // open request to Google Calendar API for tasks
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', `https://www.googleapis.com/calendar/v3/calendars/primary/events`);
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.setRequestHeader('Authorization', `Bearer ${token}`)
+        xhr.onreadystatechange = function(e) {
+          console.log(xhr.response)
+        }
+        xhr.send(JSON.stringify(taskReminder))
       })
-    };
+    }*/
   }
 }
 

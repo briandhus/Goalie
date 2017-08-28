@@ -26,8 +26,6 @@ class Form extends React.Component {
 
   handleChange(event) {
 
-   
-    
     var changeTarget = event.target.id
     var obj = {}
     obj[changeTarget] = event.target.value
@@ -54,6 +52,9 @@ class Form extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
+    helpers.googCalPush(this.state.goalName, this.state.goalDate, this.state.task)
+    // console.log(this.state.task)
+
     var goalObject = {
       goalTitle: this.state.goalName,
       goalDue: this.state.goalDate,

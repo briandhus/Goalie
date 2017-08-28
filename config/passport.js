@@ -34,6 +34,9 @@ var passport = function(passport) {
 	    callbackURL: callbackURL
     },
 	  function(accessToken, refreshToken, profile, done) {
+      console.log("access", accessToken)
+      console.log("refresh", refreshToken)
+      console.log("profile", profile)
       process.nextTick(function(){
         console.log('trying to find user')
         // console.log(`profile displayname is ${profile.displayName}`)
@@ -44,7 +47,8 @@ var passport = function(passport) {
             console.log('user found!')
             // console.log(user);
             user.accessToken = accessToken;
-            user.save()
+            // user.refreshToken = refreshToken
+            // user.save()
 
             return done(null, user);
           }
