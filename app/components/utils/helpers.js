@@ -63,15 +63,15 @@ const helper = {
               {'method': 'popup', 'minutes': 12 * 60}
             ]
           }
-        }
+        };
         // Define parameters and send request to Google Calendar
         const goalRequest = gapi.client.calendar.events.insert({
           'calendarId': 'primary',
           'resource': goal
-        })
+        });
         goalRequest.execute((event)=> {
           console.log(event)
-        })
+        });
 
         // create task events from array
         tasks.forEach((task)=> {
@@ -91,14 +91,14 @@ const helper = {
                 {'method': 'popup', 'minutes': 12 * 60}
               ]
             }
-          }
+          };
           const taskRequest = gapi.client.calendar.events.insert({
             'calendarId': 'primary',
             'resource' : taskReminder
-          })
+          });
           taskRequest.execute((event)=>{
             console.log(event)
-          })
+          });
         })
         // if user is not signed in or has not authorized the use of their calendar, redirect to sign in
       } else {
