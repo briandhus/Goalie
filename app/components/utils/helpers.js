@@ -1,5 +1,7 @@
 import axios from 'axios';
-var auth = require('../../../config/auth.js')
+if (!process.env.PORT){
+  var auth = require('../../../config/auth.js')
+}
 
 const helper = {
   // This function hits our own server to update the goal and tasks initially 
