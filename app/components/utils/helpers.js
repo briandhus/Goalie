@@ -42,7 +42,7 @@ const helper = {
       
       var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
       // sets client scope and checks for user status
-      console.log('CLIENT ID', clientID);
+      // console.log('CLIENT ID', clientID);
       gapi.client.init({
         'discoveryDocs': [discoveryUrl],
         clientId: [process.env.GOOGLE_CLIENT_ID],
