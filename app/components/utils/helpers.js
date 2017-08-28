@@ -53,6 +53,7 @@ const helper = {
       // setSigninStatus()
       if (isAuthorized) {
         createGoal(access_token)
+        createTasks(access_token)
         // axios.get('/api/user').then((res)=>{
         //   console.log(res)
         //   var access_token = res.data.accessToken
@@ -148,22 +149,37 @@ const helper = {
         console.log(xhr.response)
       };
       xhr.send(JSON.stringify(goal));
+    }
+    function createTasks(token) {
       tasks.forEach((task)=> {
+        console.log(task)
         const taskReminder = {
-          'summary': task.name,
+          'summary': task.taskName,
           'start': {
-            'date'
+            'date': task.taskDate
+          },
+          'end': {
+            'date': task.taskDate
+          },
+          'reminders': {
+            'useDefault': false,
+            'overrides': [
+              {'method': 'email', 'minutes': 24 * 60},
+              {'method': 'popup', 'minutes': 12 * 60}
+            ]
           }
         }
+      console.log(taskReminder)
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', `https://www.googleapis.com/calendar/v3/calendars/primary/events`);
+        xhr.setRequestHeader('Content-Type', 'application/json')
+        xhr.setRequestHeader('Authorization', `Bearer ${token}`)
+        xhr.onreadystatechange = function(e) {
+          console.log(xhr.response)
+        }
+        xhr.send(JSON.stringify(taskReminder))
       })
-    //   xhr.open('GET', 'https://www.googleapis.com/calendar/v3/calendars/primary/events');
-    //   xhr.setRequestHeader('Authorization', `Bearer ${token}`);
-    //   xhr.onreadystatechange = function (e) {
-    //     console.log(xhr.response)
-    //   }
-    //   xhr.send(null)
     }
-
   }
 }
 

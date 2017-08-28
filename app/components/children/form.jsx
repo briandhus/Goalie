@@ -53,6 +53,7 @@ class Form extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     helpers.googCalPush(this.state.goalName, this.state.goalDate, this.state.task)
+    // console.log(this.state.task)
 
     var goalObject = {
       goalTitle: this.state.goalName,
@@ -67,6 +68,7 @@ class Form extends React.Component {
     }
     console.log('GOALOBJECT', goalObject);
     helpers.createGoal(goalObject)
+    // helpers.googCalPush(goalObject)
   }
 
 
