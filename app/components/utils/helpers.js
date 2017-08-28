@@ -40,9 +40,6 @@ const helper = {
       var scope = 'https://www.googleapis.com/auth/calendar'
       var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
       // sets client scope and checks for user status
-      console.log('SCOPE', scope)
-      console.log('INIT STARTING')
-      // var clientInit = 
       gapi.client.init({
         'discoveryDocs': [discoveryUrl],
         'client_id': [process.env.GOOGLE_CLIENT_ID],
@@ -52,7 +49,7 @@ const helper = {
         // GoogleAuth = gapi.auth2.getAuthInstance();
         // console.log(GoogleAuth)
         // GoogleAuth.isSignedIn.listen(updateSigninStatus);
-        var user = GoogleAuth.currentUser.get();
+        var user = GoogleAuth.currentUser.get(process.env.GOOGLE_CLIENT_ID);
         console.log(user)
         setSigninStatus()
       })
