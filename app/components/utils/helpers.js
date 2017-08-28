@@ -1,5 +1,11 @@
 import axios from 'axios';
-var auth = require('../../../config/auth.js')
+// var auth = require('../../../config/auth.js')
+if (process.env.GOOGLE_CLIENT_ID){
+    var clientID = process.env.GOOGLE_CLIENT_ID;
+  } else {
+    var configAuth = require('../../../config/auth.js');
+    var clientID = configAuth.googleAuth.clientID;
+  }
 
 const helper = {
   // This function hits our own server to update the goal and tasks initially 
@@ -35,7 +41,7 @@ const helper = {
       // sets client scope and checks for user status
       gapi.client.init({
         'discoveryDocs': [discoveryUrl],
-        'clientId': auth.googleAuth.clientID || process.env.GOOGLE_CLIENT_ID,
+        'clientId': clientID,
         'scope': SCOPE
       }).then(function () {
         GoogleAuth = gapi.auth2.getAuthInstance();
