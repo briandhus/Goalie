@@ -1,10 +1,11 @@
 import axios from 'axios';
+    // var configAuth = require('../../../config/auth.js');
 // var auth = require('../../../config/auth.js')
 // var clientID;
 // if (process.env.PORT){
     // clientID = process.env.GOOGLE_CLIENT_ID;
   // } else {
-    // var configAuth = require('../../../config/auth.js');
+
     // var clientID = configAuth.googleAuth.clientID;
   // }
 
@@ -42,22 +43,21 @@ const helper = {
       
       var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
       // sets client scope and checks for user status
-      // console.log('CLIENT ID', clientID);
-      gapi.client.init({
-        'discoveryDocs': [discoveryUrl],
-        clientId: [process.env.GOOGLE_CLIENT_ID],
-        'scope': 'https://www.googleapis.com/auth/calendar'
-      }).then(()=> {
-        console.log('WE GOT HERE')
+      var initConfig = {
+                        'discoveryDocs': [discoveryUrl],
+                        clientId: [process.env.GOOGLE_CLIENT_ID],
+                        'scope': 'https://www.googleapis.com/auth/calendar'
+                      };
+      console.log('CLIENT ID', initConfig.clientID);
+      gapi.client.init(initConfig).then(()=> {
+        console.log('WE GOT HERE');
         GoogleAuth = gapi.auth2.getAuthInstance();
         GoogleAuth.isSignedIn.listen(updateSigninStatus);
         var user = GoogleAuth.currentUser.get();
-        console.log(user);
         setSigninStatus();
-      }).catch((err)=>{
-        console.log(err, 'ERROR IN GAPI CLIENT INIT');
       });
     };
+
     // checks that user is signed in and has authorized use of their calendar, otherwise redirects to an authorization
     function setSigninStatus(isSignedIn) {
       var user = GoogleAuth.currentUser.get()
