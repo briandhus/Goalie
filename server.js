@@ -111,8 +111,10 @@ app.post('/api/goal', (req, res) => {
 app.put('/api/:taskTitle', (req, res) => {
   //query MongoDB to update that task of goal of user
   console.log(`trying to update ${req.params.taskTitle}`)
+  console.log(`of user ${req.session.passport.user}`)
   User.update({
     _id: req.session.passport.user,
+    
     'goal.tasks.title': req.params.taskTitle
   },{
     $set: {
