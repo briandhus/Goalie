@@ -13,6 +13,10 @@ class Dashboard extends React.Component {
     this.render()
   }
 
+  clickHandler (goalTitle){
+    helpers.completeGoal(goalTitle)
+  }
+
   render() {
     var that = this;
 
@@ -22,7 +26,7 @@ class Dashboard extends React.Component {
     		<div className="row">
     			<div className="col-md-3 dashboard-outline-test">
             {/* TODO: need to pass the data from the  */}
-            <img alt="avatar image" src={this.props.gear}/>
+            <img alt="avatar image" src={`./assets/images/level${this.props.gearLevel}.png`}/>
             }
       		</div>
 
@@ -56,13 +60,23 @@ class Dashboard extends React.Component {
                   }) ()
                 }</h5>
 
-                <Link to="/success">
-                  <button className="btn btn-success complete_btn">Click to complete goal</button>
-                <br />
-                </Link>
+                {
+                  function(){
+                    if (that.props.goal.goalTitle) {
+                      return(
+                        <div onClick={that.clickHandler.bind(that,that.props.goal.goalTitle)}> 
+                          <Link to="/success">
+                            <button className="btn btn-success complete_btn">Click to complete goal</button>
+                          <br />
+                          </Link>
+                        </div>
+                      )
+                    }
+                  }()
+                }
               </div>
               <div className="panel-body">
-                  {that.props.goal.tasks.map(function(task, i) {
+                  {that.props.tasks.map(function(task, i) {
                     return (
                       function () {
                         if (task.taskTitle){
@@ -75,7 +89,7 @@ class Dashboard extends React.Component {
                                 {/* TODO (maybe): NEED TO ADD A DIV HERE IF WE WANT TO SHOW THE TASK DUE DATE ALSO */}
                                 <div className="col-md-3">
                                   {/* TODO: add an onClick that checks sets task to uncomplete and deducts the xp */}
-                                  <button className="btn btn-info complete-task" id={i} onClick={that.props.updateTask.bind(that,task.taskTitle)}>
+                                  <button className="btn btn-info complete-task" id={i} onClick={that.props.updateTask.bind(that,task)}>
                                     Mark Complete
                                   </button>
                                 </div>
@@ -83,7 +97,7 @@ class Dashboard extends React.Component {
                             )
                           } else {
                             return (
-                              <div>
+                              <div className='row' key={i}>
                                 <div className="col-md-9">
                                   <p key={i} className="task-text gray-out">{task.taskTitle}</p>
                                 </div>
@@ -94,27 +108,6 @@ class Dashboard extends React.Component {
                       } ()                    
                     )
                   })}
-
-                {/*{function() {
-                  if (this.props.goal.tasks) {
-                    this.props.goal.tasks.map(function(task, i) {
-                      return (
-                        <div className="row">
-                          <div className="col-md-9">
-                            <p key={i} className="task-text">{task.taskTitle}</p>
-                          </div>
-                          <div className="col-md-3">
-                            <button className="complete-task" id={i}>Mark Complete</button>
-                          </div>                      
-                        </div>
-                      );
-                    })
-                  }
-                  else {
-                    return <p>Please create a goal.</p>
-                  }
-                }()}
-                */}
 
                 <Link to="/form">
                   <button className="btn btn-success">Create New Goal</button>

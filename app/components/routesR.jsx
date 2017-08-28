@@ -16,16 +16,14 @@ class Routes extends React.Component {
       userLogged: false,
       serverResponded: false,
       username: 'George',
-      goal: {}
+      goal: {},
+      tasks:[],
+      gearLevel: 0
     }
     this.updateLogin = this.updateLogin.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.updateTask = this.updateTask.bind(this);
     this.createGoal = this.createGoal.bind(this);
-  }
-
-  componentDidUpdate(){
-    //TODO:
   }
 
   updateLogin(logincheck){
@@ -41,23 +39,40 @@ class Routes extends React.Component {
     var that = this;
     that.setState({
       username: foundUser.username,
-      goal: foundUser.goal
+      goal: foundUser.goal,
+      tasks:foundUser.tasks,
+      gearLevel:foundUser.gearLevel
     })
     console.log('updated routesR\'s user & goal states');
     console.log('foundUser', foundUser.username)
   }
 
-  createGoal(newGoal){
+  createGoal(newGoal, newTasks){
     this.setState({
-      goal: newGoal
+      goal: newGoal,
+      tasks: newTasks.tasks
     })
   }
 
-
-
-  updateTask(taskTitle){
-    helpers.taskPut(taskTitle).then((data)=>{
-      console.log(`${taskTitle} status updated`)
+  updateTask(task){
+    
+    helpers.taskPut(task).then((data)=>{
+      console.log(`${task.taskTitle} status updated`)
+    })
+    var oldTasks = this.state.tasks;
+    // console.log('oldTasks before mapping is')
+    // console.log(oldTasks)
+    oldTasks.map((v) => {
+      if (v.taskTitle === task.taskTitle) {
+        v.taskComplete = true; 
+      }
+      return v;
+    })
+    // console.log('oldTasks after mapping is')
+    // console.log(oldTasks)
+    this.setState({
+      tasks: oldTasks,
+      gearLevel: this.state.gearLevel + 1
     })
   }
 
@@ -76,14 +91,18 @@ class Routes extends React.Component {
           <Route path="/about" component={About}/>   
 
           <Route exact path="/form" render={(props) => (
-            <Form {...props}/>
+            <Form 
+              createGoal={this.createGoal}
+            />
           )}/>      
 
           <Route path="/dashboard" render={(props) => (
             <Dashboard
               username={this.state.username}
               goal={this.state.goal}
+              tasks={this.state.tasks}
               updateTask={this.updateTask}
+              gearLevel = {this.state.gearLevel}
             />
           )}/>
 

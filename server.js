@@ -93,11 +93,10 @@ app.get('/api/user',(req, res) => {
 //route for user to create a goal
 app.post('/api/goal', (req, res) => {
   //TODO: check with front end to make sure req.body data format is correct
-  console.log('REQ.BODY', req.body);
+  console.log('REQ.BODY of goal post', req.body);
   var goalObj = {
     goalTitle: req.body.goalTitle, 
     goalDue: req.body.goalDue, 
-    tasks:req.body.tasks
   };
   User.findOneAndUpdate({_id: req.session.passport.user},{goal: goalObj}, (err, foundUser) => {
     if (err) throw err;
@@ -106,19 +105,29 @@ app.post('/api/goal', (req, res) => {
   })
 })
 
+app.post('/api/tasks', (req, res) => {
+  console.log('REQ.BODY of task post', req.body);
+  var taskArr = req.body.tasks;  
+   User.update({_id: req.session.passport.user},{'$set':{'tasks': taskArr}}, (err, foundUser) => {
+    if (err) throw err;
+    console.log(`tasks added to this user`);
+    res.send('task inserted');
+  })
+})
 
 //route for user to check off a task
 app.put('/api/:taskTitle', (req, res) => {
   //query MongoDB to update that task of goal of user
   console.log(`trying to update ${req.params.taskTitle}`)
   console.log(`of user ${req.session.passport.user}`)
-  User.update({
+  User.findOneAndUpdate({
     _id: req.session.passport.user,
     
-    'goal.tasks.title': req.params.taskTitle
+    'tasks.taskTitle': req.params.taskTitle
   },{
     $set: {
-      "goal.tasks.$.taskComplete": true
+      "tasks.$.taskComplete": true
+
     }
   }, (err, foundUser) => {
     if (err) throw err;
@@ -127,15 +136,21 @@ app.put('/api/:taskTitle', (req, res) => {
     var newGoalObj = {
       goalTitle: '', 
       goalDue: '', 
-      tasks:[]
     };
-    var taskLeftBeforeUpdate = foundUser.goal.tasks.reduce((acc, v) => {
-      if (v.taskTitle) return v === false ? acc + 1 : acc
-    }, 0);
+    var taskLeftBeforeUpdate = 0; 
+    for (var i = 0; i<foundUser.tasks.length; i++) {
+      if (foundUser.tasks[i].taskTitle && !foundUser.tasks[i].taskComplete) taskLeftBeforeUpdate ++;
+    }
     //if there is only one task left before update
     if (taskLeftBeforeUpdate === 1) {
       //set user goal to blank obj / delete the goal
-      User.findOneAndUpdate({_id: req.session.passport.user}, {goal: newGoalObj}, (err, doc) => {
+      User.findOneAndUpdate({_id: req.session.passport.user},{
+        $set: {
+          "goal": {},
+          "tasks":[],
+          "gearLevel":  1
+        }
+      }, (err, doc) => {
         console.log('whole goal completed')
         res.redirect('/success')
       })
@@ -155,10 +170,27 @@ app.get("/api/loggedin", (req, res) => {
   })
 })
 
+app.put('/api/goal/:goalTitle', (req, res) => {
+  console.log(`trying to complete goal ${req.params.goalTitle}`)
+  User.findOneAndUpdate({
+    _id: req.session.passport.user,
+  },{
+    $set: {
+      "goal": {},
+      "tasks":[],
+      "gear":  './assets/images/level-1.png',
+    }
+  }, (err, foundUser) => {
+  if (err) throw err;
+    console.log('whole goal completed')
+   res.redirect('/success')
+  })
+})
+
 //every other page goes to our index page
 app.get('*', function (request, response){
   console.log('showing index page!');
-  response.sendFile(__dirname + "/public/index.html");
+  response.redirect('/');
 })
 
 //================================

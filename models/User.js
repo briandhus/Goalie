@@ -25,28 +25,24 @@ var UserSchema = new Schema({
     goalComplete: {
       type: Boolean,
       default: false
+    }
+  },
+  tasks: [{
+    taskTitle: {
+      type: String
     },
-    tasks: [{
-      taskTitle: {
-        type: String
-      },
-      taskComplete: {
-        type: Boolean,
-        default: false
-      },
-      taskDue: {
-        type: Date
-      }
-    }]
-  },
-	gear: {
-	  type: String,
-    default: './assets/images/level-1.png'
-  },
-  experience: {
-  	type: Number,
-  	required: true,
-  	default: 0
+    taskComplete: {
+      type: Boolean,
+      default: false
+    },
+    taskDue: {
+      type: Date
+    }
+  }],
+	gearLevel: {
+    type: Number,
+    default: 1
+    // default: './assets/images/level-1.png'
   }
 });
 

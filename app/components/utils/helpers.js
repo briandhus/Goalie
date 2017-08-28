@@ -9,20 +9,20 @@ const helper = {
     return axios.post('/api/goal', goal)
   },
 
+  completeGoal: (goalTitle) => {
+    console.log(`helper completing goal ${goalTitle}`)
+    return axios.put(`/api/goal/${goalTitle}`)
+  } ,
   // This function hits our own server to update the tasks under goals/tasks
-  // TODO: Decide if put or post (update user or post to goal or tasks)
-  createTask: (task) => {
-    console.log('helper creating a task');
-    console.log('created task - ', task);
-    return axios.put('/api/task')
+  createTasks: (tasks) => {
+    console.log('helper creating tasks');
+    console.log('created tasks ', tasks);
+    return axios.post('/api/tasks', tasks)
   },
 
-  goToStart: () => {
-    return axios.get('/');
-  },
-
-  taskPut: (taskTitle) => {
-    return axios.put(`/api/${taskTitle}`);
+  taskPut: (task) => {
+    console.log('helper updating task')
+    return axios.put(`/api/${task.taskTitle}`);
   },
 
   googCalPush: (name, dueDate, tasks) => {
