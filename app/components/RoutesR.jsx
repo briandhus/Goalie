@@ -15,8 +15,9 @@ class Routes extends React.Component {
     this.state= {
       userLogged: false,
       serverResponded: false,
-      username: 'George',
-      goal: {}
+      username: '',
+      goal: {},
+      gear: './assets/images/level1.png'
     }
     this.updateLogin = this.updateLogin.bind(this);
     this.updateUser = this.updateUser.bind(this);
@@ -84,6 +85,7 @@ class Routes extends React.Component {
               username={this.state.username}
               goal={this.state.goal}
               updateTask={this.updateTask}
+              gear={this.state.gear}
             />
           )}/>
 
