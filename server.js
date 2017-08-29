@@ -65,17 +65,6 @@ app.get('/auth/google/callback', passport.authenticate('google', {
   failureRedirect: '/auth/google' 
 }));
 
-//API ROUTES
-// testing route for the axios get user
-// app.get('/api/user/:username',(req, res) => {
-//   console.log(req)
-//   User.find({username: req.params.username}, (err, foundUser) => {
-//       if (err) throw err;
-//       res.json(foundUser);
-//   })
-// })
-
-
 //for this user, get whole user obj
 app.get('/api/user',(req, res) => {
   var userToFind = '';  
@@ -152,7 +141,9 @@ app.put('/api/:taskTitle', (req, res) => {
         }
       }, (err, doc) => {
         console.log('whole goal completed')
-        res.redirect('/success')
+        res.json({
+          goalComplete: true
+        })
       })
     } else {
       console.log('task checked off')
@@ -170,6 +161,7 @@ app.get("/api/loggedin", (req, res) => {
   })
 })
 
+//route for user to complete a whole goal
 app.put('/api/goal/:goalTitle', (req, res) => {
   console.log(`trying to complete goal ${req.params.goalTitle}`)
   User.findOneAndUpdate({
@@ -183,7 +175,9 @@ app.put('/api/goal/:goalTitle', (req, res) => {
   }, (err, foundUser) => {
   if (err) throw err;
     console.log('whole goal completed')
-   res.redirect('/success')
+    res.json({
+      goalComplete: true
+    })
   })
 })
 

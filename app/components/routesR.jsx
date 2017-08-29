@@ -18,7 +18,9 @@ class Routes extends React.Component {
       username: 'George',
       goal: {},
       tasks:[],
-      gearLevel: 0
+      gearLevel: 0,
+      goalComplete: false,
+      goToSuccess:  false
     }
     this.updateLogin = this.updateLogin.bind(this);
     this.updateUser = this.updateUser.bind(this);
@@ -50,15 +52,13 @@ class Routes extends React.Component {
   createGoal(newGoal, newTasks){
     this.setState({
       goal: newGoal,
-      tasks: newTasks.tasks
+      tasks: newTasks.tasks,
+      goToSuccess: false
     })
   }
 
   updateTask(task){
-    
-    helpers.taskPut(task).then((data)=>{
-      console.log(`${task.taskTitle} status updated`)
-    })
+    var that = this;
     var oldTasks = this.state.tasks;
     // console.log('oldTasks before mapping is')
     // console.log(oldTasks)
@@ -68,11 +68,24 @@ class Routes extends React.Component {
       }
       return v;
     })
-    // console.log('oldTasks after mapping is')
-    // console.log(oldTasks)
-    this.setState({
-      tasks: oldTasks,
-      gearLevel: this.state.gearLevel + 1
+    helpers.taskPut(task).then((response)=>{
+      console.log('put /api/task returns data')
+      console.log(response.data)
+      if (response.data.goalComplete){
+        that.setState({
+          goal: {},
+          tasks: [],
+          gearLevel: 0,
+          goToSuccess: true
+        })
+        console.log('trying to go to success page')
+      } else {
+        that.setState({
+          tasks: oldTasks,
+          gearLevel: that.state.gearLevel + 1
+        })
+      console.log(`${task.taskTitle} status updated`);
+      }
     })
   }
 
@@ -103,11 +116,10 @@ class Routes extends React.Component {
               tasks={this.state.tasks}
               updateTask={this.updateTask}
               gearLevel = {this.state.gearLevel}
+              sendData={this.getData}
+              goToSuccess={this.state.goToSuccess}
             />
           )}/>
-
-
-          <Route path="/success" component={Success} />
 
         </Switch>
       </div>

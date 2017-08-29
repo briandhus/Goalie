@@ -1,9 +1,9 @@
 import React from "react";
-import helpers from "../utils/helpers"
+import helpers from "../utils/helpers";
 import {Link} from 'react-router-dom';
+// import PropTypes from "prop-types";
 
 class Form extends React.Component {
-
   constructor(props){
     super(props);
     // set initial state for goal, tasks, and dates
@@ -69,14 +69,16 @@ class Form extends React.Component {
         taskDue: this.state.task[i].taskDate
       })
     }
-    console.log('GOALOBJECT', goalObject);
+    // console.log('GOALOBJECT', goalObject);
     // var GoogleAuth = gapi.auth2.getAuthInstance();
     // var user = GoogleAuth.currentUser.get()
     helpers.googCalPush(this.state.goal, this.state.task);
     helpers.createGoal(goalObject);
     helpers.createTasks(taskObject)
     this.props.createGoal(goalObject, taskObject);
-    this.context.router.transitionTo(e.target.href)
+    // console.log('transitionTo')
+    // console.log(event.target.href)
+    // this.context.router.push(event.target.href)
   }
 
 
@@ -193,4 +195,7 @@ class Form extends React.Component {
   }
 }
 
+// Form.contextTypes = {
+//   router: PropTypes.object
+// }
 export default Form;
