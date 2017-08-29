@@ -34,17 +34,19 @@ const helper = {
   },
 
   googCalPush: (name, dueDate, tasks) => {
-    return axios.get('/api/clientId')
-    var GoogleAuth;
-    // load google authentication and api
-    gapi.load('client:auth2', initClient);
     var scope = 'https://www.googleapis.com/auth/calendar'
+    var GoogleAuth;
+    axios.get('/api/clientId').then((response)=>{
+      console.log(response)
+      // load google authentication and api
+      gapi.load('client:auth2', initClient(response));
+    });
     
-    function initClient() {
+    function initClient(clientID) {
       // console.log('ENVENVENV', process.env)
       // sets client scope and checks for user status
       var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
-      var s = process.env['GOOGLE_CLIENT_ID'];
+      var s = clientID;
       // var s = clientID
       console.log('SECRET', s);
       var customInitConfig = {
