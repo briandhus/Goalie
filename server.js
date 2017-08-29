@@ -179,7 +179,7 @@ app.put('/api/goal/:goalTitle', (req, res) => {
       goalComplete: true
     })
   })
-
+})
 app.get("/api/clientId", (req, res)=> {
   // res.json(process.env.GOOGLE_CLIENT_ID);
   if (process.env.PORT){
