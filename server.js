@@ -154,8 +154,8 @@ app.get("/api/loggedin", (req, res) => {
 })
 
 app.get("/api/clientId", (req, res)=> {
-  res.json(process.env)
-  console.log()
+  res.json(process.env.GOOGLE_CLIENT_ID);
+  res.send(process.env.GOOGLE_CLIENT_ID);
 })
 
 //every other page goes to our index page

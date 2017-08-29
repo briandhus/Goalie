@@ -34,6 +34,7 @@ const helper = {
   },
 
   googCalPush: (name, dueDate, tasks) => {
+    return axios.get('/api/clientId')
     var GoogleAuth;
     // load google authentication and api
     gapi.load('client:auth2', initClient);
