@@ -68,10 +68,13 @@ class Dashboard extends React.Component {
                           if (!task.taskComplete) {
                             return (
                               <div className='row' key={i}>
-                                <div className="col-md-9">
+                                <div className="col-md-7">
                                   <p className="task-text task-complete">{task.taskTitle}</p>
                                 </div>
                                 {/* TODO (maybe): NEED TO ADD A DIV HERE IF WE WANT TO SHOW THE TASK DUE DATE ALSO */}
+                                <div className="col-sm-2">
+                                  <p className="task-text task-date">{task.taskDue}</p>
+                                </div>
                                 <div className="col-md-3">
                                   {/* TODO: add an onClick that checks sets task to uncomplete and deducts the xp */}
                                   <button className="btn btn-info complete-task" id={i} onClick={that.props.updateTask.bind(that,task.taskTitle)}>
