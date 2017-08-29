@@ -155,7 +155,12 @@ app.get("/api/loggedin", (req, res) => {
 
 app.get("/api/clientId", (req, res)=> {
   // res.json(process.env.GOOGLE_CLIENT_ID);
-  res.send(process.env.GOOGLE_CLIENT_ID);
+  if (process.env.PORT){
+    res.send(process.env.GOOGLE_CLIENT_ID)
+  } else {
+    var configAuth = require('./config/auth.js')
+    res.send(configAuth.googleAuth.clientID);
+  }
 })
 
 //every other page goes to our index page

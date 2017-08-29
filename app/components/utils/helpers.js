@@ -42,13 +42,11 @@ const helper = {
     
     
     function initClient() {
-      // console.log('ENVENVENV', process.env)
       // sets client scope and checks for user status
       axios.get('/api/clientId').then((response)=>{
         console.log(response)
         var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
         var s = response.data;
-        // var s = clientID
         console.log('SECRET', s);
         var customInitConfig = {
                           'discoveryDocs': [discoveryUrl],
