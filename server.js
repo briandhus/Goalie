@@ -153,6 +153,11 @@ app.get("/api/loggedin", (req, res) => {
   })
 })
 
+app.get("/api/clientId", (req, res)=> {
+  res.json(process.env)
+  console.log()
+})
+
 //every other page goes to our index page
 app.get('*', function (request, response){
   console.log('showing index page!');
