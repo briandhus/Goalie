@@ -24,10 +24,6 @@ class Form extends React.Component {
 
   }
 
-  componentDidMount() {
-    console.log(process.env);
-  }
-
   handleChange(event) {
 
     var changeTarget = event.target.id

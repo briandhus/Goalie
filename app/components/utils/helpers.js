@@ -1,9 +1,11 @@
 import axios from 'axios';
-// var auth = require('../../../config/auth.js')
-// if (process.env.GOOGLE_CLIENT_ID){
-var clientID = process.env.GOOGLE_CLIENT_ID;
-  // } else {
     // var configAuth = require('../../../config/auth.js');
+// var auth = require('../../../config/auth.js')
+// var clientID;
+// if (process.env.PORT){
+    // clientID = process.env.GOOGLE_CLIENT_ID;
+  // } else {
+
     // var clientID = configAuth.googleAuth.clientID;
   // }
 
@@ -35,29 +37,33 @@ const helper = {
     var GoogleAuth;
     // load google authentication and api
     gapi.load('client:auth2', initClient);
-
+    var scope = 'https://www.googleapis.com/auth/calendar'
+    
     function initClient() {
-      var scope = 'https://www.googleapis.com/auth/calendar'
-      var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
+      console.log('ENVENVENV', process.env)
       // sets client scope and checks for user status
-      console.log('SCOPE', scope)
-      console.log('INIT STARTING')
-      gapi.client.init({
-        'discoveryDocs': [discoveryUrl],
-        'client_id': process.env.GOOGLE_CLIENT_ID,
-        'scope': 'https://www.googleapis.com/auth/calendar'
-      }).then(()=> {
-        console.log('WE GOT HERE')
+      var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
+      var s = process.env['GOOGLE_CLIENT_ID'];
+      console.log('SECRET', s);
+      var customInitConfig = {
+                        'discoveryDocs': [discoveryUrl],
+                        'clientId': [s],
+                        'scope': 'https://www.googleapis.com/auth/calendar'
+                      };
+      console.log('initConfig', customInitConfig);
+      gapi.client.init(customInitConfig).then(()=> {
+        console.log('WE GOT HERE');
         GoogleAuth = gapi.auth2.getAuthInstance();
         GoogleAuth.isSignedIn.listen(updateSigninStatus);
         var user = GoogleAuth.currentUser.get();
-        setSigninStatus()
-      })
+        setSigninStatus();
+      });
     };
+
     // checks that user is signed in and has authorized use of their calendar, otherwise redirects to an authorization
     function setSigninStatus(isSignedIn) {
       var user = GoogleAuth.currentUser.get()
-      var isAuthorized = user.hasGrantedScopes(SCOPE)
+      var isAuthorized = user.hasGrantedScopes(scope)
       // takes token from authorized user
       // var access_token = user.Zi.access_token
       if (isAuthorized) {
