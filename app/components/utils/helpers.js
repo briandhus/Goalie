@@ -1,35 +1,26 @@
 import axios from 'axios';
-    // var configAuth = require('../../../config/auth.js');
-// var auth = require('../../../config/auth.js')
-// var clientID;
-// if (process.env.PORT){
-    // clientID = process.env.GOOGLE_CLIENT_ID;
-  // } else {
-
-    // var clientID = configAuth.googleAuth.clientID;
-  // }
 
 const helper = {
   // This function hits our own server to update the goal and tasks initially 
   createGoal: (goal) => {
-    console.log('helper creating a goal');
-    console.log('goal', goal);
+    // console.log('helper creating a goal');
+    // console.log('goal', goal);
     return axios.post('/api/goal', goal)
   },
 
   completeGoal: (goalTitle) => {
-    console.log(`helper completing goal ${goalTitle}`)
+    // console.log(`helper completing goal ${goalTitle}`)
     return axios.put(`/api/goal/${goalTitle}`)
   } ,
   // This function hits our own server to update the tasks under goals/tasks
   createTasks: (tasks) => {
-    console.log('helper creating tasks');
-    console.log('created tasks ', tasks);
+    // console.log('helper creating tasks');
+    // console.log('created tasks ', tasks);
     return axios.post('/api/tasks', tasks)
   },
 
   taskPut: (task) => {
-    console.log('helper updating task')
+    // console.log('helper updating task')
     return axios.put(`/api/${task.taskTitle}`);
   },
 
@@ -44,18 +35,18 @@ const helper = {
     function initClient() {
       // sets client scope and checks for user status
       axios.get('/api/clientId').then((response)=>{
-        console.log(response)
+        // console.log(response)
         var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
         var s = response.data;
-        console.log('SECRET', s);
+        // console.log('SECRET', s);
         var customInitConfig = {
                           'discoveryDocs': [discoveryUrl],
                           'clientId': [s],
                           'scope': 'https://www.googleapis.com/auth/calendar'
                         };
-        console.log('initConfig', customInitConfig);
+        // console.log('initConfig', customInitConfig);
         gapi.client.init(customInitConfig).then(()=> {
-          console.log('WE GOT HERE');
+          // console.log('WE GOT HERE');
           GoogleAuth = gapi.auth2.getAuthInstance();
           GoogleAuth.isSignedIn.listen(updateSigninStatus);
           var user = GoogleAuth.currentUser.get();
@@ -68,11 +59,7 @@ const helper = {
     function setSigninStatus(isSignedIn) {
       var user = GoogleAuth.currentUser.get()
       var isAuthorized = user.hasGrantedScopes(scope)
-      // takes token from authorized user
-      // var access_token = user.Zi.access_token
       if (isAuthorized) {
-        // createGoal(access_token)
-        // createTasks(access_token)
         // Create goal event using google api library
         const goal = {
           'summary': name,
@@ -88,7 +75,7 @@ const helper = {
             'useDefault': false,
             'overrides': [
               {'method': 'email', 'minutes': 24 * 60},
-              {'method': 'popup', 'minutes': 12 * 60}
+              {'method': 'popup', 'minutes': 15 * 60}
             ]
           }
         };
