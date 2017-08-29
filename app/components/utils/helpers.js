@@ -36,31 +36,33 @@ const helper = {
   googCalPush: (name, dueDate, tasks) => {
     var scope = 'https://www.googleapis.com/auth/calendar'
     var GoogleAuth;
-    axios.get('/api/clientId').then((response)=>{
-      console.log(response)
-      // load google authentication and api
-      gapi.load('client:auth2', initClient(response));
-    });
     
-    function initClient(clientID) {
+    // load google authentication and api
+    gapi.load('client:auth2', initClient;
+    
+    
+    function initClient() {
       // console.log('ENVENVENV', process.env)
       // sets client scope and checks for user status
-      var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
-      var s = clientID.data;
-      // var s = clientID
-      console.log('SECRET', s);
-      var customInitConfig = {
-                        'discoveryDocs': [discoveryUrl],
-                        'clientId': [s],
-                        'scope': 'https://www.googleapis.com/auth/calendar'
-                      };
-      console.log('initConfig', customInitConfig);
-      gapi.client.init(customInitConfig).then(()=> {
-        console.log('WE GOT HERE');
-        GoogleAuth = gapi.auth2.getAuthInstance();
-        GoogleAuth.isSignedIn.listen(updateSigninStatus);
-        var user = GoogleAuth.currentUser.get();
-        setSigninStatus();
+      axios.get('/api/clientId').then((response)=>{
+        console.log(response)  
+        var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
+        var s = response.data;
+        // var s = clientID
+        console.log('SECRET', s);
+        var customInitConfig = {
+                          'discoveryDocs': [discoveryUrl],
+                          'clientId': [s],
+                          'scope': 'https://www.googleapis.com/auth/calendar'
+                        };
+        console.log('initConfig', customInitConfig);
+        gapi.client.init(customInitConfig).then(()=> {
+          console.log('WE GOT HERE');
+          GoogleAuth = gapi.auth2.getAuthInstance();
+          GoogleAuth.isSignedIn.listen(updateSigninStatus);
+          var user = GoogleAuth.currentUser.get();
+          setSigninStatus();
+        });
       });
     };
 

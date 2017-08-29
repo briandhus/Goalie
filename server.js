@@ -154,7 +154,7 @@ app.get("/api/loggedin", (req, res) => {
 })
 
 app.get("/api/clientId", (req, res)=> {
-  res.json(process.env.GOOGLE_CLIENT_ID);
+  // res.json(process.env.GOOGLE_CLIENT_ID);
   res.send(process.env.GOOGLE_CLIENT_ID);
 })
 
