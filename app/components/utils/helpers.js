@@ -9,7 +9,7 @@ const helper = {
   },
 
   completeGoal: (goalTitle) => {
-    // console.log(`helper completing goal ${goalTitle}`)
+     // console.log(`helper completing goal ${goalTitle}`)
     return axios.put(`/api/goal/${goalTitle}`)
   } ,
   // This function hits our own server to update the tasks under goals/tasks
@@ -38,7 +38,6 @@ const helper = {
         // console.log(response)
         var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
         var s = response.data;
-        // console.log('SECRET', s);
         var customInitConfig = {
                           'discoveryDocs': [discoveryUrl],
                           'clientId': [s],
