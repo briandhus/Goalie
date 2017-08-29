@@ -179,6 +179,15 @@ app.put('/api/goal/:goalTitle', (req, res) => {
       goalComplete: true
     })
   })
+
+app.get("/api/clientId", (req, res)=> {
+  // res.json(process.env.GOOGLE_CLIENT_ID);
+  if (process.env.PORT){
+    res.send(process.env.GOOGLE_CLIENT_ID)
+  } else {
+    var configAuth = require('./config/auth.js')
+    res.send(configAuth.googleAuth.clientID);
+  }
 })
 
 //every other page goes to our index page

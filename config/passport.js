@@ -28,6 +28,8 @@ var passport = function(passport) {
 
   }
 
+  console.log(process.env.GOOGLE_CLIENT_ID, 'CLIENT ID IN PASSPORT')
+
 	passport.use(new GoogleStrategy({
 	    clientID: clientID,
 	    clientSecret: clientSecret,

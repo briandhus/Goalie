@@ -1,3 +1,4 @@
+var webpack = require('webpack')
 module.exports = {
     entry: "./app/app.jsx",
     output: {
@@ -22,5 +23,5 @@ module.exports = {
     externals: [
         {googleapis: 'commonjs googleapis'}
     ],
-    devtool: "eval-source-map"
+    devtool: "cheap-module-source-map"
 }
