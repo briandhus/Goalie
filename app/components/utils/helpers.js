@@ -38,14 +38,14 @@ const helper = {
     var GoogleAuth;
     
     // load google authentication and api
-    gapi.load('client:auth2', initClient;
+    gapi.load('client:auth2', initClient);
     
     
     function initClient() {
       // console.log('ENVENVENV', process.env)
       // sets client scope and checks for user status
       axios.get('/api/clientId').then((response)=>{
-        console.log(response)  
+        console.log(response)
         var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
         var s = response.data;
         // var s = clientID
