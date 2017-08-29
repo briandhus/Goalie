@@ -1,12 +1,12 @@
 import axios from 'axios';
-    // var configAuth = require('../../../config/auth.js');
+    var configAuth = require('../../../config/auth.js');
 // var auth = require('../../../config/auth.js')
 // var clientID;
 // if (process.env.PORT){
     // clientID = process.env.GOOGLE_CLIENT_ID;
   // } else {
 
-    // var clientID = configAuth.googleAuth.clientID;
+    var clientID = configAuth.googleAuth.clientID;
   // }
 
 const helper = {
@@ -40,10 +40,11 @@ const helper = {
     var scope = 'https://www.googleapis.com/auth/calendar'
     
     function initClient() {
-      console.log('ENVENVENV', process.env)
+      // console.log('ENVENVENV', process.env)
       // sets client scope and checks for user status
       var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
-      var s = process.env['GOOGLE_CLIENT_ID'];
+      // var s = process.env['GOOGLE_CLIENT_ID'];
+      var s = clientID
       console.log('SECRET', s);
       var customInitConfig = {
                         'discoveryDocs': [discoveryUrl],
