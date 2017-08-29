@@ -52,7 +52,7 @@ class Dashboard extends React.Component {
           <div className="container dashboard">
             <div className="row">
               <div className="col-md-3 dashboard-outline-test">
-                <img alt="avatar image" src={`./assets/images/level${this.props.gearLevel}.png`}/>
+                <img alt="avatar image" className="img img-responsive" src={`./assets/images/level${this.props.gearLevel}.png`}/>
               </div>
 
               <div className="col-md-9 dashboard-outline-test">
