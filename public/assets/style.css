@@ -166,3 +166,7 @@ body{
 .task-complete {
 	color: gray;
 }
+
+.gray-out {
+  background-color: grey
+}

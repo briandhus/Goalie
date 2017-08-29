@@ -42,8 +42,6 @@ var passport = function(passport) {
       process.nextTick(function(){
         console.log('trying to find user')
         // console.log(`profile displayname is ${profile.displayName}`)
-        console.log(`refresh token is ${refreshToken}`)
-        console.log(`access token is ${accessToken}`)
         User.findOne({'username': profile.displayName}, function(err, user){
           if(user){
             console.log('user found!')

@@ -1,8 +1,9 @@
 import React from "react";
-import helpers from "../utils/helpers"
+import helpers from "../utils/helpers";
+import {Link} from 'react-router-dom';
+// import PropTypes from "prop-types";
 
 class Form extends React.Component {
-
   constructor(props){
     super(props);
     // set initial state for goal, tasks, and dates
@@ -30,8 +31,6 @@ class Form extends React.Component {
     var obj = {}
     obj[changeTarget] = event.target.value
 
-
-    
     if (event.target.id === "goalName" || event.target.id === "goalDate"){
       // console.log(obj)
       this.setState(
@@ -57,28 +56,36 @@ class Form extends React.Component {
 
     var goalObject = {
       goalTitle: this.state.goalName,
-      goalDue: this.state.goalDate,
-      tasks: []
+      goalDue: this.state.goalDate
     };
+
+    var taskObject = {
+      tasks: []
+    }
+
     for (var i = 0; i < this.state.task.length; i++) {
-      goalObject.tasks.push({
-        taskTitle: this.state.task[i].taskName,
+      taskObject.tasks.push({
+        taskTitle: this.state.task[i].taskName.trim(),
         taskDue: this.state.task[i].taskDate
       })
     }
-    console.log('GOALOBJECT', goalObject);
+    // console.log('GOALOBJECT', goalObject);
     // var GoogleAuth = gapi.auth2.getAuthInstance();
     // var user = GoogleAuth.currentUser.get()
     helpers.googCalPush(this.state.goal, this.state.task);
     helpers.createGoal(goalObject);
-    helpers.goToStart();
+    helpers.createTasks(taskObject)
+    this.props.createGoal(goalObject, taskObject);
+    // console.log('transitionTo')
+    // console.log(event.target.href)
+    // this.context.router.push(event.target.href)
   }
 
 
   render () { 
     return (      
       <div className="container form">
-        <form onSubmit={this.handleSubmit}>
+        <form >
           <div className="row align-items">
             <div className="row task">
               <div className="form-group col-md-9">
@@ -173,8 +180,10 @@ class Form extends React.Component {
             <br/>
 
             <div className="form-group row">
-              <div className="col-md-10 col-md-offset-1">
-                <button type="submit" className="formButton btn btn-danger" onClick={this.handleSubmit} >Submit</button>
+              <div className="col-md-10 col-md-offset-1" onClick={this.handleSubmit}>
+                <Link href='/' to='/' className="formButton btn btn-danger"  >
+                  Submit
+                </Link>
               </div>
             </div>
   
@@ -186,4 +195,7 @@ class Form extends React.Component {
   }
 }
 
+// Form.contextTypes = {
+//   router: PropTypes.object
+// }
 export default Form;
