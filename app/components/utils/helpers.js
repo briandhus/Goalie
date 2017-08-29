@@ -48,7 +48,7 @@ const helper = {
       var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
       var s = clientID;
       // var s = clientID
-      console.log('SECRET', s);
+      console.log('SECRET', s.data);
       var customInitConfig = {
                         'discoveryDocs': [discoveryUrl],
                         'clientId': [s],
