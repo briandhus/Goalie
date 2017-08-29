@@ -46,9 +46,9 @@ const helper = {
       // console.log('ENVENVENV', process.env)
       // sets client scope and checks for user status
       var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
-      var s = clientID;
+      var s = clientID.data;
       // var s = clientID
-      console.log('SECRET', s.data);
+      console.log('SECRET', s);
       var customInitConfig = {
                         'discoveryDocs': [discoveryUrl],
                         'clientId': [s],
