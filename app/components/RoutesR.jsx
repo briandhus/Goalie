@@ -17,7 +17,8 @@ class Routes extends React.Component {
       serverResponded: false,
       username: '',
       goal: {},
-      gear: './assets/images/level1.png'
+      gear: './assets/images/level1.png',
+      tasks: []
     }
     this.updateLogin = this.updateLogin.bind(this);
     this.updateUser = this.updateUser.bind(this);
