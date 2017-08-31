@@ -24,16 +24,16 @@ class Dashboard extends React.Component {
         return (
           <div className="container success">
             <div className="row text-center">
-              <div className="col-md-12">
+              <div className="col-sm-12">
                 <h2>Success!</h2>
               </div>
               <div className="row">
-                <div className="col-md-12">
+                <div className="col-sm-12">
                   <img alt="avatar complete image" src="./assets/images/level6.png" className="sucess_img"/>            
                 </div>
               </div>
               <div className="row">
-                <div className="col-md-12">
+                <div className="col-sm-12">
                   <Link to="/form">
                     <button className="btn btn-success success_btn">Create New Goal</button>
                   </Link>
@@ -47,11 +47,11 @@ class Dashboard extends React.Component {
         return (
           <div className="container dashboard">
             <div className="row">
-              <div className="col-md-3 dashboard-outline-test">
+              <div className="col-sm-3 dashboard-outline-test">
                 <img alt="avatar image" className="img img-responsive" src={`./assets/images/level${this.props.gearLevel}.png`}/>
               </div>
 
-              <div className="col-md-9 dashboard-outline-test">
+              <div className="col-sm-9 dashboard-outline-test">
                 {/* Need to insert goals */}
                 <div className="panel panel-default">
                   <div className="panel">
@@ -102,11 +102,11 @@ class Dashboard extends React.Component {
                               if (!task.taskComplete) {
                                 return (
                                   <div className='row' key={i}>
-                                    <div className="col-md-9">
+                                    <div className="col-sm-9">
                                       <p className="task-text task-complete">{task.taskTitle}</p>
                                     </div>
                                     {/* TODO (maybe): NEED TO ADD A DIV HERE IF WE WANT TO SHOW THE TASK DUE DATE ALSO */}
-                                    <div className="col-md-3">
+                                    <div className="col-sm-3">
                                       <button className="btn btn-info complete-task" id={i} onClick={that.props.updateTask.bind(that,task)}>
                                         Mark Complete
                                       </button>
@@ -116,7 +116,7 @@ class Dashboard extends React.Component {
                               } else {
                                 return (
                                   <div className='row' key={i}>
-                                    <div className="col-md-9">
+                                    <div className="col-sm-9">
                                       <p key={i} className="task-text gray-out">{task.taskTitle}</p>
                                     </div>
                                   </div>
