@@ -28,6 +28,8 @@ var passport = function(passport) {
 
   }
 
+  console.log(process.env.GOOGLE_CLIENT_ID, 'CLIENT ID IN PASSPORT')
+
 	passport.use(new GoogleStrategy({
 	    clientID: clientID,
 	    clientSecret: clientSecret,
@@ -44,7 +46,7 @@ var passport = function(passport) {
           if(user){
             console.log('user found!')
             // console.log(user);
-            user.accessToken = accessToken;
+            // user.accessToken = accessToken;
             // user.refreshToken = refreshToken
             // user.save()
 
@@ -54,12 +56,14 @@ var passport = function(passport) {
             console.log('creating a new user');
             User.create({
               'username' : profile.displayName,
-              'refreshToken' : refreshToken,
-              'accessToken' : accessToken
-            }, function(data){
-              console.log('done creating a new user')
-              console.log(data);
-              return done(null, data);
+            }, function(err, data){
+              if (err) {
+                console.log(err)
+              } else {
+                console.log('done creating a new user')
+                console.log(data);
+                return done(null, data)
+              };
             })  
           }      
         })
