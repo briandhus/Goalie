@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const helper = {
-  // This function hits our own server to update the goal and tasks initially 
+  // This function hits our own server to update the goal and tasks initially
   createGoal: (goal) => {
     // console.log('helper creating a goal');
     // console.log('goal', goal);
@@ -24,18 +24,20 @@ const helper = {
     return axios.put(`/api/${task.taskTitle}`);
   },
 
-  googCalPush: (name, dueDate, tasks) => {
+  googInit: ()=>{
+    console.log('initializing')
     var scope = 'https://www.googleapis.com/auth/calendar'
     var GoogleAuth;
-    
+
     // load google authentication and api
     gapi.load('client:auth2', initClient);
-    
-    
+
     function initClient() {
+      console.log('inside init')
       // sets client scope and checks for user status
       axios.get('/api/clientId').then((response)=>{
         // console.log(response)
+        console.log('recoverd client ID')
         var discoveryUrl = 'https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'
         var s = response.data;
         var customInitConfig = {
@@ -45,31 +47,77 @@ const helper = {
                         };
         // console.log('initConfig', customInitConfig);
         gapi.client.init(customInitConfig).then(()=> {
-          // console.log('WE GOT HERE');
+          console.log('setting custom init config');
           GoogleAuth = gapi.auth2.getAuthInstance();
           GoogleAuth.isSignedIn.listen(updateSigninStatus);
           var user = GoogleAuth.currentUser.get();
           setSigninStatus();
         });
       });
-    };
+      function updateSigninStatus(isSignedIn) {
+        setSigninStatus()
+      }
+      // checks that user is signed in and has authorized use of their calendar, otherwise redirects to an authorization
+      function setSigninStatus(isSignedIn) {
+        console.log('checking sign in')
+        var user = GoogleAuth.currentUser.get()
+        var isAuthorized = user.hasGrantedScopes(scope)
+        if (isAuthorized) {
+          console.log('user is authorized')
+          // if user is not signed in or has not authorized the use of their calendar, redirect to sign in
+        } else {
+          console.log('sign in please')
+          GoogleAuth.signIn()
+        }
+      }
 
-    // checks that user is signed in and has authorized use of their calendar, otherwise redirects to an authorization
-    function setSigninStatus(isSignedIn) {
-      var user = GoogleAuth.currentUser.get()
-      var isAuthorized = user.hasGrantedScopes(scope)
-      if (isAuthorized) {
-        // Create goal event using google api library
-        const goal = {
-          'summary': name,
+    };
+  },
+
+  googCalPush: (name, dueDate, tasks) => {
+    console.log('running calendar push')
+    // Create goal event using google api library
+    const goal = {
+      'summary': name,
+      'start': {
+        'date': dueDate
+      },
+      // endTimeUnspecified throws 403
+      'end': {
+        'date': dueDate
+      },
+      // override default reminder notifications
+      'reminders': {
+        'useDefault': false,
+        'overrides': [
+          {'method': 'email', 'minutes': 24 * 60},
+          {'method': 'popup', 'minutes': 15 * 60}
+        ]
+      }
+    };
+    // Define parameters and send request to Google Calendar
+    const goalRequest = gapi.client.calendar.events.insert({
+      'calendarId': 'primary',
+      'resource': goal
+    });
+    goalRequest.execute((event)=> {
+      console.log('creating goal')
+      console.log(event)
+    });
+
+    // create task events from array
+    for (var i = 0; i < tasks.length; i++) {
+      var task = tasks[i]
+      console.log(task)
+      if (task.taskName !== "" || task.taskDate !== ""){
+        const taskReminder = {
+          'summary': task.taskName,
           'start': {
-            'date': dueDate
+            'date': task.taskDate
           },
-          // endTimeUnspecified throws 403
           'end': {
-            'date': dueDate
+            'date': task.taskDate
           },
-          // override default reminder notifications
           'reminders': {
             'useDefault': false,
             'overrides': [
@@ -78,52 +126,15 @@ const helper = {
             ]
           }
         };
-        // Define parameters and send request to Google Calendar
-        const goalRequest = gapi.client.calendar.events.insert({
+        const taskRequest = gapi.client.calendar.events.insert({
           'calendarId': 'primary',
-          'resource': goal
+          'resource' : taskReminder
         });
-        goalRequest.execute((event)=> {
+        taskRequest.execute((event)=>{
+          console.log('creating task')
           console.log(event)
         });
-
-        // create task events from array
-        for (var i = 0; i < tasks.length; i++) {
-          var task = tasks[i]
-          console.log(task)
-          if (task.taskName !== "" || task.taskDate !== ""){
-            const taskReminder = {
-              'summary': task.taskName,
-              'start': {
-                'date': task.taskDate
-              },
-              'end': {
-                'date': task.taskDate
-              },
-              'reminders': {
-                'useDefault': false,
-                'overrides': [
-                  {'method': 'email', 'minutes': 24 * 60},
-                  {'method': 'popup', 'minutes': 15 * 60}
-                ]
-              }
-            };
-            const taskRequest = gapi.client.calendar.events.insert({
-              'calendarId': 'primary',
-              'resource' : taskReminder
-            });
-            taskRequest.execute((event)=>{
-              console.log(event)
-            });
-          }
-        }
-        // if user is not signed in or has not authorized the use of their calendar, redirect to sign in
-      } else {
-        GoogleAuth.signIn()
       }
-    }
-    function updateSigninStatus(isSignedIn) {
-      setSigninStatus()
     }
 /* oauth authorization version takes token directly from user instance
   not currently in use*/
