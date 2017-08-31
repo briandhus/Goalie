@@ -57,6 +57,23 @@ class Routes extends React.Component {
     })
   }
 
+  completeGoal(){
+    var that = this;
+    helpers.completeGoal().then((response) => {
+      console.log('put /api/goal returns data');
+      console.log(response.data);
+      if (response.data.goalComplete) {
+        that.setState({
+          goal: {},
+          tasks: [],
+          gearLevel: 0,
+          goToSuccess: true
+        })
+        console.log('trying to go to success page')
+      }
+    })
+  }
+
   updateTask(task){
     var that = this;
     var oldTasks = this.state.tasks;
@@ -70,7 +87,7 @@ class Routes extends React.Component {
     })
     helpers.taskPut(task).then((response)=>{
       console.log('put /api/task returns data')
-      console.log(response.data)
+      // console.log(response.data)
       if (response.data.goalComplete){
         that.setState({
           goal: {},

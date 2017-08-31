@@ -9,10 +9,6 @@ class Dashboard extends React.Component {
     super(props);
   }
     
-  componentDidUpdate(prevProps, prevState){
-  }
-
-
   clickGoalHandler (goalTitle){
     var that = this; 
     helpers.completeGoal(goalTitle).then((response)=>{
@@ -90,10 +86,8 @@ class Dashboard extends React.Component {
                         if (that.props.goal.goalTitle) {
                           return(
                             <div onClick={that.clickGoalHandler.bind(that,that.props.goal.goalTitle)}> 
-                              <Link to="/success">
-                                <button className="btn btn-success complete_btn">Click to complete goal</button>
+                              <button className="btn btn-success complete_btn" onClick={that.props.completeGoal}>Click to complete goal</button>
                               <br />
-                              </Link>
                             </div>
                           )
                         }
