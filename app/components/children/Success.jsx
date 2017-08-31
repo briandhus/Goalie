@@ -15,16 +15,16 @@ class Success extends React.Component {
     return (
     	<div className="container success">
     		<div className="row text-center">
-    			<div className="col-md-12">
+    			<div className="col-sm-12">
       			<h2>Success!</h2>
       		</div>
           <div className="row">
-        		<div className="col-md-12">
+        		<div className="col-sm-12">
               <img alt="avatar complete image" src="./assets/images/level6.png" className="sucess_img"/>            
         		</div>
         	</div>
           <div className="row">
-            <div className="col-md-12">
+            <div className="col-sm-12">
               <Link to="/form">
                 <button className="btn btn-success success_btn">Create New Goal</button>
               </Link>
