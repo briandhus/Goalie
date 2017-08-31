@@ -24,7 +24,9 @@ class Form extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
 
   }
-
+  componentDidMount() {
+    helpers.googInit()
+  }
   handleChange(event) {
 
     var changeTarget = event.target.id
@@ -42,7 +44,7 @@ class Form extends React.Component {
       // console.log(event.target.getAttribute('data-index'))
       // console.log(obj)
       this.setState(
-        tasks, 
+        tasks,
       );
     }
     // console.log(this.state)
@@ -72,7 +74,7 @@ class Form extends React.Component {
     // console.log('GOALOBJECT', goalObject);
     // var GoogleAuth = gapi.auth2.getAuthInstance();
     // var user = GoogleAuth.currentUser.get()
-    helpers.googCalPush(this.state.goal, this.state.task);
+    // helpers.googCalPush(this.state.goal, this.state.task);
     helpers.createGoal(goalObject);
     helpers.createTasks(taskObject)
     this.props.createGoal(goalObject, taskObject);
@@ -82,46 +84,33 @@ class Form extends React.Component {
   }
 
 
-  render () { 
-    return (      
+  render () {
+    return (
       <div className="container form">
         <form >
           <div className="row align-items">
             <div className="row task">
               <div className="form-group col-md-9">
                 <label htmlFor="formGroupInput" className="goalInput">Goal:</label>
-                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} id="goalName" placeholder="Goal input"/>    
+                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} id="goalName" placeholder="Goal input"/>
               </div>
               <div className="form-group col-md-3">
-                <label htmlFor="formGroupInput" className="goalInput">Date:</label> 
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} id="goalDate"/>   
+                <label htmlFor="formGroupInput" className="goalInput">Date:</label>
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} id="goalDate"/>
               </div>
             </div>
-          </div> 
+          </div>
           <hr/>
-          
-          <div className="row align-items">
-            <div className="row task">
-              <div className="form-group col-md-9">
-                <label htmlFor="formGroupInput" className="taskInput">Task:</label> 
-                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} id="taskName" data-index ="0" placeholder="Task input"/>   
-              </div>
-              <div className="form-group col-md-3">
-                <label htmlFor="formGroupInput" className="taskInput">Date:</label> 
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="0" id="taskDate"/>   
-              </div>
-            </div>
-          </div>
 
           <div className="row align-items">
             <div className="row task">
               <div className="form-group col-md-9">
-                <label htmlFor="formGroupInput" className="taskInput">Task:</label> 
-                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="1" id="taskName" placeholder="Task input"/>   
+                <label htmlFor="formGroupInput" className="taskInput">Task:</label>
+                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} id="taskName" data-index ="0" placeholder="Task input"/>
               </div>
               <div className="form-group col-md-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="1" id="taskDate"/>    
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="0" id="taskDate"/>
               </div>
             </div>
           </div>
@@ -130,11 +119,11 @@ class Form extends React.Component {
             <div className="row task">
               <div className="form-group col-md-9">
                 <label htmlFor="formGroupInput" className="taskInput">Task:</label>
-                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="2" id="taskName" placeholder="Task input"/>    
+                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="1" id="taskName" placeholder="Task input"/>
               </div>
               <div className="form-group col-md-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="2" id="taskDate"/>    
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="1" id="taskDate"/>
               </div>
             </div>
           </div>
@@ -143,11 +132,11 @@ class Form extends React.Component {
             <div className="row task">
               <div className="form-group col-md-9">
                 <label htmlFor="formGroupInput" className="taskInput">Task:</label>
-                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="3" id="taskName" placeholder="Task input"/>    
+                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="2" id="taskName" placeholder="Task input"/>
               </div>
               <div className="form-group col-md-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="3" id="taskDate"/>    
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="2" id="taskDate"/>
               </div>
             </div>
           </div>
@@ -156,11 +145,11 @@ class Form extends React.Component {
             <div className="row task">
               <div className="form-group col-md-9">
                 <label htmlFor="formGroupInput" className="taskInput">Task:</label>
-                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="4" id="taskName" placeholder="Task input"/>    
+                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="3" id="taskName" placeholder="Task input"/>
               </div>
               <div className="form-group col-md-3">
-                <label htmlFor="formGroupInput" className="taskInput">Date:</label> 
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="4" id="taskDate"/>   
+                <label htmlFor="formGroupInput" className="taskInput">Date:</label>
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="3" id="taskDate"/>
               </div>
             </div>
           </div>
@@ -169,11 +158,24 @@ class Form extends React.Component {
             <div className="row task">
               <div className="form-group col-md-9">
                 <label htmlFor="formGroupInput" className="taskInput">Task:</label>
-                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="5" id="taskName" placeholder="Task input"/>    
+                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="4" id="taskName" placeholder="Task input"/>
               </div>
               <div className="form-group col-md-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="5" id="taskDate"/>    
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="4" id="taskDate"/>
+              </div>
+            </div>
+          </div>
+
+          <div className="row align-items">
+            <div className="row task">
+              <div className="form-group col-md-9">
+                <label htmlFor="formGroupInput" className="taskInput">Task:</label>
+                <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="5" id="taskName" placeholder="Task input"/>
+              </div>
+              <div className="form-group col-md-3">
+                <label htmlFor="formGroupInput" className="taskInput">Date:</label>
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="5" id="taskDate"/>
               </div>
             </div>
 
@@ -186,7 +188,7 @@ class Form extends React.Component {
                 </Link>
               </div>
             </div>
-  
+
           </div>
         </form>
 
