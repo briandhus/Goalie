@@ -7,46 +7,30 @@ var UserSchema = new Schema({
     unique: true,
     required: true
   },
-  refreshToken: {
-    type: String,
-    unique: true
-  },
-  accessToken: {
-    type: String,
-    unique: true
-  },
   goal: {
     goalTitle: {
-      type: String
+      type: String,
+      default: ''
     },
     goalDue: {
       type: Date
+    }
+  },
+  tasks: [{
+    taskTitle: {
+      type: String
     },
-    goalComplete: {
+    taskComplete: {
       type: Boolean,
       default: false
     },
-    tasks: [{
-      taskTitle: {
-        type: String
-      },
-      taskComplete: {
-        type: Boolean,
-        default: false
-      },
-      taskDue: {
-        type: Date
-      }
-    }]
-  },
-	gear: {
-	  type: String,
-    default: './assets/images/level1.png'
-  },
-  experience: {
-  	type: Number,
-  	required: true,
-  	default: 0
+    taskDue: {
+      type: Date
+    }
+  }],
+	gearLevel: {
+    type: Number,
+    default: 1
   }
 });
 

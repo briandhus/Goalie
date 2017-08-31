@@ -4,8 +4,8 @@ var User = require('../models/User.js');
 var passport = function(passport) {
 	passport.serializeUser(function(user, done){
     console.log('serializeUser is being called!')
-    // console.log('user obj is')
-    // console.log(user)
+    console.log('user obj is')
+    console.log(user)
     done(null, user.id);
 	});
 
@@ -28,6 +28,8 @@ var passport = function(passport) {
 
   }
 
+  console.log(process.env.GOOGLE_CLIENT_ID, 'CLIENT ID IN PASSPORT')
+
 	passport.use(new GoogleStrategy({
 	    clientID: clientID,
 	    clientSecret: clientSecret,
@@ -40,13 +42,11 @@ var passport = function(passport) {
       process.nextTick(function(){
         console.log('trying to find user')
         // console.log(`profile displayname is ${profile.displayName}`)
-        console.log(`refresh token is ${refreshToken}`)
-        console.log(`access token is ${accessToken}`)
         User.findOne({'username': profile.displayName}, function(err, user){
           if(user){
             console.log('user found!')
             // console.log(user);
-            user.accessToken = accessToken;
+            // user.accessToken = accessToken;
             // user.refreshToken = refreshToken
             // user.save()
 
@@ -56,12 +56,14 @@ var passport = function(passport) {
             console.log('creating a new user');
             User.create({
               'username' : profile.displayName,
-              'refreshToken' : refreshToken,
-              'accessToken' : accessToken
-            }, function(data){
-              console.log('done creating a new user')
-              console.log(data);
-              return done(null, data);
+            }, function(err, data){
+              if (err) {
+                console.log(err)
+              } else {
+                console.log('done creating a new user')
+                console.log(data);
+                return done(null, data)
+              };
             })  
           }      
         })

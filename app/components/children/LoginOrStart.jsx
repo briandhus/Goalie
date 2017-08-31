@@ -3,7 +3,6 @@ import axios from 'axios';
 import {Link} from 'react-router-dom';
 
 class LoginOrStart extends React.Component {
-
   constructor(props){
     super(props);
   }

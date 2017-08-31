@@ -130,6 +130,10 @@ body{
 	background-color: #fcfcfc;
 }
 
+.avatar{
+	width: 100%;
+}
+
 .complete_btn{
 	margin-top: 20px;
 	margin-bottom: 10px;
@@ -161,4 +165,8 @@ body{
 /* TODO: change below to whatever we want for completed tasks. Just need to test*/
 .task-complete {
 	color: gray;
+}
+
+.gray-out {
+  background-color: grey
 }

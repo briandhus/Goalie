@@ -16,16 +16,16 @@ class Routes extends React.Component {
       userLogged: false,
       serverResponded: false,
       username: 'George',
-      goal: {}
+      goal: {},
+      tasks:[],
+      gearLevel: 0,
+      goalComplete: false,
+      goToSuccess:  false
     }
     this.updateLogin = this.updateLogin.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.updateTask = this.updateTask.bind(this);
     this.createGoal = this.createGoal.bind(this);
-  }
-
-  componentDidUpdate(){
-    //TODO:
   }
 
   updateLogin(logincheck){
@@ -41,23 +41,68 @@ class Routes extends React.Component {
     var that = this;
     that.setState({
       username: foundUser.username,
-      goal: foundUser.goal
+      goal: foundUser.goal,
+      tasks:foundUser.tasks,
+      gearLevel:foundUser.gearLevel
     })
     console.log('updated routesR\'s user & goal states');
     console.log('foundUser', foundUser.username)
   }
 
-  createGoal(newGoal){
+  createGoal(newGoal, newTasks){
     this.setState({
-      goal: newGoal
+      goal: newGoal,
+      tasks: newTasks.tasks,
+      goToSuccess: false
     })
   }
 
+  completeGoal(){
+    var that = this;
+    helpers.completeGoal().then((response) => {
+      console.log('put /api/goal returns data');
+      console.log(response.data);
+      if (response.data.goalComplete) {
+        that.setState({
+          goal: {},
+          tasks: [],
+          gearLevel: 0,
+          goToSuccess: true
+        })
+        console.log('trying to go to success page')
+      }
+    })
+  }
 
-
-  updateTask(taskTitle){
-    helpers.taskPut(taskTitle).then((data)=>{
-      console.log(`${taskTitle} status updated`)
+  updateTask(task){
+    var that = this;
+    var oldTasks = this.state.tasks;
+    // console.log('oldTasks before mapping is')
+    // console.log(oldTasks)
+    oldTasks.map((v) => {
+      if (v.taskTitle === task.taskTitle) {
+        v.taskComplete = true; 
+      }
+      return v;
+    })
+    helpers.taskPut(task).then((response)=>{
+      console.log('put /api/task returns data')
+      // console.log(response.data)
+      if (response.data.goalComplete){
+        that.setState({
+          goal: {},
+          tasks: [],
+          gearLevel: 0,
+          goToSuccess: true
+        })
+        console.log('trying to go to success page')
+      } else {
+        that.setState({
+          tasks: oldTasks,
+          gearLevel: that.state.gearLevel + 1
+        })
+      console.log(`${task.taskTitle} status updated`);
+      }
     })
   }
 
@@ -76,19 +121,22 @@ class Routes extends React.Component {
           <Route path="/about" component={About}/>   
 
           <Route exact path="/form" render={(props) => (
-            <Form {...props}/>
+            <Form 
+              createGoal={this.createGoal}
+            />
           )}/>      
 
           <Route path="/dashboard" render={(props) => (
             <Dashboard
               username={this.state.username}
               goal={this.state.goal}
+              tasks={this.state.tasks}
               updateTask={this.updateTask}
+              gearLevel = {this.state.gearLevel}
+              sendData={this.getData}
+              goToSuccess={this.state.goToSuccess}
             />
           )}/>
-
-
-          <Route path="/success" component={Success} />
 
         </Switch>
       </div>
