@@ -89,13 +89,15 @@ class Form extends React.Component {
         <form >
           <div className="row align-items">
             <div className="row task">
-              <div className="form-group col-md-9">
+              <div className="form-group col-sm-9">
                 <label htmlFor="formGroupInput" className="goalInput">Goal:</label>
                 <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} id="goalName" placeholder="Goal input"/>
               </div>
+
               <div className="form-group col-md-3">
                 <label htmlFor="formGroupInput" className="goalInput">Date:</label>
                 <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} id="goalDate"/>
+
               </div>
             </div>
           </div>
@@ -103,6 +105,7 @@ class Form extends React.Component {
 
           <div className="row align-items">
             <div className="row task">
+
               <div className="form-group col-md-9">
                 <label htmlFor="formGroupInput" className="taskInput">Task:</label>
                 <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} id="taskName" data-index ="0" placeholder="Task input"/>
@@ -110,17 +113,20 @@ class Form extends React.Component {
               <div className="form-group col-md-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
                 <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="0" id="taskDate"/>
+
               </div>
             </div>
           </div>
 
           <div className="row align-items">
             <div className="row task">
+
               <div className="form-group col-md-9">
                 <label htmlFor="formGroupInput" className="taskInput">Task:</label>
                 <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="1" id="taskName" placeholder="Task input"/>
+
               </div>
-              <div className="form-group col-md-3">
+              <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
                 <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="1" id="taskDate"/>
               </div>
@@ -129,11 +135,11 @@ class Form extends React.Component {
 
           <div className="row align-items">
             <div className="row task">
-              <div className="form-group col-md-9">
+              <div className="form-group col-sm-9">
                 <label htmlFor="formGroupInput" className="taskInput">Task:</label>
                 <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="2" id="taskName" placeholder="Task input"/>
               </div>
-              <div className="form-group col-md-3">
+              <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
                 <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="2" id="taskDate"/>
               </div>
@@ -142,11 +148,11 @@ class Form extends React.Component {
 
           <div className="row align-items">
             <div className="row task">
-              <div className="form-group col-md-9">
+              <div className="form-group col-sm-9">
                 <label htmlFor="formGroupInput" className="taskInput">Task:</label>
                 <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="3" id="taskName" placeholder="Task input"/>
               </div>
-              <div className="form-group col-md-3">
+              <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
                 <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="3" id="taskDate"/>
               </div>
@@ -155,24 +161,26 @@ class Form extends React.Component {
 
           <div className="row align-items">
             <div className="row task">
-              <div className="form-group col-md-9">
+              <div className="form-group col-sm-9">
                 <label htmlFor="formGroupInput" className="taskInput">Task:</label>
                 <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="4" id="taskName" placeholder="Task input"/>
               </div>
+
               <div className="form-group col-md-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
                 <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="4" id="taskDate"/>
+
               </div>
             </div>
           </div>
 
           <div className="row align-items">
             <div className="row task">
-              <div className="form-group col-md-9">
+              <div className="form-group col-sm-9">
                 <label htmlFor="formGroupInput" className="taskInput">Task:</label>
                 <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="5" id="taskName" placeholder="Task input"/>
               </div>
-              <div className="form-group col-md-3">
+              <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
                 <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="5" id="taskDate"/>
               </div>
@@ -181,10 +189,12 @@ class Form extends React.Component {
             <br/>
 
             <div className="form-group row">
+
               <div className="col-md-10 col-md-offset-1" onClick={this.handleSubmit}>
                 <Link href='/' to='/' className="formButton btn btn-danger"  >
                   Submit
                 </Link>
+
               </div>
             </div>
 
