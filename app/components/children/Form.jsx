@@ -96,6 +96,7 @@ class Form extends React.Component {
               <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="goalInput">Date:</label>
                 <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} id="goalDate"/>
+
               </div>
             </div>
           </div>
@@ -110,6 +111,7 @@ class Form extends React.Component {
               <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
                 <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="0" id="taskDate"/>
+
               </div>
             </div>
           </div>
@@ -119,6 +121,7 @@ class Form extends React.Component {
               <div className="form-group col-sm-9">
                 <label htmlFor="formGroupInput" className="taskInput">Task:</label>
                 <input type="text" className="form-control" value={this.state.value} onChange={this.handleChange} data-index ="1" id="taskName" placeholder="Task input"/>
+
               </div>
               <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
@@ -162,6 +165,7 @@ class Form extends React.Component {
               <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
                 <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="4" id="taskDate"/>
+
               </div>
             </div>
           </div>
@@ -185,6 +189,7 @@ class Form extends React.Component {
                 <Link href='/' to='/' className="formButton btn btn-danger"  >
                   Submit
                 </Link>
+
               </div>
             </div>
 
