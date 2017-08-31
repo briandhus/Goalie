@@ -4,8 +4,8 @@ var User = require('../models/User.js');
 var passport = function(passport) {
 	passport.serializeUser(function(user, done){
     console.log('serializeUser is being called!')
-    // console.log('user obj is')
-    // console.log(user)
+    console.log('user obj is')
+    console.log(user)
     done(null, user.id);
 	});
 
