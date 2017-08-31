@@ -72,7 +72,6 @@ class Form extends React.Component {
     // console.log('GOALOBJECT', goalObject);
     // var GoogleAuth = gapi.auth2.getAuthInstance();
     // var user = GoogleAuth.currentUser.get()
-    helpers.googCalPush(this.state.goal, this.state.task);
     helpers.createGoal(goalObject);
     helpers.createTasks(taskObject)
     this.props.createGoal(goalObject, taskObject);
