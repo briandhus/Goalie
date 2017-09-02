@@ -95,7 +95,7 @@ class Form extends React.Component {
               </div>
               <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="goalInput">Date:</label>
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} id="goalDate"/>
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} id="goalDate" placeholder="mm/dd/yyyy"/>
 
               </div>
             </div>
@@ -110,7 +110,7 @@ class Form extends React.Component {
               </div>
               <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="0" id="taskDate"/>
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="0" id="taskDate" placeholder="mm/dd/yyyy"/>
 
               </div>
             </div>
@@ -125,7 +125,7 @@ class Form extends React.Component {
               </div>
               <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="1" id="taskDate"/>
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="1" id="taskDate" placeholder="mm/dd/yyyy"/>
               </div>
             </div>
           </div>
@@ -138,7 +138,7 @@ class Form extends React.Component {
               </div>
               <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="2" id="taskDate"/>
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="2" id="taskDate" placeholder="mm/dd/yyyy"/>
               </div>
             </div>
           </div>
@@ -151,7 +151,7 @@ class Form extends React.Component {
               </div>
               <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="3" id="taskDate"/>
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="3" id="taskDate"  placeholder="mm/dd/yyyy"/>
               </div>
             </div>
           </div>
@@ -164,7 +164,7 @@ class Form extends React.Component {
               </div>
               <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="4" id="taskDate"/>
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="4" id="taskDate" placeholder="mm/dd/yyyy"/>
 
               </div>
             </div>
@@ -178,7 +178,7 @@ class Form extends React.Component {
               </div>
               <div className="form-group col-sm-3">
                 <label htmlFor="formGroupInput" className="taskInput">Date:</label>
-                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="5" id="taskDate"/>
+                <input className="form-control" type="date" value={this.state.value} onChange={this.handleChange} data-index ="5" id="taskDate" placeholder="mm/dd/yyyy"/>
               </div>
             </div>
 

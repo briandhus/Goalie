@@ -12,7 +12,7 @@ class Header extends React.Component {
           <nav className="navbar-toggleable-sm navbar-light bg-faded">
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar">
-                
+
                 <Link className="navbar_brand" to="/">
                   <img alt= "image" src="./assets/images/Motivate.png" className="logo" />
                 </Link>

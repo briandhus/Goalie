@@ -12,8 +12,8 @@
     "type": "git",
     "url": "git+https://github.com/briandhus/Goalie.git"
   },
-  "author": "",
-  "license": "ISC",
+  "author": "Eri Nagase, Roper Macaraeg, Brian Huston, Chi Liu, Dylan Ishihara",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/briandhus/Goalie/issues"
   },
