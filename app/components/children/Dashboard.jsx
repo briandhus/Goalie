@@ -20,6 +20,7 @@ class Dashboard extends React.Component {
     var that = this;
 
       console.log(that.props.goal);
+
       if(that.props.goToSuccess) {
         return (
           <div className="container success">
@@ -74,12 +75,14 @@ class Dashboard extends React.Component {
                         var goalDue = that.props.goal.goalDue;
                         if (goalDue) {
                           return (goalDue.slice(0, goalDue.indexOf('T')));
+
                         }
                         else {
                           return ('n/a')
                         }
                       }) ()
                     }</h5>
+
 
                     {
                       function(){
@@ -126,6 +129,7 @@ class Dashboard extends React.Component {
                           } ()                    
                         )
                       })}
+
 
                     <Link to="/form">
                       <button className="btn btn-success">Create New Goal</button>
