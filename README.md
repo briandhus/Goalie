@@ -6,15 +6,14 @@ Our app allows users to achieve their goals in a timely manner by providing them
 ## Inspiration
 In an age where immediate gratification is expected in every aspect of our lives, we are in dire need of an efficient and playful mechanism to keep us on track to achieve the goals we have in life. Our motivation for creating this app was to provide users with the mechanism to plan incremental steps and track their progress on their goals. Goal setting and executing has never been easier. Join our movement today.
 
-## Dashboard
-The Dashboard displays the user's avatar image, main goal, and subtasks to accomplish that goal. The information rendered is being pulled from the database (mongoDB). As each task is completed, the user's avatar levels up and is given new gear. Once all tasks are completed, the user sees the success component on the website and is directed to create a new goal.
-
-### Usage
+## Usage
 * Access the app [here](https://goalie-teamgb.herokuapp.com/)
 * Login with your Google account; the app then uses session to remember who you are in the short term
 * Click 'Create Goal' to get started
   * Provide due dates for your goal and also the related tasks of that goal
-* Click 'See goal' to complete a goal or individual task; as you complete tasks, notice how your character levels up by getting more gears! 
+* Click 'See goal' to complete a goal or individual task
+* The Dashboard displays the user's avatar image, main goal, and subtasks to accomplish that goal. The information rendered is being pulled from the database (mongoDB).  As each task is completed, the user's avatar levels up and is given new gear.
+* Once all tasks are completed, the user sees the success component on the website and is directed to create a new goal.
 
 ## Built With
 
