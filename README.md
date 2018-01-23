@@ -8,18 +8,18 @@ In an age where immediate gratification is expected in every aspect of our lives
 
 ## Usage
 * Access the app [here](https://goalie-teamgb.herokuapp.com/)
-* Login with your Google account; the app then uses session to remember who you are in the short term
+* Login with your Google account; the app then uses session to remember who the user is in the short term
 * Click 'Create Goal' to get started
-  * Provide due dates for your goal and also the related tasks of that goal
-* Click 'See goal' to complete a goal or individual task
-* The Dashboard displays the user's avatar image, main goal, and subtasks to accomplish that goal. The information rendered is being pulled from the database (mongoDB).  As each task is completed, the user's avatar levels up and is given new gear.
+  * Provide due dates for your goal and also the related subtasks of that goal
+* Click 'See goal' to complete a goal or individual tasks
+* The Dashboard displays the user's avatar image, main goal, and subtasks to accomplish that goal. The information rendered is being pulled from the database (mongoDB).  As each subtask is completed, the user's avatar levels up and is given new gear.
 * Once all tasks are completed, the user sees the success component on the website and is directed to create a new goal.
 
 ## Built With
 
 This app is built on a MERN stack: MongoDB, Express, React, Node and deployed on Heroku
 
-###Front-end
+### Front-end
 * [React](https://reactjs.org/)
 * [React Router](https://reacttraining.com/react-router/)
 * [Bootstrap](http://getbootstrap.com/docs/3.3/)
@@ -27,7 +27,7 @@ This app is built on a MERN stack: MongoDB, Express, React, Node and deployed on
 * [Google Fonts](https://fonts.google.com/)
 * [Axios](https://github.com/axios/axios): Promise based AJAX client
 
-###Back-end
+### Back-end
 * [Express/cookie-session/cookie-parser](https://expressjs.com/)
 * [Passport](http://www.passportjs.org/): Authentification middleware for Node
 * [Google Oauth 2.0](https://developers.google.com/identity/protocols/OAuth2)
