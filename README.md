@@ -40,7 +40,7 @@ This app is built on a MERN stack: MongoDB, Express, React, Node and deployed on
 ## Authors
 
 * [**Brian Huston**](https://briandhus.github.io/Portfolio/) 
-* [**Chi Jen Lu**](chijenlu.com) 
+* [**Chi Jen Lu**](http://chijenlu.com) 
 * [**Dylan Ishihara**](https://dylanishihara.com/) 
 * [**Eri Nagase**](https://nagaseri.github.io/Responsive-Portfolio/) 
 * [**Roper Macaraeg**](http://www.ropermacaraeg.com/) 
